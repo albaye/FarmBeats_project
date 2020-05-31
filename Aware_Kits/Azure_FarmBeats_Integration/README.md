@@ -39,3 +39,11 @@ As you work through the instructions, some values will be needed to move to othe
 |Sensor Model ID#s for each Sensor Type (Presented in **Business Kit Metadata** section) | |
 
 --------------------------
+## Steps
+1. [Basic Python Tutorial](./Basic_Python.md)
+
+2. [Create Telemetry Client](./Create_telemetry_client.md)
+
+3. [Create Metadata](./Create_metadata.md)
+
+4. [Send Historical Data](./Send_historical_data.md)

@@ -635,3 +635,6 @@ When you click on **Devices** you should see the Business Kit device in an *Offl
 When you click **Sensors** you should see the three sensors you created. 
 
 Remember this is only a placeholder for the FarmBeats Business Kit and its sensors.  There is not yet a connection to the actual Business Kit and there is none of the Business Kit sensor data in Azure FarmBeats. 
+
+-------
+Go to next step: [Send Historical Data](./Send_historical_data.md)

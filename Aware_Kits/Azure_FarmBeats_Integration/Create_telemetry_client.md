@@ -63,3 +63,6 @@ This step creates a device partner and provides you with information that will b
 1. You will receive an acknowledgement that you have signed into the Microsoft Azure Cross-platform Command Line Interface application on your device.  Close the browser window and return to the Power Shell window.
 
 1. In your Power Shell window, you should see a message that you have successfully created the app registration.  The Partner Integration credentials should be listed below the message. Make a note of them as you will need them in the next step.
+
+------------
+Go to next step: [Create Metadata](./Create_metadata.md)

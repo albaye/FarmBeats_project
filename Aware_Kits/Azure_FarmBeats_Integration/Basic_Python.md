@@ -4,7 +4,7 @@ In this guide, we will need to run some python scripts in some of the steps.
 
 ## Installation
 
-First of all, if we do not have python, we need to install it in our computer. This can be done from the ![official website](https://www.python.org/downloads/). The installation should also download pip on your computer. 
+First of all, if we do not have python, we need to install it in our computer. This can be done from the [official website](https://www.python.org/downloads/). The installation should also download pip on your computer. 
 For Linux computers, python is installed by default. However, pip is not installed by default. You can check if they have been downloaded in your machine by running the following commands in the terminal:
 ```bash
 python3 --version
@@ -23,7 +23,7 @@ curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 python3 get-pip.py --user 
 ```
 
-After the installation, I recommend using Visual Studio Code as an editor. Download it from the ![official website](https://code.visualstudio.com/) as well.
+After the installation, I recommend using Visual Studio Code as an editor. Download it from the [official website](https://code.visualstudio.com/) as well.
 
 ## Setting the Environment
 1. Open Visual Studio Code, go to the extension tab in the left panel and search python in the search bar. Install the extension. 
@@ -108,3 +108,6 @@ To run the python scripts, use the commands below:
     py nameOfFile.py 
     ```
     Where nameOfFile is the name of the script you want to run.
+
+-------
+Go to next step: [Create Telemetry Client](./Create_telemetry_client.md)
