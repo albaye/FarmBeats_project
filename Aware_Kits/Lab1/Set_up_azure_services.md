@@ -171,5 +171,8 @@ Stream Analytics Job takes and input, in our case it will be an event hub, and s
 
 1. Select **Start**.
 
-## Step 4: Create App
+----------------
+In the next step, you will learn to create an application to visualize your data. There are two options:
+* [Create in Azure IoT Central.](./Create_app_IoTCentral.md)
+* [Create in PowerApps.](./Create_app_PowerApps.md)
 
