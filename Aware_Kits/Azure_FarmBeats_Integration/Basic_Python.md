@@ -53,7 +53,7 @@ Now we will create a virtual environment in python to store all the python packa
 
 3. Close the terminal and open a new one to activate the environment. Alternatively, you can use the following command to do so:
     ```bash
-    python3 -m venv env 
+    source ./.venv/bin/activate
     ```
 
 4. Create a new file named `requirements.txt` with the following content:
