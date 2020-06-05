@@ -3,7 +3,6 @@ Before you can link the FarmBeats Business Kit to Azure FarmBeats you need to cr
 
 You can use your Swagger API interface to add the necessary data to your FarmBeats deployment in support of the Business kit. 
 
-
 ## Device Model 
 First you will create the Device Model.  A Device Model is metadata that describes the Business Kit.   
 
@@ -636,5 +635,32 @@ When you click **Sensors** you should see the three sensors you created.
 
 Remember this is only a placeholder for the FarmBeats Business Kit and its sensors.  There is not yet a connection to the actual Business Kit and there is none of the Business Kit sensor data in Azure FarmBeats. 
 
+## Connect your Device to your Farm
+After creating the all the metadata, we need to assign our device to a farm.
+
+### Creating the Farm
+1. Go to the accelerator website.
+
+1. Click on `+ Create Farm`.
+
+    ![create farm](./media/create_farm.png)
+
+1. Fill in the details of the Farm. Only **Name** and **Farm Boundaries** are required. For the farm boundaries, you can do this by selecting **Mark on map**, and then use the pen located at the top left corner of the map.
+
+    ![farm details](./media/fill_farm_details.png)
+
+1. Finally, clink on the Submit button located at the bottom right corner.
+
+### Asign you device to the Farm
+1. Click on the farm you have just created.
+
+1. Select `Add devices`.
+
+    ![add device button](./media/add_device_button.png)
+
+1. Select your device and click on **Add Devices**.
+
+    ![add device](./media/add_device.png)
+    
 -------
 Go to next step: [Send Historical Data](./Send_historical_data.md)

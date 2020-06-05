@@ -4,7 +4,7 @@ Telemetry is an automated communications process where data is collected at a re
 After a connection is established as an Event Hubs client, you can send messages to the Event Hub as JSON.
 
 ## Send a Telemetry Message as the Client
-For this part, you will need to install the latest version of the ![azure-eventhub](https://pypi.org/project/azure-eventhub/) library in python if you haven't done so before. You can easily do this with the following command: 
+For this part, you will need to install the latest version of the [azure-eventhub](https://pypi.org/project/azure-eventhub/) library in python if you haven't done so before. You can easily do this with the following command: 
 
 ```bash
 pip3 install azure-eventhub 
