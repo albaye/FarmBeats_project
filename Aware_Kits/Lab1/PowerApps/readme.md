@@ -16,14 +16,14 @@ Aditionally, in the second page, you will be able to get more detailed informati
 
 ## Steps
 
-1. [Create IoT Hub](./Create_IoTHub.md)
+1. [Create IoT Hub to receive data from the Raspberry Pi](./Create_IoTHub.md)
 
 1. [Create the code for the Raspberry Pi](./Python_code.md)
 
-1. [Create Storage Account](./Create_storage_account.md)
+1. [Create Storage Account to store sensor measurements](./Create_storage_account.md)
 
-1. [Create Stream Analytics Job](./Create_stream_analytics.md)
+1. [Use Stream Analytics Job to stream data into the storage account](./Create_stream_analytics.md)
 
 1. [Create Azure Function](./Create_Function.md)
 
-1. [Create the Powerapp](./Create_app.md)
+1. [Create the Powerapp](./Create_PowerApps.md)
