@@ -1,4 +1,4 @@
-# Create Azure Function
+# Create Azure Function to get data via API
 
 In the [previous step](./Create_stream_analytics.md) you have created a Stream Analytics Job to stream data into the storage account. In this step, you will create a function to access the data in the storage account via API.
 
@@ -90,7 +90,7 @@ In this step, the function just needs to exist so that it can be called by Azure
         return func.HttpResponse(f"OK")
     ```
 
-1. Save the file. If you don't want to have to remember to save files, you can turn on *Auto Save* by selecting *File -> Auto Save*.
+1. Save the file. If you don't want to have to remember to save files, you can turn on *Auto Save* by selecting *File > Auto Save*.
 
 1. From the terminal activate the Python Virtual Environment
 
@@ -305,7 +305,7 @@ Now if you want, you can also test it from the Azure Portal and check that the p
 
 1. You should receive a `200 Respone`, and some data from the table as the HTTP response content.
 
-   ![test output](./media/test_output.png)
+   ![test output](./media/test_response.png)
 
 ------------------
 

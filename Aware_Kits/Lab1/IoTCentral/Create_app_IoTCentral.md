@@ -23,7 +23,7 @@ IoT central has a user friendly UI that allows us monitor device conditions, cre
     iv. Select **Standard 1** for the Pricing plan.
 
     v. In this case we are going to create the app from scratch, so we chose **custom application** in Template.
-    
+
     vi. Select you location.
 
     vii. Click on create.
@@ -37,6 +37,7 @@ To access the IoT Application Dashboard just press on the **IoT Central Applicat
 ![iot_url](./media/iot_central_app.png)
 
 ## Create a Device Template
+
 Azure IoT Central can work with multiple types of device, and multiple devices per device type. Device types are defined using templates - these specify the capabilities of the device including the telemetry that can be received from the device, and commands that can be sent to it.
 
 The environment sensor captures temperature, humidity, air pressure, soil moisture and light conditions. You will need to define a template that has these values on it, so they can be received from the Pi. 

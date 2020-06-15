@@ -24,11 +24,11 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![Security](./media/security.png)
 
-1. In the **Definition** section, create an action on the left hand side. Enter the **summary** and your **operation ID**. Set **Visibility** to none.
+1. In the **Definition** section, create an action on the left hand side. Enter the **Summary** and your **operation ID**. Set **Visibility** to `none`.
 
     ![Definition](./media/definition.png)
 
-1. Toggle the **'Swagger Editor'** and replace the code from **line 9 to 15** to the following code, then click create connector. This will get set the format of the retrieved message (in this case an array of objects) and the parameters for the request (top and partitionkey). Note that the parameters are optional when making a request.
+1. Toggle the **Swagger Editor** and replace the code from **line 9 to 15** to the following code, then click **Create connector**. This will get set the format of the retrieved message (in this case an array of objects) and the parameters for the request (top and partitionkey). Note that the parameters are optional when making a request.
 
     ```swagger
     paths:
@@ -155,7 +155,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 ### Create a detailed screen
 
-1. Now click 'Insert' and create a new blank screen.
+1. Now click on **Insert** and create a new blank screen.
 
     ![newscreen](./media/newscreen.png)
 
@@ -209,7 +209,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![arrow](./media/arrow.png)
 
-    ```xml
+    ```xlts
     Select(Parent);
 
     Clear(dataValues);
@@ -242,7 +242,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Click on one of the text labels and paste the following code to the formula bar. This will display the data corresponding to the last sensor selected.
 
-    ```xml
+    ```xlts
     "Last Known Value:   " & Switch(
         lastMeasure,
         "humidity",
@@ -298,7 +298,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. To navigate between two screens when the App is running, you can create two icons on each screen.
 
-    To add an arrow icon, select insert, click 'Icons' and scroll down to find the 'Right' arrow.
+    To add an arrow icon, select insert, click **Icons** and scroll down to find the **Right** arrow.
 
     ![addarrow](./media/addarrow.png)
 
