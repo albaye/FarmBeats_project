@@ -8,6 +8,6 @@ The scenario it self is divided into three different parts:
 
 - [Preparation.](Preparation/)
 
-- [Set up an alarm system.](AlarmSystem/)
+- [Set up an alarm system.](./AlarmSystem.md)
 
-- [Automated irrigation.](AutoIrrigation/)
+- [Automated irrigation.](./AutoIrrigation.md)
