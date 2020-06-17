@@ -4,9 +4,9 @@ from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
 from azure.iot.device import MethodResponse
 import random
 
-id_scope = "0ne0010064B"
-device_id = "2bshv7h1rat"
-primary_key = "GBdiH/E87xKXCUUeL2VHt4QXIis64d8VzYXTVP1sTA0="
+id_scope = "0ne00110FA0"
+device_id = "raspberry_pi"
+primary_key = "Ol6FChRJn5RQ2I6DDIxOzXtiYZgkeVfHGHoonaueGTQ="
 
 temp = 19.0 # celsius
 pressure = 95.0 # kPa
@@ -76,10 +76,10 @@ async def main():
             print('Needs watering:', needs_watering)
             payload = {'result': True}
 
-            if needs_watering:
-                led.on()
-            else:
-                led.off()
+            # if needs_watering:
+            #     led.on()
+            # else:
+            #     led.off()
 
             method_response = MethodResponse.create_from_method_request(
                 method_request, 200, payload
