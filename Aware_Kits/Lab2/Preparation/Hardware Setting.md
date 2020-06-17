@@ -1,4 +1,4 @@
-### **Hardware Setting:**
+# **Hardware Setting:**
 
 Mainly three sensors are used in this scenario. They are the Grove temperature and humidity sensor (GHT11), the Grove moisture sensor and the Grove red led.
 
@@ -22,4 +22,4 @@ Following is the instruction for **red led**.
 
 - After plugging in all the sensors above, connect the Raspberry Pi to PC through USB cable.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/Aware-1/images/redled.jpg)
+![Image](https://github.com/albaye/FarmBeats_project/blob/master/images/redled.jpg)
