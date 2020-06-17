@@ -7,10 +7,15 @@ Although the registration of an FarmBeats Business Kit already has a IoT Central
 IoT central has a user friendly UI that allows us monitor device conditions, create rules, and manage millions of devices easily.
 
 ## Create IoT Central Application from Portal
+
 1. Log in into your [Azure Portal](http://portal.azure.com/).
 
-1. Click on **+ Create a new resource**. Search IoT Central and click on **IoT Central Application**. Then click on **Create**.
-![iotc](./media/search_iotc.png)
+1. Click on **+ Create a new resource**.
+
+   ![create resource](./media/create_resource.png)
+
+1. Search IoT Central and click on **IoT Central Application**. Then click on **Create**.
+   ![iotc](./media/search_iotc.png)
 
 1. Fill in the details for the IoT App.
 
@@ -19,6 +24,8 @@ IoT central has a user friendly UI that allows us monitor device conditions, cre
     ii. Select your subscription.
 
     iii. Create a new resource group for the whole lab. In this case I have named it `Lab1`.
+
+      > Resource groups are logical groupings of Azure services, allowing you to manage all the services for a particular application or project together. At the end of this workshop this Resource Group will be deleted, deleting all the services created.
 
     iv. Select **Standard 1** for the Pricing plan.
 
@@ -31,22 +38,26 @@ IoT central has a user friendly UI that allows us monitor device conditions, cre
     ![create_app](./media/create_iot_central_app.png)
 
 1. After that your IoT Central app will start the deployment. Once it is finished, just click on **Go to Resource**.
-![deployment](./media/deployment_completed.png)
 
-To access the IoT Application Dashboard just press on the **IoT Central Application URL** hyperlink.
-![iot_url](./media/iot_central_app.png)
+   ![deployment](./media/deployment_completed.png)
+
+   To access the IoT Application Dashboard just press on the **IoT Central Application URL** hyperlink.
+
+   ![iot_url](./media/iot_central_app.png)
 
 ## Create a Device Template
 
 Azure IoT Central can work with multiple types of device, and multiple devices per device type. Device types are defined using templates - these specify the capabilities of the device including the telemetry that can be received from the device, and commands that can be sent to it.
 
-The environment sensor captures temperature, humidity, air pressure, soil moisture and light conditions. You will need to define a template that has these values on it, so they can be received from the Pi. 
+The environment sensor captures temperature, humidity, air pressure, soil moisture and light conditions. You will need to define a template that has these values on it, so they can be received from the Pi.
 
 1. From the left panel select **Device Template**. Then click on **+ New**.
-![device template](./media/device_template.png)
+
+   ![device template](./media/device_template.png)
 
 1. Select the **IoT Device** template.
-![iot device](./media/create_device_template.png)
+
+   ![iot device](./media/create_device_template.png)
 
 1. Select the **Next: Customize** button.
 
@@ -72,8 +83,7 @@ Once the template is created, you need to add capabilities to it. These are defi
 
 The environment sensor needs a capability model created, with an interface defined for the telemetry values being sent, a command to indicate that the plant needs watering, and a view to visualize these values.
 
-7. Select the **Custom** capability model
-
+1. Select the **Custom** capability model
 
 ## Add an interface
 
@@ -105,8 +115,8 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 
    ![capabilities](./media/added_capabilities.png)
 
-
 ## Add a view
+
 1. Select **Views** from the menu.
 
    ![select view from pannel](./media/add_view.png)
@@ -137,13 +147,14 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 
 1. You can create another view showing just the last value received if you want.
 
-Here is an example of how it can look like.
+   Here is an example of how it can look like.
 
-![sensor charts](./media/chart_view.png)
+   ![sensor charts](./media/chart_view.png)
 
-![sensor data](./media/sensor_view.png)
+   ![sensor data](./media/sensor_view.png)
 
 ## Publish the device template
+
 Before the device template can be assigned to a device, it needs to be published. Once published, any intefaces defined on it cannot be changed, instead a new version of the device template needs to be created.
 
 1. Select the **Publish** button from the top-most menu.
@@ -163,7 +174,7 @@ Before the device template can be assigned to a device, it needs to be published
 1. Select **+ New**.
 
 1. Set the **Device Name** to `Raspberry pi` and the **Devide Id** to `raspberry_pi`. Then Click on **Create**.
-   
+
    ![create device](./media/create_device.png)
 
 A new device should appear in the devices list.
@@ -174,7 +185,7 @@ A new device should appear in the devices list.
 
 Each device has a seet of connection details that will be used on the actual device to connect to Azure IoT Central and send telemetry.
 
-1. Click on the Raspberry pi device you have just created. 
+1. Click on the Raspberry pi device you have just created.
 
 1. Click on the `Connect` button located at the top right corner.
 
@@ -185,6 +196,5 @@ Each device has a seet of connection details that will be used on the actual dev
    ![connection details](./media/device_connection_details.png)
 
 ------------------
-Next Step:
 
-[Send telemetry data to IoT Central from your pi.](./Send_data_to_IoTCentral.md)
+[Next Step](./Send_data_to_IoTCentral.md): write the python code to send telemetry data to IoT Central.
