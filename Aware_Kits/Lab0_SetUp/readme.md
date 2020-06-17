@@ -45,7 +45,7 @@ Installation Checklist
 ----------------------
 
 To assist you in getting through the setup documentation we have created this
-[checklist](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M1_Installation_Checklist.pdf).
+[checklist](Indoor_M1_Installation_Checklist.pdf).
 Download, print out, and check of each off the key installation steps as you go,
 to ensure you don’t miss anything important.
 
@@ -62,17 +62,17 @@ Setting up your FarmBeats Student Kit
 To get started follow these instructions:
 
 - 1 - [Build and test your Windows 10 IoT Core
-    device](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/1_Build_your_Windows_10_IoT_Core_Device.md)
+    device](1_Build_your_Windows_10_IoT_Core_Device.md)
 
 - Attach sensors, install OS, install application, and test your device.
 
 - 2 - [Register your FarmBeats Student Kit User and
-    Devices](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/2_Register_your_FarmBeats_Student_Kit_User_and_Device.md)
+    Devices](2_Register_your_FarmBeats_Student_Kit_User_and_Device.md)
 
 - Sign up at the FarmBeats Student Kit Portal and register your device.
 
 - 3 - [Configure your Azure IoT Central Cloud
-    Services](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/3_Configure_your_Azure_IoT_Central_Cloud_Service.md)
+    Services](3_Configure_your_Azure_IoT_Central_Cloud_Service.md)
 
 - Customize your Azure IoT Central to gain insights from sensor data.
 
@@ -91,7 +91,7 @@ utilize our cloud services for provisioning, monitoring and managing up to five
 devices for free.
 
 [FarmBeats Student Kit: Indoor M1 Hardware
-List](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M1_Hardware_List.md)
+List](Indoor_M1_Hardware_List.md)
 
 Parts List
 
