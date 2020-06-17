@@ -1,4 +1,4 @@
-# **Hardware Setting:**
+# **Hardware Setting**
 
 Mainly three sensors are used in this scenario. They are the Grove temperature and humidity sensor (GHT11), the Grove moisture sensor and the Grove red led.
 
