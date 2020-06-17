@@ -206,7 +206,9 @@ Python has a concept of `.env` files to store secrets such as connection details
     light_sensor = GroveLightSensor(light_pin)
 
     load_dotenv()
-    connectionString = os.getenv('CONNECTION_STRING')
+    id_scope = os.getenv('ID_SCOPE')
+    device_id = os.getenv('DEVICE_ID')
+    primary_key = os.getenv('PRIMARY_KEY')
 
     def getTemperaturePressureHumidity():
         return bme280.sample(bus, bme_address, calibration_params)
@@ -283,7 +285,6 @@ Python has a concept of `.env` files to store secrets such as connection details
         # python3.6
         # loop = asyncio.get_event_loop()
         # loop.run_until_complete(main())
-
     ```
 
    This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message.

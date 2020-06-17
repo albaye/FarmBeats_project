@@ -274,7 +274,6 @@ Python has a concept of `.env` files to store secrets such as connection details
         # python3.6
         # loop = asyncio.get_event_loop()
         # loop.run_until_complete(iothub_client_telemetry_sample_run())
-
     ```
 
    This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message.

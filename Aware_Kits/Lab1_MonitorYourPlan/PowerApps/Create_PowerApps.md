@@ -14,7 +14,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Click on **New custom connector**, select **Create from blank** and enter the name of your connector
 
-    ![New Connector](./media/newconnector.png)
+    ![New Connector](./media/newconnector.PNG)
 
 1. In the General section, select **HTTPS** for Scheme and enter your host address in the 'Host'
 
