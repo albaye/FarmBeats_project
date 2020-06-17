@@ -85,7 +85,7 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
    ![The open folder option](./media/open_folder.png)
 
-1. Locate the new `EnvironmentMonitor` folder and select it, then select **OK**
+1. Locate the new `EnvironmentMonitorIoT` folder and select it, then select **OK**
 
 1. The window will reload in the selected folder, and you will be asked for your Raspberry Pi password again, so enter it.
 
@@ -97,12 +97,11 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Ensure that the Python 3 virtual environment tooling is installed by running the following commands in the terminal
 
-   ```sh
-   sudo apt-get update
-   sudo apt-get install python3-venv
+   ```cmd
+   py -m pip install --user virtualenv
    ```
 
-1. Create a new file inside the `EnvironmentMonitor` folder called `app.py`. This is the file that will contain the code for the device, and by creating it the Python extension in Visual Studio Code will be activated. Select the **New File** button in the *Explorer*.
+1. Create a new file inside the `EnvironmentMonitorIoT` folder called `app.py`. This is the file that will contain the code for the device, and by creating it the Python extension in Visual Studio Code will be activated. Select the **New File** button in the *Explorer*.
 
    ![The new file button](./media/new_file.png)
 
@@ -110,8 +109,8 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Create a new virtual environment called `.venv` using Python 3 by running the following command in the terminal
 
-   ```sh
-   python3 -m venv .venv
+   ```cmd
+   py -m venv .venv
    ```
 
 1. A dialog will pop up asking if you want to activate this virtual environment. Select **Yes**.
@@ -119,6 +118,12 @@ Python comes in various versions, and Python apps can use external code in packa
 1. The existing terminal will not have the virtual environment activated. Close it by selecting the trash can button
 
    ![The kill terminal button](./media/kill_terminal.png)
+
+1. You can also activate the environment by running the following command in the terminal.
+
+    ```cmd
+    .\env\Scripts\activate
+    ```
 
 1. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment
 
@@ -128,7 +133,7 @@ Python comes in various versions, and Python apps can use external code in packa
 
 Python has a package manager called `pip` that allows you to install code from other developers in packages called pip packages. You can read more about pip and see the available packages at [pypi.org](https://pypi.org). Packages can either be installed into the virtual environment one at a time using the `pip` command, or multiple packages can be listed in a file called `requirements.txt` and installed together. The advantage of using a `requirements.txt` file is that this can be checked into source code control, so that other developers can configure their environment the same way by installing the same packages from this file.
 
-1. Create a new file inside the `EnvironmentMonitor` folder called `requirements.txt`
+1. Create a new file inside the `EnvironmentMonitorIoT` folder called `requirements.txt`
 
 1. Add the following to this file
 
@@ -144,7 +149,7 @@ Python has a package manager called `pip` that allows you to install code from o
 
 1. From the terminal, run the following command to install these packages:
 
-   ```sh
+   ```cmd
    pip install -r requirements.txt
    ```
 
@@ -165,11 +170,11 @@ The connection details for the device ideally should not be stored in source cod
 
 Python has a concept of `.env` files to store secrets such as connection details. These files are managed by the `python-dotenv` pip package, and are usually ignored when checking into git (the default `.gitignore` file created by GitHub for Python projects has these files in it by default).
 
-1. Create a new file inside the `EnvironmentMonitor` folder called `.env`
+1. Create a new file inside the `EnvironmentMonitorIoT` folder called `.env`
 
 1. Add the following entries to this file:
 
-   ```sh
+   ```cmd
    ID_SCOPE=<Id scope>
    DEVICE_ID=raspberry_pi
    PRIMARY_KEY=<primary key>
@@ -293,7 +298,7 @@ Python has a concept of `.env` files to store secrets such as connection details
 1. From the terminal, run the following command to start the app
 
    ```sh
-   python app.py
+   py app.py
    ```
 
    The app should start, connect to Azure IoT Hub, and send data. The data being sent will be printed to the terminal
@@ -444,40 +449,6 @@ The last part of the code will is just to tell the Raspberry Pi it should run th
 1. From the **Devices** tab, select the `Raspberry Pi` device
 
 1. The view will load, and there should be data visible that matches the data being sent
-
-## Run the Python app continuously
-
-*This step is optional.*
-
-The Python app will only run as long as the terminal is connected. Ideally we want the software running as soon as the Raspberry Pi boots up. This saves having to log in and run the Python file each time the device is turned on. The easiest way to do this is via a `cron` job that is run on reboot. Cron is a task scheduler that runs commands at specific times.
-
-1. Stop the Python app by pressing ctrl+c in the terminal
-
-1. From the terminal run the following command to edit the crontab. This is a file that contains jobs for cron to run.
-
-    ```sh
-    sudo crontab -e
-    ```
-
-    If you are asked to select and editor, select `nano`. This will open the file inside the terminal in the nano editor.
-
-1. Add the following line to the end of the file:
-
-    ```sh
-    @reboot /home/pi/EnvironmentMonitor/.venv/bin/python3 /home/pi/EnvironmentMonitor/app.py
-    ```
-
-1. Press ctrl+x to close nano. Press Y to save the file when asked if you want to save the modified buffer, then press return to select the default file name.
-
-1. From the terminal, run the following command to restart the Raspberry Pi
-
-   ```sh
-   sudo reboot
-   ```
-
-1. Close the Visual Studio Code window
-
-1. After a few seconds, the Raspberry Pi will reboot and resume sending telemetry to Azure IoT central. Check the device view to see the data.
 
 ----------------
 [Next Step](./Create_storage_account.md): Create the storage account to store the data received from the sensors.
