@@ -77,8 +77,7 @@ To complete these steps, you will need a keyboard, monitor and computer mouse.
 Software Installation Complete
 ------------------------------
 
-You have successfully installed your Windows 10 IoT Core sensor device and
-software
+You have successfully installed your Windows 10 IoT Core sensor device and software
 
 Now proceed to [Step 2 – Register your FarmBeats Student Kit User and
-Device](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/2_Register_your_FarmBeats_Student_Kit_User_and_Device.md)
+Device](2_Register_your_FarmBeats_Student_Kit_User_and_Device.md)

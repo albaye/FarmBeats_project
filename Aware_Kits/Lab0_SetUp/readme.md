@@ -61,20 +61,20 @@ Setting up your FarmBeats Student Kit
 
 To get started follow these instructions:
 
--   1 - [Build and test your Windows 10 IoT Core
+- 1 - [Build and test your Windows 10 IoT Core
     device](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/1_Build_your_Windows_10_IoT_Core_Device.md)
 
-    -   Attach sensors, install OS, install application, and test your device.
+- Attach sensors, install OS, install application, and test your device.
 
--   2 - [Register your FarmBeats Student Kit User and
+- 2 - [Register your FarmBeats Student Kit User and
     Devices](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/2_Register_your_FarmBeats_Student_Kit_User_and_Device.md)
 
-    -   Sign up at the FarmBeats Student Kit Portal and register your device.
+- Sign up at the FarmBeats Student Kit Portal and register your device.
 
--   3 - [Configure your Azure IoT Central Cloud
+- 3 - [Configure your Azure IoT Central Cloud
     Services](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/3_Configure_your_Azure_IoT_Central_Cloud_Service.md)
 
-    -   Customize your Azure IoT Central to gain insights from sensor data.
+- Customize your Azure IoT Central to gain insights from sensor data.
 
 How to purchase a FarmBeats Student Kit
 ---------------------------------------
@@ -95,22 +95,22 @@ List](https://github.com/farmbeatslabs/studentkit/blob/master/Indoor-m1/Indoor_M
 
 Parts List
 
--   1 x Raspberry Pi 3 Model B
+- 1 x Raspberry Pi 3 Model B
 
--   1 x Grove Base for Raspberry Pi
+- 1 x Grove Base for Raspberry Pi
 
--   1 x Grove Soil Moisture Sensor
+- 1 x Grove Soil Moisture Sensor
 
--   1 x Grove Temperature, Humidity & Barometer Sensor
+- 1 x Grove Temperature, Humidity & Barometer Sensor
 
--   1 x Grove Light Sensor
+- 1 x Grove Light Sensor
 
--   2 x Grove 50cm Long Cables
+- 3 x Grove 50cm Long Cables
 
--   1 x SD Card 32GB Micro
+- 1 x SD Card 32GB Micro
 
--   1 x SD Card USB Adapter
+- 1 x SD Card USB Adapter
 
--   1 x Power Supply & Cable
+- 1 x Power Supply & Cable
 
--   1 x Ethernet Cable
+- 1 x Ethernet Cable

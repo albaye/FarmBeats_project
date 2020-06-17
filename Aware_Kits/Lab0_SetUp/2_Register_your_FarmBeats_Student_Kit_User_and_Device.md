@@ -119,3 +119,6 @@ us](mailto:support@farmbeatslabs.com) *to arrange.*
 -   You will receive an email for every device you add.
 
 ![](media/4ac2b44a24ea0f0381ca40ebfea83e8d.png)
+
+-----------------
+Now proceed to [Step 3 – Configure your Azure IoT Central Cloud Services](3_Configure_your_Azure_IoT_Central_Cloud_Service.md)

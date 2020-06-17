@@ -32,7 +32,7 @@ Configure the Azure IoT Central Dashboard
 
 ![](media/2b60adfb0271a330a98a26d0595087e3.png)
 
-### Test that your sensor data is being received. 
+### Test that your sensor data is being received
 
 Cover the light sensor and click the commands, Sensor Update
 
