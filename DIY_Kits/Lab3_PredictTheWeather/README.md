@@ -16,6 +16,4 @@ Learn to use temperature, humidity and barometer sensor to predict the weather f
 
 Microsoft  Azure, Machine Learning, AI, R programming.
 
-------------------
-
-*Go to next scenario: [LED Light system](./4.-LED_Light_system.md)*
+-----------------

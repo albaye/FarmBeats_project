@@ -1,6 +1,6 @@
 # Create the app
 
-In this lab you will learn how to create your own app using PowerApps. PowerApps is a platform that allows us to build an app without having deep understanding in programming. It has a very user friendly interface and allows you to connect to a great variety of data sources, from excel tables to outlook and Azure Services.
+In this lab you will learn how to create your own app using PowerApps. PowerApps is a platform that allows us to build an app without having deep understanding in programming. It has a user friendly interface and allows you to connect to a great variety of data sources, from excel tables to outlook and Azure Services.
 
 ## Interface of the App
 

@@ -22,5 +22,3 @@ _**Additional equipment:** x5 LED lights (deep red, far red, blue, green, uv)._
 Microsoft Azure Services, Voltage regulation/PWM.
 
 ------------------
-
-*Go to next scenario: [Hydroponic farm](./5.-Hydroponic_farm.md)*
