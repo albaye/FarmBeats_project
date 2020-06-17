@@ -1,4 +1,4 @@
-# Scenario 1: Monitor yout plant
+# Scenario 1: Monitor your plant
 
 ## Description
 
