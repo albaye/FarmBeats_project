@@ -76,7 +76,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
     * Input alias: `data`.
 
-    * Click on `Select IoT Hub from your subscriptions`.
+    * Click on `Select table storage from your subscriptions`.
 
     * Subscription: select your subscription.
 
@@ -114,7 +114,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
     This will pass the date, time, humidity, pressure, soil_moisture, temperature and light columns as they are received. Additionally, create two more columns: `device` and `timestamp`. Device will be equal to raspberryPi (you can also pass this parameter from the raspberryPi if using more than one device). Timestamp will be equal to the time the event is received.
 
-1. Click on Test the selected query. You should see something like this:
+1. Click on **Test query**. You should see something like this:
 
     ![test query](./media/test_query.png)
 

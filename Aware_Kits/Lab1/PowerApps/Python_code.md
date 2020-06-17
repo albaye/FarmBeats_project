@@ -1,5 +1,7 @@
 # Write the code to capture telemetry from the Raspberry Pi
 
+In the [previous step](./Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
+
 ## Connect to the Raspberry Pi from Visual Studio Code
 
 To write the code for the Raspberry Pi, you will use the Remote development capabilities of Visual Studio Code.
@@ -16,32 +18,32 @@ To enable remote development in Visual Studio Code, you will need to install the
 
 1. Search for `remote development` and install the *Remote Development* extension pack from Microsoft by selecting the **Install** button
 
-   ![The remote development extension](../Images/RemoteDevelopmentExtension.png)
+   ![The remote development extension](./media/install_remote_ssh.png)
 
 ### Connect to the Raspberry Pi
 
-1. From Visual Studio Code, launch the command palette
+1. From Visual Studio Code, launch the c/ommand palette
 
    * On macOS, press command+shift+p
    * On Windows or Linux, press ctrl+shift+p
 
 1. Search for `Remote-SSH: Connect to Host` and select it
 
-   ![The connect to host option](../Images/VSConnectToHost.png)
+   ![The connect to host option](./media/connect_to_host.png)
 
 1. Select *+ Add new SSH Host*
 
-   ![The add new host option](../Images/AddNewSSHHost.png)
+   ![The add new host option](./media/add_new_host.png)
 
-1. Enter `pi@raspberrypi.local` as the SSH connection command
+1. Enter `pi@raspberrypi.local` or if you know the ip address of the pi `pi@yourIPAddress` as the SSH connection command
 
-   ![The SSH connection command](../Images/EnterSSHHost.png)
+   ![The SSH connection command](./media/enter_ssh_host.png)
 
 1. Select the SSH configuration file to update. This will store the SSH connection details to make connection easier. There will be an option in your home folder, which will vary depending on your OS and user name, so select this.
 
 1. Once the connection has been configured, a dialog will appear saying the host is configured. Select **Connect** from this dialog.
 
-   ![The host added dialog](../Images/HostAddedDialog.png)
+   ![The host added dialog](./media/host_added.png)
 
 1. A new Visual Studio Code window will open to host the connection. In the password prompt dialog, enter the password for your Raspberry Pi. The default password is `raspberry`.
 
@@ -59,17 +61,15 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
 
-   ![The extensions tab in Visual Studio Code](../Images/VSCodeMenuExtensions.png)
-
 1. Search for `Python` and install the *Python* extension from Microsoft by selecting **Install in SSH: raspberrypi.local**.
 
-   ![The python extension](../Images/PythonExtension.png)
+   ![The python extension](./media/install_python.png)
 
    > There are a number of Python extensions available, so ensure you install the one from Microsoft
 
 1. A reload will be required, so select **Reload required**
 
-   ![Reload required for the python extension](../Images/PythonReloadRequired.png)
+   ![Reload required for the python extension](./media/python_reload.png)
 
 1. Visual Studio will reload the window, and you will be asked for your Raspberry Pi password again, so enter it.
 
@@ -77,15 +77,15 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 1. When the new Visual Studio Code window is opened, the terminal should be opened by default. If not, open a new terminal by selecting *Terminal -> New Terminal*.
 
-1. From the Terminal in Visual Studio Code, create a new folder in the home folder called `EnvironmentMonitor`
+1. From the Terminal in Visual Studio Code, create a new folder in the home folder called `EnvironmentMonitorIoT`
 
    ```sh
-   mkdir EnvironmentMonitor
+   mkdir EnvironmentMonitorIoT
    ```
 
 1. Open this new folder in Visual Studio Code by selecting **Open folder** from the *Explorer*
 
-   ![The open folder option](../Images/OpenFolder.png)
+   ![The open folder option](./media/open_folder.png)
 
 1. Locate the new `EnvironmentMonitor` folder and select it, then select **OK**
 
@@ -108,11 +108,9 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Create a new file inside the `EnvironmentMonitor` folder called `app.py`. This is the file that will contain the code for the device, and by creating it the Python extension in Visual Studio Code will be activated. Select the **New File** button in the *Explorer*.
 
-   ![The new file button](../Images/NewFileButton.png)
+   ![The new file button](./media/new_file.png)
 
 1. Name the new file `app.py` and press return
-
-   ![Naming the file app.py](../Images/NameAppPy.png)
 
 1. Create a new virtual environment called `.venv` using Python 3 by running the following command in the terminal
 
@@ -126,7 +124,7 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. The existing terminal will not have the virtual environment activated. Close it by selecting the trash can button
 
-   ![The kill terminal button](../Images/KillTerminal.png)
+   ![The kill terminal button](./media/kill_terminal.png)
 
 1. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment
 
@@ -145,6 +143,7 @@ Python has a package manager called `pip` that allows you to install code from o
    python-dotenv
    RPi.bme280
    grove.py
+   smbus2
    ```
 
 1. Save the file. If you don't want to have to remember to always save files in Visual Studio Code, select *File -> Auto Save* to turn on automatic saving of files.
@@ -162,7 +161,7 @@ The packages installed are:
 | azure-iot-device | Allows communication with Azure IoT services including Visual Studio Code           |
 | python-dotenv    | Allows loading of environment variables from `.env` files                           |
 | RPi.bme280       | Provides access to the BME280 temperature/pressure/humidity sensor                  |
-| grove.py         | Provides access to the grove sensors including the Grove capacitive moisture sensor |
+| grove.py         | Provides access to the grove sensors including the Grove capacitive moisture sensor and the Light sensor |
 
 ## Write the code
 
@@ -177,12 +176,10 @@ Python has a concept of `.env` files to store secrets such as connection details
 1. Add the following entries to this file:
 
    ```sh
-   ID_SCOPE=<Id scope>
-   DEVICE_ID=raspberry_pi
-   PRIMARY_KEY=<primary key>
+   CONNECTION_STRING=<Connection String>
    ```
 
-   Set `<Id scope>` to be the value of the ID Scope from the **Connect** dialog in Azure IoT Central. Set `<primary key>` to be the **Primary key** value from this dialog.
+   Set `<Connection>` to be the value of the connection string from the device inside the IoT hub.
 
 ### Create the application code
 
@@ -191,18 +188,18 @@ Python has a concept of `.env` files to store secrets such as connection details
 1. Add the following code to the file:
 
     ```python
-    import smbus2, bme280, os, asyncio, json
-    from dotenv import load_dotenv
+    from azure.iot.device.aio import IoTHubDeviceClient
+    from datetime import datetime, date
+    import smbus2, bme280, os, asyncio, json, time
     from grove.grove_moisture_sensor import GroveMoistureSensor
-    from grove.grove_led import GroveLed
-    from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
-    from azure.iot.device import MethodResponse
+    from dotenv import load_dotenv
+    from grove.grove_light_sensor_v1_2 import GroveLightSensor
 
     # Configuration parameters
     bme_pin = 1
     bme_address = 0x76
     moisture_pin = 2
-    led_pin = 16
+    light_pin = 0
 
     # Create the sensors
     bus = smbus2.SMBus(bme_pin)
@@ -210,103 +207,77 @@ Python has a concept of `.env` files to store secrets such as connection details
 
     moisture_sensor = GroveMoistureSensor(moisture_pin)
 
-    # Create the LED
-    led = GroveLed(led_pin)
+    light_sensor = GroveLightSensor(light_pin)
 
-    # Load the Azure IoT Central connection parameters
     load_dotenv()
-    id_scope = os.getenv('ID_SCOPE')
-    device_id = os.getenv('DEVICE_ID')
-    primary_key = os.getenv('PRIMARY_KEY')
+    connectionString = os.getenv('CONNECTION_STRING')
 
     def getTemperaturePressureHumidity():
         return bme280.sample(bus, bme_address, calibration_params)
 
     def getMoisture():
-        return moisture_sensor.moisture
+        return round(moisture_sensor.moisture, 2)
+
+    def getLight():
+        return round(light_sensor.light, 2)
+
+    def getDate():
+        now = datetime.now()
+        return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
     def getTelemetryData():
-        temp_pressure_humidity = getTemperaturePressureHumidity()
+        temp = round(getTemperaturePressureHumidity().temperature, 2)
         moisture = getMoisture()
-
+        pressure = round(getTemperaturePressureHumidity().pressure, 2)
+        humidity = round(getTemperaturePressureHumidity().humidity, 2)
+        light = getLight()
+        date, time = getDate()
         data = {
-            "humidity": round(temp_pressure_humidity.humidity, 2),
-            "pressure": round(temp_pressure_humidity.pressure/10, 2),
-            "temperature": round(temp_pressure_humidity.temperature, 2),
-            "soil_moisture": round(moisture, 2)
+            "date": date,
+            "time": time,
+            "humidity": humidity,
+            "pressure": pressure,
+            "temperature": temp,
+            "soil_moisture": moisture,
+            "light": light
         }
 
         return json.dumps(data)
 
-    async def main():
-        # provision the device
-        async def register_device():
-            provisioning_device_client = ProvisioningDeviceClient.create_from_symmetric_key(
-                provisioning_host='global.azure-devices-provisioning.net',
-                registration_id=device_id,
-                id_scope=id_scope,
-                symmetric_key=primary_key)
+    def iothub_client_init():
+        client = IoTHubDeviceClient.create_from_connection_string(connectionString)
+        return client
 
-            return await provisioning_device_client.register()
+    async def iothub_client_telemetry_sample_run():
+        try:
+            client = iothub_client_init()
+            print("Conected, press Ctrl + C to exit")
 
-        results = await asyncio.gather(register_device())
-        registration_result = results[0]
-
-        # build the connection string
-        conn_str='HostName=' + registration_result.registration_state.assigned_hub + \
-                    ';DeviceId=' + device_id + \
-                    ';SharedAccessKey=' + primary_key
-
-        # The client object is used to interact with Azure IoT Central.
-        device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
-
-        # connect the client.
-        print('Connecting')
-        await device_client.connect()
-        print('Connected')
-
-        # listen for commands
-        async def command_listener(device_client):
             while True:
-                method_request = await device_client.receive_method_request('needs_watering')
-                needs_watering = method_request.payload
-                print('Needs watering:', needs_watering)
-                payload = {'result': True}
+                message = getTelemetryData()
 
-                if needs_watering:
-                    led.on()
-                else:
-                    led.off()
+                print(message)
+                await client.send_message(message)
 
-                method_response = MethodResponse.create_from_method_request(
-                    method_request, 200, payload
-                )
-                await device_client.send_method_response(method_response)
+                # sleep 30 seconds
+                await asyncio.sleep(30)
 
-        # async loop that sends the telemetry
-        async def main_loop():
-            while True:
-                telemetry = getTelemetryData()
-                print(telemetry)
-
-                await device_client.send_message(telemetry)
-                await asyncio.sleep(60)
-
-        listeners = asyncio.gather(command_listener(device_client))
-
-        await main_loop()
-
-        # Cancel listening
-        listeners.cancel()
-
-        # Finally, disconnect
-        await device_client.disconnect()
+            except KeyboardInterrupt:
+                print("IoTHubClient sample stopped")
+                await client.disconnect()
 
     if __name__ == '__main__':
-        asyncio.run(main())
+        print("IoT Hub Connection")
+        # python3.7
+        asyncio.run(iothub_client_telemetry_sample_run())
+
+        # python3.6
+        # loop = asyncio.get_event_loop()
+        # loop.run_until_complete(iothub_client_telemetry_sample_run())
+
     ```
 
-   This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message. It will also listen for the `needs_watering` command, and turn an LED on or off depending on the value sent with the command.
+   This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message.
 
 1. Save the file
 
@@ -316,7 +287,7 @@ Python has a concept of `.env` files to store secrets such as connection details
    python app.py
    ```
 
-   The app should start, connect to Azure IoT Central, and send data. The data being sent will be printed to the terminal
+   The app should start, connect to Azure IoT Hub, and send data. The data being sent will be printed to the terminal
 
    ![The app running showing telemetry in the terminal](../Images/AppOutput.png)
 
@@ -329,7 +300,7 @@ This Python file contains a lot of code to connect to the sensors, connect to Az
 bme_pin = 1
 bme_address = 0x76
 moisture_pin = 2
-led_pin = 16
+light_pin = 0
 
 # Create the sensors
 bus = smbus2.SMBus(bme_pin)
@@ -337,18 +308,15 @@ calibration_params = bme280.load_calibration_params(bus, bme_address)
 
 moisture_sensor = GroveMoistureSensor(moisture_pin)
 
-# Create the LED
-led = GroveLed(led_pin)
+light_sensor = GroveLightSensor(light_pin)
 ```
 
-This code defines the configuration for the sensors, including what pins they are connected to. It then creates objects for the BME280 temperature, pressure and humidity sensor, including loading calibration details from the sensor, the moisture sensor and the LED.
+This code defines the configuration for the sensors, including what pins they are connected to. It then creates objects for the BME280 temperature, pressure and humidity sensor, including loading calibration details from the sensor, the moisture sensor and the light sensor.
 
 ```python
 # Load the Azure IoT Central connection parameters
 load_dotenv()
-id_scope = os.getenv('ID_SCOPE')
-device_id = os.getenv('DEVICE_ID')
-primary_key = os.getenv('PRIMARY_KEY')
+connectionString = os.getenv('CONNECTION_STRING')
 ```
 
 This code loads the environment variables from the `.env` file, and gets the values into some fields.
@@ -358,128 +326,91 @@ def getTemperaturePressureHumidity():
     return bme280.sample(bus, bme_address, calibration_params)
 
 def getMoisture():
-    return moisture_sensor.moisture
+    return round(moisture_sensor.moisture, 2)
+
+def getLight():
+    return round(light_sensor.light, 2)
+
+def getDate():
+    now = datetime.now()
+    return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
 def getTelemetryData():
-    temp_pressure_humidity = getTemperaturePressureHumidity()
+    temp = getTemperaturePressureHumidity().temperature
     moisture = getMoisture()
-
+    pressure = getTemperaturePressureHumidity().pressure
+    humidity = getTemperaturePressureHumidity().humidity
+    light = getLight()
+    date, time = getDate()
     data = {
-        "humidity": round(temp_pressure_humidity.humidity, 2),
-        "pressure": round(temp_pressure_humidity.pressure/10, 2),
-        "temperature": round(temp_pressure_humidity.temperature, 2),
-        "soil_moisture": round(moisture, 2)
+        "date": date,
+        "time": time,
+        "humidity": humidity,
+        "pressure": pressure,
+        "temperature": temp,
+        "soil_moisture": moisture,
+        "light": light
     }
 
     return json.dumps(data)
 ```
 
-The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getTelemetryData` function calls these two functions to get the sensor values, then formats them into a JSON document, ready to send to Azure IoT Central.
+The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we are rounding their values to to decimal places. For the BME280, we do this in the `gettemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getDate` function simply returns the current date and time, as will bbe used to the display graphs in PowerApps. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
 
 ```python
-async def main():
-    ...
+def iothub_client_init():
+    client = IoTHubDeviceClient.create_from_connection_string(connectionString)
+    return client
+```
 
+The `iothub_client_init` function will establish a connection with IoT Hub and return a **client**. We will be able to send data to the Hub via this client.
+
+```python
+async def iothub_client_telemetry_sample_run():
+    try:
+        client = iothub_client_init()
+        print("Conected, press Ctrl + C to exit")
+
+        while True:
+            message = getTelemetryData()
+
+            print(message)
+            await client.send_message(message)
+
+            # sleep 10 secons
+            await asyncio.sleep(30)
+
+    except KeyboardInterrupt:
+        print("IoTHubClient sample stopped")
+        await client.disconnect()
+```
+
+The main function of this script is `iothub_client_telemetry_sample_run`. First, it will try to create the client object. If it is successful, it will then enter an infinity `while` loop to send the data. It first calls the `getTelemetryData` function to get the json with all the data. Then the client sends the message. Note that this process is **asynchronous**, which means we need an `await` to make sure the client has finished sending the message. After that, the raspberry pi will do nothing for **30 seconds**. There is an exception when `KeyboardInterrupt`. This will close the client when we stop the script using `Ctrl + C`.
+
+```python
 if __name__ == '__main__':
-    asyncio.run(main())
+    print("IoT Hub Connection")
+    # python3.7
+    # asyncio.run(iothub_client_telemetry_sample_run())
+
+    # python3.6
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(iothub_client_telemetry_sample_run())
 ```
 
-This code sets up an asynchronous `main` function using the Python `asyncio` library.
+The last part of the code will is just to tell the Raspberry Pi it should run the `iothub_client_telemetry_sample_run` function when running the script.
 
-```python
-# provision the device
-async def register_device():
-    provisioning_device_client = ProvisioningDeviceClient.create_from_symmetric_key(
-        provisioning_host='global.azure-devices-provisioning.net',
-        registration_id=device_id,
-        id_scope=id_scope,
-        symmetric_key=primary_key)
+***Note: You should uncomment the code, depending on the python version you are using.***
 
-    return await provisioning_device_client.register()
+## Check that the connection has been established
 
-results = await asyncio.gather(register_device())
-registration_result = results[0]
-```
+1. Open the IoT Hub in your portal.
 
-This code defined an async function to register the device with Azure IoT central using the device provisioning service. This function is then called and the results of the registration are retrieved to get the connection details for the Azure IoT Central instance.
-
-```python
-# build the connection string
-conn_str='HostName=' + registration_result.registration_state.assigned_hub + \
-            ';DeviceId=' + device_id + \
-            ';SharedAccessKey=' + primary_key
-
-# The client object is used to interact with Azure IoT Central.
-device_client = IoTHubDeviceClient.create_from_connection_string(conn_str)
-
-# connect the client.
-print('Connecting')
-await device_client.connect()
-print('Connected')
-```
-
-This code takes the connection details, uses it to build a connection string, and creates an Azure IoT Hub device client. Azure IoT Hub is the underlying technology that provides the communication with Azure IoT Central. The device client then connects.
-
-```python
-# listen for commands
-async def command_listener(device_client):
-    while True:
-        method_request = await device_client.receive_method_request('needs_watering')
-        needs_watering = method_request.payload
-        print('Needs watering:', needs_watering)
-        payload = {'result': True}
-
-        if needs_watering:
-            led.on()
-        else:
-            led.off()
-
-        method_response = MethodResponse.create_from_method_request(
-            method_request, 200, payload
-        )
-```
-
-This code defines the `command_listener` function to listen to commands from Azure IoT Central, It continuously polls for a command by waiting for method requests - commands are implemented as methods on the device that are called. If a command is called, the payload is retrieved to see if the plant needs watering. Depending on the value of this, the LED is turned on or off. Finally a response is sent with an HTTP success code of 200 to say the command was handled.
-
-```python
-# async loop that sends the telemetry
-async def main_loop():
-    while True:
-        telemetry = getTelemetryData()
-        print(telemetry)
-
-        await device_client.send_message(telemetry)
-        await asyncio.sleep(60)
-```
-
-This code defines a main loop that will run continuously. Each loop will get the telemetry values, then send them to Azure IoT Central. Finally the loop sleeps for 60 seconds.
-
-```python
-listeners = asyncio.gather(command_listener(device_client))
-
-await main_loop()
-
-# Cancel listening
-listeners.cancel()
-
-# Finally, disconnect
-await device_client.disconnect()
-```
-
-This code starts the command listener and the main loop. Once the main loop exits, the command listener is cancelled and the device disconnects.
-
-### Verify the data in Azure IoT Central
-
-1. Open the app in Azure IoT Central
-1. From the **Devices** tab, select the `Raspberry Pi` device
-1. The view will load, and there should be data visible that matches the data being sent
-
-   ![The view showing data from the device](../Images/ViewWithData.png)
-
-1. Select the **Needs Watering** command. It will open as a new tab next to the view.
-1. Try checking and unchecking the *Needs watering* value and selecting **Run**. The LED should light when *Needs watering* is checked, and turn off when it is unchecked.
+1. In the **OverView** tab, scroll to the bottom. You should be able to
 
 ## Run the Python app continuously
+
+*This step is optional.*
 
 The Python app will only run as long as the terminal is connected. Ideally we want the software running as soon as the Raspberry Pi boots up. This saves having to log in and run the Python file each time the device is turned on. The easiest way to do this is via a `cron` job that is run on reboot. Cron is a task scheduler that runs commands at specific times.
 
@@ -512,3 +443,4 @@ The Python app will only run as long as the terminal is connected. Ideally we wa
 1. After a few seconds, the Raspberry Pi will reboot and resume sending telemetry to Azure IoT central. Check the device view to see the data.
 
 ----------------
+[Next Step](./Create_storage_account.md): Create the storage account to store the data received from the sensors.
