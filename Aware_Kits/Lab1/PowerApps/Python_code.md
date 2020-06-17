@@ -101,9 +101,8 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Ensure that the Python 3 virtual environment tooling is installed by running the following commands in the terminal
 
-   ```sh
-   sudo apt-get update
-   sudo apt-get install python3-venv
+   ```cmd
+   py -m pip install --user virtualenv
    ```
 
 1. Create a new file inside the `EnvironmentMonitor` folder called `app.py`. This is the file that will contain the code for the device, and by creating it the Python extension in Visual Studio Code will be activated. Select the **New File** button in the *Explorer*.
@@ -114,8 +113,8 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Create a new virtual environment called `.venv` using Python 3 by running the following command in the terminal
 
-   ```sh
-   python3 -m venv .venv
+   ```cmd
+   py -m venv .venv
    ```
 
 1. A dialog will pop up asking if you want to activate this virtual environment. Select **Yes**.
@@ -125,6 +124,12 @@ Python comes in various versions, and Python apps can use external code in packa
 1. The existing terminal will not have the virtual environment activated. Close it by selecting the trash can button
 
    ![The kill terminal button](./media/kill_terminal.png)
+
+1. You can also activate the environment by running the following command in the terminal.
+
+    ```cmd
+    .\env\Scripts\activate
+    ```
 
 1. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment
 
@@ -150,7 +155,7 @@ Python has a package manager called `pip` that allows you to install code from o
 
 1. From the terminal, run the following command to install these packages:
 
-   ```sh
+   ```cmd
    pip install -r requirements.txt
    ```
 
