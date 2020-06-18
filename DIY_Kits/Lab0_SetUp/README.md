@@ -35,6 +35,4 @@ humidity.
 
 - [Assemble your hardware](1b_Assemble_your_hardware.md)
 
-If you don't have a grove base, you can just learn how to set up the sensors using a breadboard and some jumper cables.
-
 - [Setup the I2C Intercface for the grove sensors](1c_Setup_I2C_Interface.md)
