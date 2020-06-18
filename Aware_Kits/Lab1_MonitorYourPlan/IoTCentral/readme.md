@@ -13,5 +13,3 @@ In this lab you will learn how to create your own app using IoT Central. IoT Cen
 1. [Create Storage Account to store sensor data](./Create_storage_account.md)
 
 1. [Use Stream Analytics Job to stream data into the storage account](./Create_stream_analytics.md)
-
-1. [Create Azure Function](./Create_Function.md)
