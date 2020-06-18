@@ -24,6 +24,6 @@ Aditionally, in the second page, you will be able to get more detailed informati
 
 1. [Use Stream Analytics Job to stream data into the storage account](./Create_stream_analytics.md)
 
-1. [Create Azure Function](./Create_Function.md)
+1. [Create Azure Function](./Create_function.md)
 
 1. [Create the Powerapp](./Create_PowerApps.md)
