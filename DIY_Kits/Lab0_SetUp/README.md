@@ -33,8 +33,8 @@ humidity.
 
 - [Install Raspbian in your Micro SD Card](1a_Install_Raspian_on_your_SD_card.md)
 
-- [Setup the sensors using Grove base](Sensors_Setup_Grove.md)
+- [Assemble your hardware](1b_Assemble_your_hardware.md)
 
 If you don't have a grove base, you can just learn how to set up the sensors using a breadboard and some jumper cables.
 
-- [Setup the sensors using Breadboard](Sensors_Setup_Grove.md)
+- [Setup the I2C Intercface for the grove sensors](1c_Setup_I2C_Interface.md)
