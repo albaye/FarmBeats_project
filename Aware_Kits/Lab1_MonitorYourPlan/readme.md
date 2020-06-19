@@ -24,11 +24,11 @@ Data, App (IoT Central and Power Apps) + Azure Services.
 
 ## Azure Services Integration
 
-IoT Central
+### IoT Central
 
 ![Azure services iotc](./IoTCentral/media/AzureServices_iotc.png)
 
-PowerApps
+### PowerApps
 
 ![Azure services powerapps](./PowerApps/media/AzureServices_powerapps.png)
 
