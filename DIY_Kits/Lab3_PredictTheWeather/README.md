@@ -14,6 +14,6 @@ Learn to use temperature, humidity and barometer sensor to predict the weather f
 
 ### **Key areas to teach**
 
-Microsoft  Azure, Machine Learning, AI, R programming.
+Microsoft Azure, Machine Learning, AI, R programming, Microsoft ML Studio.
 
 -----------------
