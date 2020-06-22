@@ -154,7 +154,7 @@ async def main():
             await asyncio.sleep(1)
             red_light = True
             red_light_time = request.payload
-            red = Thread(target=control_red, daemon=True)
+            red = Thread(target=control_red, args=(red_led_pin, ), daemon=True)
             red.start()
 
     async def blueLight(request):
@@ -171,7 +171,7 @@ async def main():
             await asyncio.sleep(1)
             blue_light = True
             blue_light_time = request.payload
-            blue = Thread(target=control_blue, daemon=True)
+            blue = Thread(target=control_blue, args=(blue_led_pin, ), daemon=True)
             blue.start()
 
     async def violetLight(request):
@@ -188,7 +188,7 @@ async def main():
             await asyncio.sleep(1)
             violet_light = True
             violet_light_time = request.payload
-            violet = Thread(target=control_violet, daemon=True)
+            violet = Thread(target=control_violet, args=(violet_led_pin, ), daemon=True)
             violet.start()
 
 
@@ -216,9 +216,9 @@ async def main():
 
 if __name__ == '__main__':
     # python3.7 or newer
-    # asyncio.run(main())
+    asyncio.run(main())
 
     # python3.6
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    # loop = asyncio.get_event_loop()
+    # loop.run_until_complete(main())
     
