@@ -258,6 +258,5 @@ Run your IoT device (Raspberry Pi) to start collecting and sending temperature a
 
     
     
-    
 
 -----------------
