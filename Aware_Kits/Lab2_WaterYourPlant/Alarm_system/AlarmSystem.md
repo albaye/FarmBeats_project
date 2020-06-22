@@ -21,14 +21,14 @@ _Optionally a LED indicator can be integrated to indicate if the plant needs wat
 
 1. Register a new microsoft email account
 
-![Image]()
+![Image](media/newemail.png)
 
 2. Check for information about **Outlook mail SMTP**
 
 - SMTP server name: smtp.office365.com
 - SMTP Port TLS: 587
 
-![Image]()
+![Image](media/SMTP.png)
 
 ## Write the code
 
