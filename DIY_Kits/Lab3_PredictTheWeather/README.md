@@ -26,7 +26,7 @@ In this section you get the weather prediction model from the Azure AI Library. 
 
 1. Go to the [weather prediction model page](https://gallery.azure.ai/Experiment/Weather-prediction-model-1)
 
-    ![Weather prediction model page](../../images/weather-prediction-model-page.png)
+    ![weather-prediction-model-page](media/weather-prediction-model-page.png)
  
 1. Click **Open in Studio (classic)** to open the model in Microsoft Azure Machine Learning Studio (classic).
 
