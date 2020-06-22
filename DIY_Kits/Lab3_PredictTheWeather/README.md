@@ -97,7 +97,7 @@ Now we validate the model, set up a predictive web service based on the model an
 
 To add a consumer group to your Event hub, follow these steps:
 
-1. In the [Azure portal](https://portal.azure.com/#home), open your Event Hubs Namespace.
+1. In the [Azure portal](https://portal.azure.com/#home), open your Event Hubs Namespace and go into the event hub you created previously
     
     
 
