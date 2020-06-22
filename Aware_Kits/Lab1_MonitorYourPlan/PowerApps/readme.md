@@ -14,6 +14,10 @@ Aditionally, in the second page, you will be able to get more detailed informati
 
 ![sensor values screen](./media/SensorValue.png)
 
+## Azure services integration
+
+![Azure services](media/AzureServices_powerapps.png)
+
 ## Steps
 
 1. [Create IoT Hub to receive data from the Raspberry Pi](./Create_IoTHub.md)

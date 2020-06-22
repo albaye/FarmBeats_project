@@ -18,7 +18,7 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 
     * Subscription: choose your own subscription.
 
-    * Resource group: click on **create new** and name it something like `sensorMonitor`.
+    * Resource group: click on **Create new** and name it something like `sensorMonitor`.
 
     * Region: Choose your region.
 
@@ -50,4 +50,4 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 
 ----------
 
-[Next step](./Python_code.md): Write the code for the Raspberry Pi to stablish a connection with the IoT Hub.
+[Next step](Python_code.md): Write the code for the Raspberry Pi to stablish a connection with the IoT Hub.

@@ -26,20 +26,20 @@ from azure.iot.device.aio import IoTHubDeviceClient
         return bme280.sample(bus, bme_address, calibration_params)
 
     def getMoisture():
-        return round(moisture_sensor.moisture, 2)
+        return round(moisture_sensor.moisture, 2) # returns voltage in mV
 
     def getLight():
-        return round(light_sensor.light, 2)
+        return round(light_sensor.light, 2)/10 # This return a percentage value
 
     def getDate():
         now = datetime.now()
         return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
     def getTelemetryData():
-        temp = round(getTemperaturePressureHumidity().temperature, 2)
+        temp = round(getTemperaturePressureHumidity().temperature, 2) # °C
         moisture = getMoisture()
-        pressure = round(getTemperaturePressureHumidity().pressure, 2)
-        humidity = round(getTemperaturePressureHumidity().humidity, 2)
+        pressure = round(getTemperaturePressureHumidity().pressure, 2) # Pa
+        humidity = round(getTemperaturePressureHumidity().humidity, 2) # %rH
         light = getLight()
         date, time = getDate()
         data = {

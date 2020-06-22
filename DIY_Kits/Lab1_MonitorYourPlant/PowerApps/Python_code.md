@@ -1,6 +1,8 @@
 # Write the code to capture telemetry from the Raspberry Pi
 
-In the [previous step](./Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
+In the [previous step](Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
+
+> You can find the code for this section under the [Python Folder](Python)
 
 ## Connect to the Raspberry Pi from Visual Studio Code
 
@@ -16,9 +18,9 @@ To enable remote development in Visual Studio Code, you will need to install the
 
    ![The extensions tab in Visual Studio Code](./media/vscode_extension.png)
 
-1. Search for `remote development` and install the *Remote Development* extension pack from Microsoft by selecting the **Install** button
+1. Search for `remote ssh` and install the *Remote - SSH* extension pack from Microsoft by selecting the **Install** button
 
-   ![The remote development extension](./media/install_remote_ssh.png)
+   ![The remote ssh extension](./media/install_remote_ssh.png)
 
 ### Connect to the Raspberry Pi
 
@@ -47,7 +49,7 @@ To enable remote development in Visual Studio Code, you will need to install the
 
 1. A new Visual Studio Code window will open to host the connection. In the password prompt dialog, enter the password for your Raspberry Pi. The default password is `raspberry`.
 
-   ![The password entry dialog](../Images/SSHPassword.png)
+   ![The password entry dialog](media/enter_password.png)
 
 > Once the connection has been established, the next time *Remote-SSH: Connect to Host* is selected a new window will be opened and the password requested, there will be no need to configure it again.
 
@@ -89,8 +91,6 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 1. Locate the new `EnvironmentMonitor` folder and select it, then select **OK**
 
-   ![Selecting the Environment Monitor folder](../Images/SelectEMFolder.png)
-
 1. The window will reload in the selected folder, and you will be asked for your Raspberry Pi password again, so enter it.
 
 ### Configure a virtual environment
@@ -128,7 +128,7 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment
 
-   ![The terminal activating the virtual environment](../Images/TerminalWithActivatedEnvironment.png)
+   ![The terminal activating the virtual environment](media/activated_environment.png)
 
 ### Install the required python packages
 
@@ -144,6 +144,7 @@ Python has a package manager called `pip` that allows you to install code from o
    RPi.bme280
    grove.py
    smbus2
+   asyncio
    ```
 
 1. Save the file. If you don't want to have to remember to always save files in Visual Studio Code, select *File -> Auto Save* to turn on automatic saving of files.
@@ -215,65 +216,65 @@ Python has a concept of `.env` files to store secrets such as connection details
     def getTemperaturePressureHumidity():
         return bme280.sample(bus, bme_address, calibration_params)
 
-    def getMoisture():
-        return round(moisture_sensor.moisture, 2)
+   def getMoisture():
+      return round(moisture_sensor.moisture, 2)
 
-    def getLight():
-        return round(light_sensor.light, 2)
+   def getLight():
+      return round(light_sensor.light, 2)/10
 
-    def getDate():
-        now = datetime.now()
-        return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
+   def getDate():
+      now = datetime.now()
+      return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
-    def getTelemetryData():
-        temp = round(getTemperaturePressureHumidity().temperature, 2)
-        moisture = getMoisture()
-        pressure = round(getTemperaturePressureHumidity().pressure, 2)
-        humidity = round(getTemperaturePressureHumidity().humidity, 2)
-        light = getLight()
-        date, time = getDate()
-        data = {
-            "date": date,
-            "time": time,
-            "humidity": humidity,
-            "pressure": pressure,
-            "temperature": temp,
-            "soil_moisture": moisture,
-            "light": light
-        }
+   def getTelemetryData():
+      temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+      moisture = getMoisture() # voltage in mV
+      pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+      humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+      light = getLight() # % Light Strenght
+      date, time = getDate()
+      data = {
+         "date": date,
+         "time": time,
+         "humidity": humidity,
+         "pressure": pressure,
+         "temperature": temp,
+         "soil_moisture": moisture,
+         "light": light
+      }
 
-        return json.dumps(data)
+      return json.dumps(data)
 
-    def iothub_client_init():
-        client = IoTHubDeviceClient.create_from_connection_string(connectionString)
-        return client
+   def iothub_client_init():
+      client = IoTHubDeviceClient.create_from_connection_string(connectionString)
+      return client
 
-    async def iothub_client_telemetry_sample_run():
-        try:
-            client = iothub_client_init()
-            print("Conected, press Ctrl + C to exit")
+   async def iothub_client_telemetry_sample_run():
+      try:
+         client = iothub_client_init()
+         print("Conected, press Ctrl + C to exit")
 
-            while True:
-                message = getTelemetryData()
+         while True:
+               message = getTelemetryData()
 
-                print(message)
-                await client.send_message(message)
+               print(message)
+               await client.send_message(message)
 
-                # sleep 30 seconds
-                await asyncio.sleep(30)
+               # sleep 30 seconds
+               await asyncio.sleep(30)
 
-            except KeyboardInterrupt:
-                print("IoTHubClient sample stopped")
-                await client.disconnect()
+         except KeyboardInterrupt:
+               print("IoTHubClient sample stopped")
+               await client.disconnect()
 
-    if __name__ == '__main__':
-        print("IoT Hub Connection")
-        # python3.7
-        asyncio.run(iothub_client_telemetry_sample_run())
+   if __name__ == '__main__':
+      print("IoT Hub Connection")
+      # python3.7
+      asyncio.run(iothub_client_telemetry_sample_run())
 
-        # python3.6
-        # loop = asyncio.get_event_loop()
-        # loop.run_until_complete(iothub_client_telemetry_sample_run())
+      # python3.6
+      # loop = asyncio.get_event_loop()
+      # loop.run_until_complete(iothub_client_telemetry_sample_run())
     ```
 
    This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message.
@@ -288,7 +289,7 @@ Python has a concept of `.env` files to store secrets such as connection details
 
    The app should start, connect to Azure IoT Hub, and send data. The data being sent will be printed to the terminal
 
-   ![The app running showing telemetry in the terminal](../Images/AppOutput.png)
+   ![The app running showing telemetry in the terminal](media/terminal_data.png)
 
 ### Breakdown of the code
 
@@ -322,79 +323,79 @@ This code loads the environment variables from the `.env` file, and gets the val
 
 ```python
 def getTemperaturePressureHumidity():
-    return bme280.sample(bus, bme_address, calibration_params)
+   return bme280.sample(bus, bme_address, calibration_params)
 
 def getMoisture():
-    return round(moisture_sensor.moisture, 2)
+   return round(moisture_sensor.moisture, 2)
 
 def getLight():
-    return round(light_sensor.light, 2)
+   return round(light_sensor.light, 2)/10
 
 def getDate():
-    now = datetime.now()
-    return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
+   now = datetime.now()
+   return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
 def getTelemetryData():
-    temp = getTemperaturePressureHumidity().temperature
-    moisture = getMoisture()
-    pressure = getTemperaturePressureHumidity().pressure
-    humidity = getTemperaturePressureHumidity().humidity
-    light = getLight()
-    date, time = getDate()
-    data = {
-        "date": date,
-        "time": time,
-        "humidity": humidity,
-        "pressure": pressure,
-        "temperature": temp,
-        "soil_moisture": moisture,
-        "light": light
-    }
+   temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+   moisture = getMoisture() # voltage in mV
+   pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+   humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+   light = getLight() # % Light Strenght
+   date, time = getDate()
+   data = {
+      "date": date,
+      "time": time,
+      "humidity": humidity,
+      "pressure": pressure,
+      "temperature": temp,
+      "soil_moisture": moisture,
+      "light": light
+   }
 
-    return json.dumps(data)
+   return json.dumps(data)
 ```
 
 The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we are rounding their values to to decimal places. For the BME280, we do this in the `gettemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getDate` function simply returns the current date and time, as will bbe used to the display graphs in PowerApps. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
 
 ```python
 def iothub_client_init():
-    client = IoTHubDeviceClient.create_from_connection_string(connectionString)
-    return client
+   client = IoTHubDeviceClient.create_from_connection_string(connectionString)
+   return client
 ```
 
 The `iothub_client_init` function will establish a connection with IoT Hub and return a **client**. We will be able to send data to the Hub via this client.
 
 ```python
 async def iothub_client_telemetry_sample_run():
-    try:
-        client = iothub_client_init()
-        print("Conected, press Ctrl + C to exit")
+   try:
+      client = iothub_client_init()
+      print("Conected, press Ctrl + C to exit")
 
-        while True:
-            message = getTelemetryData()
+      while True:
+         message = getTelemetryData()
 
-            print(message)
-            await client.send_message(message)
+         print(message)
+         await client.send_message(message)
 
-            # sleep 10 secons
-            await asyncio.sleep(30)
+         # sleep 10 secons
+         await asyncio.sleep(30)
 
-    except KeyboardInterrupt:
-        print("IoTHubClient sample stopped")
-        await client.disconnect()
+   except KeyboardInterrupt:
+      print("IoTHubClient sample stopped")
+      await client.disconnect()
 ```
 
 The main function of this script is `iothub_client_telemetry_sample_run`. First, it will try to create the client object. If it is successful, it will then enter an infinity `while` loop to send the data. It first calls the `getTelemetryData` function to get the json with all the data. Then the client sends the message. Note that this process is **asynchronous**, which means we need an `await` to make sure the client has finished sending the message. After that, the raspberry pi will do nothing for **30 seconds**. There is an exception when `KeyboardInterrupt`. This will close the client when we stop the script using `Ctrl + C`.
 
 ```python
 if __name__ == '__main__':
-    print("IoT Hub Connection")
-    # python3.7
-    # asyncio.run(iothub_client_telemetry_sample_run())
+   print("IoT Hub Connection")
+   # python3.7
+   # asyncio.run(iothub_client_telemetry_sample_run())
 
-    # python3.6
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(iothub_client_telemetry_sample_run())
+   # python3.6
+   loop = asyncio.get_event_loop()
+   loop.run_until_complete(iothub_client_telemetry_sample_run())
 ```
 
 The last part of the code will is just to tell the Raspberry Pi it should run the `iothub_client_telemetry_sample_run` function when running the script.
@@ -439,7 +440,7 @@ The Python app will only run as long as the terminal is connected. Ideally we wa
 
 1. Close the Visual Studio Code window
 
-1. After a few seconds, the Raspberry Pi will reboot and resume sending telemetry to Azure IoT central. Check the device view to see the data.
+1. After a few seconds, the Raspberry Pi will reboot and resume sending telemetry to Azure IoT Hub. Check the device view to see the data.
 
 ----------------
-[Next Step](./Create_storage_account.md): Create the storage account to store the data received from the sensors.
+[Next Step](Create_storage_account.md): Create the storage account to store the data received from the sensors.

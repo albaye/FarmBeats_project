@@ -1,6 +1,8 @@
 # Write the code to capture telemetry from the Raspberry Pi
 
-In the [previous step](./Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
+In the [previous step](./Create_IoTHub.md) you created the IoT Central Application to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Cental App.
+
+> You can find the code for this section under the [Python Folder](Python)
 
 ## Connect to the Raspberry Pi from Visual Studio Code
 
@@ -65,7 +67,7 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
    > There are a number of Python extensions available, so ensure you install the one from Microsoft
 
-1. A reload will be required, so select **Reload required**
+1. A reload will be required, so select **Reload required**.
 
    ![Reload required for the python extension](./media/python_reload.png)
 
@@ -85,7 +87,7 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
    ![The open folder option](./media/open_folder.png)
 
-1. Locate the new `EnvironmentMonitor` folder and select it, then select **OK**
+1. Locate the new `EnvironmentMonitorIoT` folder and select it, then select **OK**
 
 1. The window will reload in the selected folder, and you will be asked for your Raspberry Pi password again, so enter it.
 
@@ -128,7 +130,7 @@ Python comes in various versions, and Python apps can use external code in packa
 
 Python has a package manager called `pip` that allows you to install code from other developers in packages called pip packages. You can read more about pip and see the available packages at [pypi.org](https://pypi.org). Packages can either be installed into the virtual environment one at a time using the `pip` command, or multiple packages can be listed in a file called `requirements.txt` and installed together. The advantage of using a `requirements.txt` file is that this can be checked into source code control, so that other developers can configure their environment the same way by installing the same packages from this file.
 
-1. Create a new file inside the `EnvironmentMonitor` folder called `requirements.txt`
+1. Create a new file inside the `EnvironmentMonitorIoT` folder called `requirements.txt`
 
 1. Add the following to this file
 
@@ -165,7 +167,7 @@ The connection details for the device ideally should not be stored in source cod
 
 Python has a concept of `.env` files to store secrets such as connection details. These files are managed by the `python-dotenv` pip package, and are usually ignored when checking into git (the default `.gitignore` file created by GitHub for Python projects has these files in it by default).
 
-1. Create a new file inside the `EnvironmentMonitor` folder called `.env`
+1. Create a new file inside the `EnvironmentMonitorIoT` folder called `.env`
 
 1. Add the following entries to this file:
 
@@ -184,7 +186,7 @@ Python has a concept of `.env` files to store secrets such as connection details
 1. Add the following code to the file:
 
     ```python
-    from azure.iot.device.aio import IoTHubDeviceClient
+    from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
     from datetime import datetime, date
     import smbus2, bme280, os, asyncio, json, time
     from grove.grove_moisture_sensor import GroveMoistureSensor
@@ -217,14 +219,14 @@ Python has a concept of `.env` files to store secrets such as connection details
         return round(moisture_sensor.moisture, 2)
 
     def getLight():
-        return round(light_sensor.light, 2)
+        return round(light_sensor.light, 2)/10
 
     def getTelemetryData():
-        temp = round(getTemperaturePressureHumidity().temperature, 2)
-        moisture = getMoisture()
-        pressure = round(getTemperaturePressureHumidity().pressure, 2)
-        humidity = round(getTemperaturePressureHumidity().humidity, 2)
-        light = getLight()
+        temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+        moisture = getMoisture() # voltage in mV
+        pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+        humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+        light = getLight() # % Light Strenght
         data = {
             "humidity": humidity,
             "pressure": pressure,
@@ -270,8 +272,6 @@ Python has a concept of `.env` files to store secrets such as connection details
 
                 await device_client.send_message(telemetry)
                 await asyncio.sleep(30)
-
-        listeners = asyncio.gather(command_listener(device_client))
 
         await main_loop()
 
@@ -341,14 +341,14 @@ def getMoisture():
     return round(moisture_sensor.moisture, 2)
 
 def getLight():
-    return round(light_sensor.light, 2)
+    return round(light_sensor.light, 2)/10
 
 def getTelemetryData():
-    temp = getTemperaturePressureHumidity().temperature
-    moisture = getMoisture()
-    pressure = getTemperaturePressureHumidity().pressure
-    humidity = getTemperaturePressureHumidity().humidity
-    light = getLight()
+    temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+    moisture = getMoisture() # voltage in mV
+    pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+    humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+    light = getLight() # % Light Strenght
     data = {
         "humidity": humidity,
         "pressure": pressure,
@@ -360,7 +360,7 @@ def getTelemetryData():
     return json.dumps(data)
 ```
 
-The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we are rounding their values to to decimal places. For the BME280, we do this in the `gettemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
+The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we are rounding their values to to decimal places. For the BME280, we do this in the `getTemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
 
 ```python
 async def main():
@@ -426,7 +426,7 @@ This code defines a main loop that will run continuously. Each loop will get the
 
 ```python
 if __name__ == '__main__':
-    # python3.7
+    # python3.7 or newer
     # asyncio.run(main())
 
     # python3.6
@@ -481,4 +481,4 @@ The Python app will only run as long as the terminal is connected. Ideally we wa
 1. After a few seconds, the Raspberry Pi will reboot and resume sending telemetry to Azure IoT central. Check the device view to see the data.
 
 ----------------
-[Next Step](./Create_storage_account.md): Create the storage account to store the data received from the sensors.
+[Next Step](Create_event_hubs.md): Create Event Hubs to receive and send events.

@@ -1,6 +1,6 @@
 # Create Storage Account to store sensor data
 
-In the [previous step](./Python_code.md), you have established a connection between your Raspberry Pi and IoT Hubs. Now you will create a storage account to store all the telemetry data into a table.
+In the [previous step](./Python_code.md), you have established a connection between your Raspberry Pi and IoT Hub. Now you will create a storage account to store all the telemetry data into a table.
 
 ## Azure Table Storage
 
@@ -58,4 +58,4 @@ Azure has a concept of [storage accounts](https://docs.microsoft.com/azure/stora
 
 ---------------
 
-[Next step](./Create_stream_analytics.md): Create stream analytics to tranfer the events from the IoT Hub to the table in the Storage account.
+[Next step](Create_stream_analytics.md): Create stream analytics to tranfer the events from the IoT Hub to the table in the Storage account.
