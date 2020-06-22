@@ -31,14 +31,14 @@ def getMoisture():
     return round(moisture_sensor.moisture, 2)
 
 def getLight():
-    return round(light_sensor.light, 2)
+    return round(light_sensor.light, 2)/10
 
 def getTelemetryData():
-    temp = round(getTemperaturePressureHumidity().temperature, 2)
-    moisture = getMoisture()
-    pressure = round(getTemperaturePressureHumidity().pressure, 2)
-    humidity = round(getTemperaturePressureHumidity().humidity, 2)
-    light = getLight()
+    temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+    moisture = getMoisture() # voltage in mV
+    pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+    humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+    light = getLight() # % Light Strenght
     data = {
         "humidity": humidity,
         "pressure": pressure,

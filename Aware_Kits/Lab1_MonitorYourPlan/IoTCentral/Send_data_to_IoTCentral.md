@@ -1,6 +1,6 @@
 # Write the code to capture telemetry from the Raspberry Pi
 
-In the [previous step](./Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
+In the [previous step](Create_IoTHub.md) you created the IoT Central Application to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Cental App.
 
 > You can find the code for this section under the [Python Folder](Python)
 
@@ -18,7 +18,7 @@ To enable remote development in Visual Studio Code, you will need to install the
 
    ![The extensions tab in Visual Studio Code](./media/vscode_extension.png)
 
-1. Search for `remote development` and install the *Remote Development* extension pack from Microsoft by selecting the **Install** button
+1. Search for `remote ssh` and install the *Remote - SSH* extension pack from Microsoft by selecting the **Install** button
 
    ![The remote development extension](./media/install_remote_ssh.png)
 
@@ -145,6 +145,7 @@ Python has a package manager called `pip` that allows you to install code from o
    RPi.bme280
    grove.py
    smbus2
+   asyncio
    ```
 
 1. Save the file. If you don't want to have to remember to always save files in Visual Studio Code, select *File -> Auto Save* to turn on automatic saving of files.
@@ -213,23 +214,25 @@ Python has a concept of `.env` files to store secrets such as connection details
     light_sensor = GroveLightSensor(light_pin)
 
     load_dotenv()
-    connectionString = os.getenv('CONNECTION_STRING')
+    id_scope = os.getenv('ID_SCOPE')
+    device_id = os.getenv('DEVICE_ID')
+    primary_key = os.getenv('PRIMARY_KEY')
 
     def getTemperaturePressureHumidity():
         return bme280.sample(bus, bme_address, calibration_params)
 
     def getMoisture():
-        return round(moisture_sensor.moisture, 2) # returns voltage in mV
+        return round(moisture_sensor.moisture, 2)
 
     def getLight():
-        return round(light_sensor.light, 2)/10 # This return a percentage value
+        return round(light_sensor.light, 2)/10
 
     def getTelemetryData():
-        temp = round(getTemperaturePressureHumidity().temperature, 2) # °C
-        moisture = getMoisture()
-        pressure = round(getTemperaturePressureHumidity().pressure, 2) # Pa
-        humidity = round(getTemperaturePressureHumidity().humidity, 2) # %rH
-        light = getLight()
+        temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+        moisture = getMoisture() # voltage in mV
+        pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+        humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+        light = getLight() # % Light Strenght
         data = {
             "humidity": humidity,
             "pressure": pressure,
@@ -288,7 +291,6 @@ Python has a concept of `.env` files to store secrets such as connection details
         # python3.6
         # loop = asyncio.get_event_loop()
         # loop.run_until_complete(main())
-
     ```
 
    This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message.
@@ -342,17 +344,17 @@ def getTemperaturePressureHumidity():
     return bme280.sample(bus, bme_address, calibration_params)
 
 def getMoisture():
-    return round(moisture_sensor.moisture, 2) # returns voltage in mV
+    return round(moisture_sensor.moisture, 2)
 
 def getLight():
-    return round(light_sensor.light, 2)/10 # This return a percentage value
+    return round(light_sensor.light, 2)/10
 
 def getTelemetryData():
-    temp = getTemperaturePressureHumidity().temperature # °C
-    moisture = getMoisture()
-    pressure = getTemperaturePressureHumidity().pressure # Pa
-    humidity = getTemperaturePressureHumidity().humidity # %rH
-    light = getLight()
+    temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+    moisture = getMoisture() # voltage in mV
+    pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+    humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+    light = getLight() # % Light Strenght
     data = {
         "humidity": humidity,
         "pressure": pressure,
@@ -372,11 +374,11 @@ async def main():
 
 if __name__ == '__main__':
     # python3.7
-    # asyncio.run(main())
+    asyncio.run(main())
 
     # python3.6
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    # loop = asyncio.get_event_loop()
+    # loop.run_until_complete(main())
 ```
 
 This code sets up an asynchronous `main` function using the Python `asyncio` library.
@@ -431,11 +433,11 @@ This code defines a main loop that will run continuously. Each loop will get the
 ```python
 if __name__ == '__main__':
     # python3.7
-    # asyncio.run(main())
+    asyncio.run(main())
 
     # python3.6
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    # loop = asyncio.get_event_loop()
+    # loop.run_until_complete(main())
 ```
 
 The last part of the code will is just to tell the Raspberry Pi it should run the `main` function when running the script.
@@ -451,4 +453,4 @@ The last part of the code will is just to tell the Raspberry Pi it should run th
 1. The view will load, and there should be data visible that matches the data being sent
 
 ----------------
-[Next Step](./Create_storage_account.md): Create the storage account to store the data received from the sensors.
+[Next Step](Create_storage_account.md): Create the storage account to store the data received from the sensors.

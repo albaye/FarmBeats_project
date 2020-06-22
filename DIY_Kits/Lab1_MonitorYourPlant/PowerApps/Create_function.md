@@ -1,10 +1,10 @@
 # Create Azure Function to get data via API
 
-In the [previous step](./Create_stream_analytics.md) you have created a Stream Analytics Job to stream data into the storage account. In this step, you will create a function to access the data in the storage account via API.
+In the [previous step](Create_stream_analytics.md) you have created a Stream Analytics Job to stream data into the storage account. In this step, you will create a function to access the data in the storage account via API.
 
 ## Azure Functions
 
-Azure Functions is an event driven serverless compute platform, essentially a way to define small blocks of code that are triggered by events such as a web request, data changes in storage or events being put onto an Azure Event Hub. They can be written in a multitude of different languages including C#, F#, Java, JavaScript and Python.
+[Azure Functions](https://azure.microsoft.com/services/functions/) is an event driven serverless compute platform, essentially a way to define small blocks of code that are triggered by events such as a web request, data changes in storage or events being put onto an Azure Event Hub. They can be written in a multitude of different languages including C#, F#, Java, JavaScript and Python.
 
 Azure Stream Analytics can call Azure Functions in response to streaming data, either individual messages or an aggregation across a time window.
 
@@ -96,7 +96,7 @@ In this step, the function just needs to exist so that it can be called by Azure
 
    1. On Windows use the following command
 
-      ```sh
+      ```cmd
       .venv\Scripts\activate.bat
       ```
 
@@ -151,7 +151,7 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
    ![Create function app option](./media/new_function_app.png)
 
-1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `agrohackjim2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
+1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `sensormonitoralba2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
 
    ![Naming the function app](./media/function_app_name.png)
 
@@ -309,4 +309,4 @@ Now if you want, you can also test it from the Azure Portal and check that the p
 
 ------------------
 
-[Next step](./Create_PowerApps.md): Create App in Power Apps.
+[Next step](Create_PowerApps.md): Create App in Power Apps.
