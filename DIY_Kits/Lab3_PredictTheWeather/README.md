@@ -253,6 +253,12 @@ Run your IoT device (Raspberry Pi) to start collecting and sending temperature a
     
 <hr>
 
+## Summary
+
+You’ve successfully used Azure Machine Learning to produce the chance of rain based on the temperature and humidity data that your Event hub receives.
+
+<hr>
+
 ## Knowledge Check
 
 
