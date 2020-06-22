@@ -233,6 +233,27 @@ To add a consumer group to your Event hub, follow these steps:
 
 In the Stream Analytics job, click Start > Now > Start.
 
+### View the weather forecast
+
+Run your IoT device (Raspberry Pi) to start collecting and sending temperature and humidity data to your IoT hub. For each message that your IoT hub receives, the Stream Analytics job calls the weather forecast web service to produce the chance of rain. The result is then saved to your Azure blob storage. You can view these results in your storage account.
+
+1. Go to your storage account used in this experiment.
+
+1. Search for *Containers*
+
+    ![search-containers](media/search-containers.png)
+    
+1. Select the container used in this experiment.
+
+1. Go into the folder that is named as the current year the data has been streaming. (As mentioned before *Path pattern* which we entered as `{date}/{time}` causes a new file to be created each hour in a folder hierarchy based off year/month/day/hour in which the records are stored.) Find the data that is currently streaming going deep into the folders.
+
+1. Then select the latest csv file and select edit. You can then see the **probabilities of rain** based on **temperature** and **humidity** data.
+
+    ![viewData](media/viewData.png)
+    
+<hr>
+
+## Knowledge Check
 
 
     
