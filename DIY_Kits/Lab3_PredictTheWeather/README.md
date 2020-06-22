@@ -91,8 +91,13 @@ Now we validate the model, set up a predictive web service based on the model an
 1. Open the Excel workbook, make a note of the **WEB SERVICE URL** and **ACCESS KEY**. (You will need these later)
     
 
+### Add a consumer group to your Event hub
 
+[Consumer groups](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-consumers) provide independent views into the event stream that enable apps and Azure services to independently consume data from the same Event Hub endpoint. In this section, you add a consumer group to your Event hub's built-in endpoint. We use this later in the tutorial to pull data from the endpoint.
 
+To add a consumer group to your Event hub, follow these steps:
+
+1. In the [Azure portal](https://portal.azure.com/#home), open your Event Hubs Namespace.
     
     
 
