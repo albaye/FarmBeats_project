@@ -128,6 +128,7 @@ To add a consumer group to your Event hub, follow these steps:
     
     ![saj-details](media/saj-details.png)
     
+    
 1. Once the deployment has completed, select the **Go to resource** button.    
 
 #### Set an input for the Stream Analytics job
@@ -158,7 +159,7 @@ To add a consumer group to your Event hub, follow these steps:
 
    1. Select **Save**
 
-   ![configure-input](media/configure-input.png =100x100)    
+   ![configure-input](media/configure-input.png)    
 
 #### Set an output for the Stream Analytics job
 
