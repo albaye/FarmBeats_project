@@ -32,7 +32,6 @@ In this section you get the weather prediction model from the Azure AI Library. 
 
     ![open-ml-studio](media/open-ml-studio.png)
 
-
 #### Add an R-script module to clean temperature and humidity data
 
 Add an R-script module to the weather prediction model that removes any rows that have data values for temperature or humidity that cannot be converted to numeric values.
@@ -126,7 +125,7 @@ To add a consumer group to your Event hub, follow these steps:
 
     1. Select **Create**
     
-    <img src="media/saj-details.png" width="50%">
+    <img src="media/saj-details.png" width="40%">
 
 1. Once the deployment has completed, select the **Go to resource** button.    
 
@@ -134,11 +133,11 @@ To add a consumer group to your Event hub, follow these steps:
 
 1. From the Stream Analytics Job, select *Job topology -> Inputs* from the left-hand menu
 
-    <img src="media/saj-input.png" width="50%">
+    <img src="media/saj-input.png" width="30%">
 
 1. Select **+ Add stream input**, then select **Event Hub**
 
-    <img src="media/saj-eventhub-input.png" width="50%">
+    <img src="media/saj-eventhub-input.png" width="30%">
     
 1. Fill in the input details
 
@@ -158,7 +157,7 @@ To add a consumer group to your Event hub, follow these steps:
 
    1. Select **Save**
 
-    <img src="media/configure-input.png" width="50%">
+    <img src="media/configure-input.png" width="40%">
    
 
 #### Set an output for the Stream Analytics job
@@ -189,13 +188,13 @@ To add a consumer group to your Event hub, follow these steps:
    
    1. Select **Save**
    
-   <img src="media/ConfigureOutput.png" width="50%">
+   <img src="media/ConfigureOutput.png" width="40%">
 
 #### Add a function to the Stream Analytics job to call the web service you deployed
 
 1. Under Job Topology, click Functions > Add > Azure ML Studio.
 
-   <img src="media/addFunctionMLStudio.png" width="50%">
+   <img src="media/addFunctionMLStudio.png" width="30%">
 
 1. Enter the following information:
 
@@ -242,7 +241,7 @@ Run your IoT device (Raspberry Pi) to start collecting and sending temperature a
 
 1. Search for *Containers*
 
-    <img src="media/search-containers.png" width="50%">
+    <img src="media/search-containers.png" width="30%">
     
 1. Select the container used in this experiment.
 
