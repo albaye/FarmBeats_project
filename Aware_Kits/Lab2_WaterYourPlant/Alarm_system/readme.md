@@ -1,4 +1,4 @@
-### **1. Set up an alarm system**
+## Set up an alarm system
 
 #### **Objective**
 
@@ -21,7 +21,10 @@ IoT Azure Services, Data, Microcontroller Programming, AI.
 _Optionally a LED indicator can be integrated to indicate if the plant needs watering._
 
 
-Steps:
+#### **Steps:**
 
 1. [Set up your hardware](Setup_hardware.md)
-1. [IoT Central](IoT_central.md)
+1. [Create a new device template for IoT Central App](IoT_Central_App.md) 
+1. [Create an Azure Function](Create_Azure_Function.md)
+1. [Execute IoT Command](Execute_IoT_Command.md)
+1. [Write code for the alarm system](AlarmSystem.md) 

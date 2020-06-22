@@ -16,15 +16,15 @@ API keys are created in Azure IoT Central and can have different permissions, in
 
 1. Select **Administration** from the left-hand menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/AdministrationButton.png)
+   ![Image](media/AdministrationButton.png)
 
 1. Select **API tokens** from the *Admistration* menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/ApiTokensButton.png)
+   ![Image](media/ApiTokensButton.png)
 
 1. Select **+ Generate token**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/GenerateTokenButton.png)
+   ![Image](media/GenerateTokenButton.png)
 
 1. Fill in the token details
 
@@ -34,11 +34,11 @@ API keys are created in Azure IoT Central and can have different permissions, in
 
    1. Select **Generate**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/GenerateToken.png)
+   ![Image](media/GenerateToken.png)
 
 1. The token will be generated and shown. Take a note of this token as once this dialog is dismissed it is impossible to retrieve the token again. If you need the value you will have to delete the token and create a new one.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/GeneratedToken.png)
+   ![Image](media/GeneratedToken.png)
 
 ### Build the REST request
 
@@ -66,15 +66,15 @@ https://{app_name}.azureiotcentral.com/api/preview/devices/{device_id}/component
 
 1. Select **Interface** from the *Environment Sensor* menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/InterfaceMenu.png)
+   ![Image](media/InterfaceMenu.png)
 
 1. Select the **View identity** button
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/ViewIdentityButton.png)
+   ![Image](media/ViewIdentityButton.png)
 
 1. Copy the value of the *Name* field
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/InterfaceName.png)
+   ![Image](media/InterfaceName.png)
 
 1. Create the REST URL by replacing the `{app_name}` and `{interface_name}` in the following string:
 
@@ -90,7 +90,7 @@ To test the REST API you will need a tool like Postman. You can install Postman 
 
 1. Set the URL to the one you just generated
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/PostmanURL.png)
+   ![Image](media/PostmanURL.png)
 
 1. In the *Headers* section add a new header.
 
@@ -98,7 +98,7 @@ To test the REST API you will need a tool like Postman. You can install Postman 
 
    1. Set the *Value* to the API token you created earlier
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/PostmanHeaders.png)
+   ![Image](media/PostmanHeaders.png)
 
 1. In the *Body* section add JSON to set the request value
 
@@ -116,7 +116,7 @@ To test the REST API you will need a tool like Postman. You can install Postman 
 
       A request value of `true` should turn the LED on, a value of `false` will turn it off
 
-    ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/PostmanBody.png)
+    ![Image](media/PostmanBody.png)
 
 1. Select **Send**
 
@@ -295,7 +295,7 @@ When running locally, Azure Functions uses a local file for configuration called
 
 #### Test the function
 
-1. Run the function using either Visual Studio Code, or from the Azure CLI by following the instructions from the "test the function" in [Create Azure Function](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/Preparation/Create_Azure_function.md). Instead of calling the function from a browser, test it from Postman so you can pass the same JSON packet to the function that would be passed from Stream Analytics
+1. Run the function using either Visual Studio Code, or from the Azure CLI by following the instructions from the "test the function" in [Create Azure Function](Create_Azure_function.md). Instead of calling the function from a browser, test it from Postman so you can pass the same JSON packet to the function that would be passed from Stream Analytics
 
 1. In Postman, set the URL to be `http://localhost:7071/api/SoilMoistureCheck`, the URL of the local function running in the debugger
 
@@ -337,25 +337,25 @@ As well as deploying the function, the API Key also needs to be deployed from th
 
 1. Search for `Azure Functions: Upload Local Settings` and select it
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/CodeUploadSettings.png)
+   ![Image](media/CodeUploadSettings.png)
 
 1. Select your subscription and the Azure Functions app you deployed to
 
 1. The settings will be uploaded, and you will see the settings being uploaded in the *Output* window
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SettingsUploadOutput.png)
+   ![Image](media/SettingsUploadOutput.png)
 
 1. Launch the command palette
 
 1. Search for `Azure Functions: Deploy to Function App` and select it
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/DeployFunctionApp.png)
+   ![Image](media/DeployFunctionApp.png)
 
 1. Select your subscription and the Azure Functions app you deployed to
 
 1. You will be prompted to confirm the deploy, overwriting the existing app. Select **Deploy**.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/ConfirmDeploy.png)
+   ![Image](media/ConfirmDeploy.png)
 
 ### Deploy the function using the Azure CLI
 

@@ -16,17 +16,17 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
 1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/VSCodeMenuExtensions.png)
+   ![Image](media/VSCodeMenuExtensions.png)
 
 1. Search for `Python` and install the *Python* extension from Microsoft by selecting **Install**.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/PythonExtensionLocal.png)
+   ![Image](media/PythonExtensionLocal.png)
 
    > There are a number of Python extensions available, so ensure you install the one from Microsoft
 
 1. Search for `Azure Functions` and install the *Azure Functions* extension from Microsoft by selecting **Install**.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionsExtension.png)
+   ![Image](media/FunctionsExtension.png)
 
 ### Create a new Azure Functions project
 
@@ -45,31 +45,31 @@ Azure Functions can be created inside Visual Studio Code, or via the Azure CLI.
 
 1. Search for `Azure Functions: Create New Project` and select it
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/CreateFunctionsProject.png)
+   ![Image](media/CreateFunctionsProject.png)
 
 1. Select the folder to create the project in. The currently open folder will be one of the options, so select it.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionChooseFolder.png)
+   ![Image](media/FunctionChooseFolder.png)
 
 1. Select **Python** for the function project language
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionLanguageSelect.png)
+   ![Image](media/FunctionLanguageSelect.png)
 
 1. The function will be created using a Python Virtual environment, so select the Python version to use. Select the latest version of Python 3 that you have installed.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectPythonVersion.png)
+   ![Image](media/SelectPythonVersion.png)
 
 1. The function project will be created with a single trigger. Select the *Http Trigger* option to have this function triggered by a web request.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectFunctionTrigger.png)
+   ![Image](media/SelectFunctionTrigger.png)
 
 1. Name the function `SoilMoistureCheck`
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionName.png)
+   ![Image](media/FunctionName.png)
 
 1. Set the function authorization level to `Function`. This means it can only be called using a key either as a header or a query string. Without the key the function cannot be called.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionAuthLevel.png)
+   ![Image](media/FunctionAuthLevel.png)
 
 The project and virtual environment will be created. This will take a few seconds.
 
@@ -145,23 +145,23 @@ The function can be tested from inside Visual Studio Code, or from the Azure CLI
 
 1. Select the debugger from the left-hand menu, or select `View -> Debug`
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/DebugMenu.png)
+   ![Image](media/DebugMenu.png)
 
 1. Select the **Start Debugging** button from the top of the debug pane. It is a green play triangle ▶️.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/DebugRunButton.png)
+   ![Image](media/DebugRunButton.png)
 
 1. The Azure Functions runtime will launch and host the function. When it is running you will see the list of functions inside the app in the terminal containing the single Http trigger.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/TriggerRunningOutput.png)
+   ![Image](media/TriggerRunningOutput.png)
 
 1. Test the trigger by opening [http://localhost:7071/api/SoilMoistureCheck](http://localhost:7071/api/SoilMoistureCheck) in your web browser. In the terminal in Visual Studio Code you will see the call being made, and the browser will show the output of `OK`.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionInBrowser.png)
+   ![Image](media/FunctionInBrowser.png)
 
 1. When you have finished testing the function, detach from the functions host debugger by selecting the **Disconnect** button from the debug toolbar
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/StopDebuggingButton.png)
+   ![Image](media/StopDebuggingButton.png)
 
 #### Test the function using the Azure CLI
 
@@ -193,11 +193,11 @@ The function can be tested from inside Visual Studio Code, or from the Azure CLI
 
 1. The Azure Functions runtime will launch and host the function. When it is running you will see the list of functions inside the app in the terminal containing the single Http trigger.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/TriggerRunningOutput.png)
+   ![Image](media/TriggerRunningOutput.png)
 
 1. Test the trigger by opening [http://localhost:7071/api/SoilMoistureCheck](http://localhost:7071/api/SoilMoistureCheck) in your web browser. In the terminal in Visual Studio Code you will see the call being made, and the browser will show the output of `OK`.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionInBrowser.png)
+   ![Image](media/FunctionInBrowser.png)
 
 1. When you have finished testing the function, detach from the functions host debugger by pressing ctrl+c.
 
@@ -216,41 +216,41 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
 1. Search for `Azure Functions: Deploy to Function App` and select it
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/DeployFunctionApp.png)
+   ![Image](media/DeployFunctionApp.png)
 
 1. If you have multiple Azure subscriptions a list of them will be shown, so select the correct one
 
 1. Select `+ Create new Function App in Azure... (Advanced)`. There are two options with this name, one marked as `Advanced`. Select the one that is marked as `Advanced`. The Advanced option gives more control including adding the Function App to the existing Resource Group.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/CreateFunctionApp.png)
+   ![Image](media/CreateFunctionApp.png)
 
 1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `agrohackjim2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/NameFunctionApp.png)
+   ![Image](media/NameFunctionApp.png)
 
 1. Select `Linux` for the OS
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectFunctionOs.png)
+   ![Image](media/SelectFunctionOs.png)
 
 1. Select `Consumption` for the app service plan. This plan means you only pay based off the function app usage, with a generous free tier.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectConsumptionPlan.png)
+   ![Image](media/SelectConsumptionPlan.png)
 
 1. Select the latest Python 3 runtime that is available
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SetPythonRuntime.png)
+   ![Image](media/SetPythonRuntime.png)
 
 1. Select the `AgroHack` Resource Group
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectFunctionResourceGroup.png)
+   ![Image](media/SelectFunctionResourceGroup.png)
 
 1. Select the storage account that was created earlier for the data export. This storage account is used to save the files needed for the function app.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectFuncAppStorage.png)
+   ![Image](media/SelectFuncAppStorage.png)
 
 1. Select *Create new Application Insights Resource*. Application Insights allows you to monitor the Function App.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/CreateAppInsights.png)
+   ![Image](media/CreateAppInsights.png)
 
 1. Accept the default Application Insights name
 
@@ -258,11 +258,11 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
 1. Select the Azure tab from the left-hand menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/AzureMenu.png)
+   ![Image](media/AzureMenu.png)
 
 1. In the *Functions* section, expand your subscription to see all your Function Apps. Expand the newly created function app to see all functions.
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionsListInCode.png)
+   ![Image](media/FunctionsListInCode.png)
 
 1. Right-click on the *SoilMoistureCheck (HTTP)* function and select *Copy Function Url*
 
@@ -314,11 +314,11 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
 1. From the Stream Analytics Job, select *Job topology -> Outputs* from the left-hand menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/StreamAnalyticsFunctionOutputs.png)
+   ![Image](media/StreamAnalyticsFunctionOutputs.png)
 
 1. Select **+ Add**, then select **Azure function**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/AddFunctionStreamAnalyticsOutput.png)
+   ![Image](media/AddFunctionStreamAnalyticsOutput.png)
 
 1. Fill in the output details
 
@@ -336,13 +336,13 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
    1. Select **Save**
 
-    ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/StreamAnalyticsFunctionOutputs.png)
+    ![Image](media/StreamAnalyticsFunctionOutputs.png)
 
 ### Create the query
 
 1. From the Stream Analytics Job, select *Job topology -> Query* from the left-hand menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/StreamAnalyticsFunctionQuery.png)
+   ![Image](media/StreamAnalyticsFunctionQuery.png)
 
 1. Change the query to be the following
 
@@ -364,27 +364,27 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
 1. Select **Test Query** to test the query and see a sample output using real data from the event hub
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/TestFunctionQuery.png)
+   ![Image](media/TestFunctionQuery.png)
 
 1. Select **Save Query**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SaveFunctionQuery.png)
+   ![Image](media/SaveFunctionQuery.png)
 
 ### Start the job
 
 1. From the Stream Analytics Job, select *Overview* from the left-hand menu
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionStreamAnalyticsOverview.png)
+   ![Image](media/FunctionStreamAnalyticsOverview.png)
 
 1. Select **Start**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/StartFunctionStreamAnalytics.png)
+   ![Image](media/StartFunctionStreamAnalytics.png)
 
 1. For the *Job output start time* select **Now**
 
 1. Select **Start**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/StartFunctionStreamAnalyticsNow.png)
+   ![Image](media/StartFunctionStreamAnalyticsNow.png)
 
 ## Validate the query
 
@@ -396,17 +396,17 @@ The easiest way to ensure the query is running correctly is by verifying that th
 
 1. In the search bar, search for you Function Apps name
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SearchForFunctionApp.png)
+   ![Image](media/SearchForFunctionApp.png)
 
 1. Select the Function app. It will be marked as an *App Service* and have a lightning bolt icon.
 
 1. Expand the app and Functions nodes, and select **Monitor**
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/MonitorMenuOption.png)
+   ![Image](media/MonitorMenuOption.png)
 
 1. When the Azure Function is called an entry will appear in the table with a green tick
 
-   ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/FunctionCalls.png)
+   ![Image](media/FunctionCalls.png)
 
    It will take a few minutes for rows to appear as each window is 5 minutes, so nothing will appear until the 5 minute window is complete. Refresh the window using the **Refresh** button after a few minutes to see rows appear.
 
