@@ -16,7 +16,7 @@ To enable remote development in Visual Studio Code, you will need to install the
 
    ![The extensions tab in Visual Studio Code](./media/vscode_extension.png)
 
-1. Search for `remote development` and install the *Remote Development* extension pack from Microsoft by selecting the **Install** button
+1. Search for `remote ssh` and install the *Remote - SSH* extension pack from Microsoft by selecting the **Install** button
 
    ![The remote development extension](./media/install_remote_ssh.png)
 
