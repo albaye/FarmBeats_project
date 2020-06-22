@@ -27,6 +27,9 @@ GPIO.setup(violet_led_pin,GPIO.OUT)
 red_light_time = None
 blue_light_time = None
 violet_light_time = None
+red_light = False
+blue_light = False
+violet_light = False
 
 # Create the sensors
 bus = smbus2.SMBus(bme_pin)
@@ -72,7 +75,7 @@ def control_red(red_light_pin):
     start = time.perf_counter()
     print(f'Turn on red LED for {red_light_time} minutes')
     GPIO.output(red_light_pin, GPIO.HIGH)
-    while start + 60*red_light_time >= int(time.perf_counter()):
+    while red_light and start + 60*red_light_time >= int(time.perf_counter()):
         if  time.perf_counter() >= start + 60*red_light_time:
             print(f'Turn off red LED')
             GPIO.output(red_light_pin, GPIO.LOW)
@@ -83,7 +86,7 @@ def control_blue(blue_light_pin):
     start = time.perf_counter()
     print(f'Turn on blue LED for {blue_light_time} minutes')
     GPIO.output(blue_light_pin, GPIO.HIGH)
-    while start + 60*blue_light_time >= int(time.perf_counter()):
+    while blue_light and start + 60*blue_light_time >= int(time.perf_counter()):
         if  time.perf_counter() >= start + 60*blue_light_time:
             print(f'Turn off blue LED')
             GPIO.output(blue_light_pin, GPIO.LOW)
@@ -94,8 +97,8 @@ def control_violet(violet_light_pin):
     start = time.perf_counter()
     print(f'Turn on violet LED for {violet_light_time} minutes')
     GPIO.output(violet_light_pin, GPIO.HIGH)
-    while start + 60*violet_light_time >= int(time.perf_counter()):
-        if  time.perf_counter() >= start + 60*red_light_time:
+    while violet_light and start + 60*violet_light_time >= int(time.perf_counter()):
+        if  time.perf_counter() >= start + 60*violet_light_time:
             print(f'Turn off violet LED')
             GPIO.output(violet_light_pin, GPIO.LOW)
             break
@@ -139,42 +142,55 @@ async def main():
 
     async def redLight(request):
         response = MethodResponse.create_from_method_request(
-            request, status = 200, payload = {'description': f'Red Light for {request.payload} minutes'}
+            request, status = 200# payload = {'description': f'Red Light for {request.payload} minutes'}
         )
         global red_light_time
+        global red_light
         await device_client.send_method_response(response)  # send response
-
+        red_light = False
         if request.payload == None or request.payload == 0:
             print('Turn off the Red LED')
         else:
+            await asyncio.sleep(1)
+            red_light = True
             red_light_time = request.payload
+            red = Thread(target=control_red, daemon=True)
             red.start()
 
     async def blueLight(request):
         response = MethodResponse.create_from_method_request(
-            request, status = 200, payload = {'description': f'Blue Light for {request.payload} minutes'}
+            request, status = 200# payload = {'description': f'Blue Light for {request.payload} minutes'}
         )
         global blue_light_time
+        global blue_light
         await device_client.send_method_response(response)  # send response
-
+        blue_light = False
         if request.payload == None or request.payload == 0:
-            print('Turn off the Red LED')
+            print('Turn off the Blue LED')
         else:
+            await asyncio.sleep(1)
+            blue_light = True
             blue_light_time = request.payload
+            blue = Thread(target=control_blue, daemon=True)
             blue.start()
 
     async def violetLight(request):
         response = MethodResponse.create_from_method_request(
-            request, status = 200, payload = {'description': f'Violet Light for {request.payload} minutes'}
+            request, status = 200# payload = {'description': f'Violet Light for {request.payload} minutes'}
         )
         global violet_light_time
+        global violet_light
         await device_client.send_method_response(response)  # send response
-
+        violet_light = False
         if request.payload == None or request.payload == 0:
-            print('Turn off the Red LED')
+            print('Turn off the Violet LED')
         else:
+            await asyncio.sleep(1)
+            violet_light = True
             violet_light_time = request.payload
+            violet = Thread(target=control_violet, daemon=True)
             violet.start()
+
 
     commands = {
         'red_led': redLight,
@@ -199,12 +215,6 @@ async def main():
     await device_client.disconnect()
 
 if __name__ == '__main__':
-    red = Thread(target=control_red, args=(red_led_pin, ))
-    red.daemon = True
-    blue = Thread(target=control_blue, args=(blue_led_pin, ))
-    blue.daemon = True
-    violet = Thread(target=control_violet, args=(violet_led_pin, ))
-    violet.daemon = True
     # python3.7 or newer
     # asyncio.run(main())
 
