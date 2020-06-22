@@ -206,7 +206,32 @@ To add a consumer group to your Event hub, follow these steps:
     
     1. Key: Enter the ACCESS KEY that you noted down from the Excel workbook.
     
+    ![func-config](media/func-config.png)
     
+#### Configure the query of the Stream Analytics job
+
+1. Under **Job Topology**, click **Query**.
+   
+1. Replace the existing code with the following code:
+
+    ```SQL
+    WITH machinelearning AS (
+        SELECT EventEnqueuedUtcTime, temperature, humidity, machinelearning(temperature, humidity) as result from [YourInputAlias]
+    )
+    Select System.Timestamp time, CAST (result.[temperature] AS FLOAT) AS temperature, CAST (result.[humidity] AS FLOAT) AS humidity, CAST (result.[scored probabilities] AS FLOAT ) AS 'probabalities of rain'
+    Into [YourOutputAlias]
+    From machinelearning
+    ```
+    
+    Replace [YourInputAlias] with the input alias of the job.
+    
+    Replace [YourOutputAlias] with the output alias of the job.
+    
+3. Click **Save query**.
+
+#### Run the Stream Analytics job
+
+In the Stream Analytics job, click Start > Now > Start.
 
 
 
