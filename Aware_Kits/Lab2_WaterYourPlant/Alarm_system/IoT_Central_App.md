@@ -1,12 +1,10 @@
-# Creating a new device template for IoT Central
+# Creating a new IoT Central application template
 
-You have already created an IoT Central Application in Lab 1. For this scenario, you will need to add a new Interface so that a command to trigger the alert system can be sent to the device.
+You have already created an IoT Central Application in [Lab 1](../../Lab1_MonitoryourPlan/IoTCentral/Create_app_IoTCentral.md). For this scenario, you will need to add a new interface to your device template so that a command to trigger the alert system can be sent to the device.
 
-## Sorry will commit the rest of the changes just a second :S 
+## Create a new device template
 
-## Create Device Template
-
-As seen in Lab 1, device types are defined using templates - these specify the capabilities of the device including the telemetry that can be received from the device, and commands that can be sent to it.
+As seen previously, device types are defined using templates - these specify the capabilities of the device including the telemetry that can be received from the device, and commands that can be sent to it.
 
 We have already created a device template that receives temperature, humidity, air pressure, soil moisture and light conditions from your sensor device. You will need to define a new template that has these values on it, as well as a new command that communicates to the raspberry pi when the plant needs to be watered.
 
@@ -24,31 +22,24 @@ We have already created a device template that receives temperature, humidity, a
 
 1. Select the **Create** button.
 
-1. Name the template `SensorMonitor`.
+1. Name the template `IrrigationMonitor`.
+
+## Create the Capability Model
 
 Once the template is created, you need to add capabilities to it as you have done previously. These are defined using **capability models**, which define the capabilities of all devices that will use this template. 
 
 1. Select the **Custom** capability model
 
-## Add an interface
-
-1. Add a new interface to the capability model by selecting the top level *Environment sensor* item in the menu and selecting **+Add interface**
+1. Click on **+Add interface**
 
    ![The add interface option](./media/add_interface.png)
 
-1. Select **Custom**
+1. Select **Custom** interface
 
    ![The custom interface option](./media/choose_interface.png)
 
-This interface needs 5 telemetry values added to it for the temperature, pressure, humidity, soil moisture and light level. Telemetry values have the following properties:
 
-* **Display name** - this defines what is shown on a view to display the value
-* **Name** - this maps to the values being sent from the device
-* **Capability type** - this defines what type of value this is, and includes some standard types such as temperature or pressure.
-* **Schema** - this defines the data type for the value being received, such as an integer or a floating point number
-* **Unit** - this defines the unit for know telemetry types, for example °C for temperatures.
-
-1. Select the **+ Add capability** button to add new capabilities, and add the following four values:
+1. Select the **+ Add capability** button to add new capabilities, and add the following values:
 
    |  Display Name     | Name          | Capability Type | Semantic Type | Schema | Unit |
    | -------------     | ------------- | --------------- | ------------- | ------ | ---- |
@@ -57,11 +48,23 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
    | Humidity (%)      | humidity      | Telemetry       | Humidity      | Double | %    |
    | Soil Moisture (%) | soil_moisture | Telemetry       | None          | Double | % |
    | Light Level (%)   | light_level   | Telemetry       | None          | Double | % |
-   | Needs Watering   | needs_watering   | Command       
+
+1. Additionally, you will need to add a command to communicate to the device that the plant needs to be watered.
+
+   |  Display Name     | Name             | Capability Type |
+   | -------------     | -------------    | --------------- |
+   | Needs Watering    | needs_watering   | Command         |
+
+   [Add screenshot]
 
 
+   Turn on Request for the command and set the following values:
 
-   ![capabilities](./media/added_capabilities.png)
+   |  Display Name     | Name             | Schema |
+   | -------------     | -------------    | --------------- |
+   | Needs Watering    | needs_watering   | Boolean         |
+
+   [Add screenshot]
 
 ## Add a view
 
@@ -75,25 +78,14 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 
 1. Set the view name to `Overview`. We will use this view to show the charts of the values recorded.
 
-1. Drag *Temperature* from the *Telemetry* section onto the dashboard. This will add a graph showing the temperature recorded over the past 30 minutes to the dashboard. You can configure this in multiple ways using the control buttons on the top of the panel:
+1. Configure the dashboard to your liking. As with the capabilities in the telemetry section, you will be able to drag *Needs Watering* from the *Commands* section onto the dashboard.
 
-   ![The chart type selection icon](./media/chart_type.png) Change the visualization to be a number of different chart types, or the last known value
-
-   ![The chart size selection icon](./media/chart_size.png) Change the size of the panel on the dashboard
-
-   ![The chart settings selection icon](./media/chart_settings.png) Configure the chart including legend, axis labels and the time range
-
-   Configure the chart or last know value to your liking.
-
-1. Repeat this for the other telemetry values. If you want to plot multiple telemetry values on the same chart use the check boxes to select multiple values and drag them together. You can add telemetry values multiple times to get multiple views over the data.
-
-1. You can also customize the view with labels, markdown or images if desired.
+   [add screenshot]
 
 1. Select the **Save** button from the top menu
 
    ![The save view button](./media/save_view.png)
 
-1. You can create another view showing just the last value received if you want.
 
    Here is an example of how it can look like.
 
@@ -103,7 +95,6 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 
 ## Publish the device template
 
-Before the device template can be assigned to a device, it needs to be published. Once published, any intefaces defined on it cannot be changed, instead a new version of the device template needs to be created.
 
 1. Select the **Publish** button from the top-most menu.
 
@@ -115,13 +106,15 @@ Before the device template can be assigned to a device, it needs to be published
 
 ## Create a device
 
-1. Go to **Devices** > **SensorMonitor**.
+You will need to create a new device, and connect your device as you have done previously.
+
+1. Go to **Devices** > **IrrigationMonitor**.
 
    ![devices](./media/devices_sensorMonitor.png)
 
 1. Select **+ New**.
 
-1. Set the **Device Name** to `Raspberry pi` and the **Devide Id** to `raspberry_pi`. Then Click on **Create**.
+1. Set the **Device Name** to `Lab 2 Sensor` and the **Devide Id** to `raspberry_pi_2`. Then Click on **Create**.
 
    ![create device](./media/create_device.png)
 
