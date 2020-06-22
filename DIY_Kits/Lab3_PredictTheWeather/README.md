@@ -101,9 +101,110 @@ To add a consumer group to your Event hub, follow these steps:
 
     ![go-to-event-hub](media/go-to-event-hub.png)
     
-1. Add a consumer group
+1. Select **+ Consumer Group** and name it `ml-consumer-group`.
 
     ![add-consumer-group](media/add-consumer-group.png)
+    
+
+### Create, configure, and run a Stream Analytics job
+
+#### Create a Stream Analytics job
+
+1. Create a new Stream Analytics Job in your resource group.
+
+1. Fill in the details for the Stream Analytics Job:
+    
+    1. Name the job `ML-job`
+    
+    1. Select your Azure subscription
+    
+    1. For the *Resource group*, select your own resource group
+    
+    1. Select a *Location* closest to you, the same location you used in the previous step to create the resource group and event hubs.
+    
+    1. Leave the rest of the options as the defaults
+
+    1. Select **Create**
+    
+    ![saj-details](media/saj-details.png)
+    
+1. Once the deployment has completed, select the **Go to resource** button.    
+
+#### Set an input for the Stream Analytics job
+
+1. From the Stream Analytics Job, select *Job topology -> Inputs* from the left-hand menu
+
+    ![saj-input](media/saj-input.png)
+
+1. Select **+ Add stream input**, then select **Event Hub**
+
+    ![saj-eventhub-input](media/saj-eventhub-input.png)
+    
+1. Fill in the input details
+
+   1. Set the alias to be `telemetry`
+
+   1. Select *Select Event Hub from your subscriptions*
+
+   1. Select your subscription and Azure Event Hubs Namespace
+
+   1. Select *Use Existing* for the *Event hub name*
+
+   1. Select the `telemetry` event hub
+   
+   1. Select the consumer group you created.
+
+   1. Leave the rest of the options as the defaults
+
+   1. Select **Save**
+
+   ![configure-input](media/configure-input.png =100x100)    
+
+#### Set an output for the Stream Analytics job
+
+1. From the Stream Analytics Job, select *Job topology -> Outputs* from the left-hand menu
+
+1. Select **+ Add**, then select **Blob storage**
+
+1. Fill in the output details
+
+   1. Set the alias to be `ml-job-output`
+
+   1. Select *Select storage from your subscriptions*
+
+   1. Select your subscription
+
+   1. Select the storage account you created in the previous part
+
+   1. Select *Use Existing* for the *Container*
+
+   1. Select the `environmentdata` container
+
+   1. Set the *Path pattern* to `{date}/{time}`.
+
+   1. Leave the rest of the options as the defaults
+
+   1. Set Event serialization format: to *CSV*
+   
+   1. Select **Save**
+   
+   ![ConfigureOutput](media/ConfigureOutput.png)
+
+#### Add a function to the Stream Analytics job to call the web service you deployed
+
+1. Under Job Topology, click Functions > Add > Azure ML Studio.
+
+   ![addFunctionMLStudio](media/addFunctionMLStudio.png)
+
+1. Enter the following information:
+
+    1. **Function Alias**: Enter `machinelearning`.
+    
+    1. Select *Provide Azure Machine Learning function settings manually*
+    
+    1. URL: Enter the WEB SERVICE URL that you noted down from the Excel workbook.
+    
+    1. Key: Enter the ACCESS KEY that you noted down from the Excel workbook.
     
     
 
