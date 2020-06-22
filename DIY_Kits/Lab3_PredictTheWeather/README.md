@@ -16,9 +16,11 @@ Predict the chance of rain using machine learning to use it as a factor for the 
 
 AI, Azure services, Azure Machine Learning Studio (classic).
 
+
 ### Deploy the weather prediction model as a web service
 
 In this section you get the weather prediction model from the Azure AI Library. Then you add an R-script module to the model to clean the temperature and humidity data. Lastly, you deploy the model as a predictive web service.
+
 
 #### Get the weather prediction model
 
@@ -29,6 +31,7 @@ In this section you get the weather prediction model from the Azure AI Library. 
 1. Click **Open in Studio (classic)** to open the model in Microsoft Azure Machine Learning Studio (classic).
 
     ![open-ml-studio](../../images/open-ml-studio.png)
+
 
 #### Add an R-script module to clean temperature and humidity data
 
@@ -59,5 +62,38 @@ Add an R-script module to the weather prediction model that removes any rows tha
     The properties window should look similar to the following:
     
     ![add-code-to-module](../../images/add-code-to-module.png)
+    
+    
+#### Deploy predictive web service
+
+Now we validate the model, set up a predictive web service based on the model and then deploy the web service.
+
+1. Click **Run** to validate the steps in the model. This step might take a few minutes to complete.
+
+    ![run-experiment](../../images/run-experiment.png)
+
+1. Click **SET UP WEB SERVICE > Predictive Web Service**. The predictive experiment diagram opens.
+
+    ![predictive-experiment](../../images/predictive-experiment.png)
+
+1. In the predictive experiment diagram, delete the connection between the **Web service input** module and the **Weather Dataset** at the top. Then drag the **Web service input** module somewhere near the **Score Model** module and connect it as shown:
+
+    ![13_connect-modules-azure-machine-learning-studio](../../images/13_connect-modules-azure-machine-learning-studio.png)
+    
+1. Click **RUN** to validate the steps in the model.
+
+1. Click **DEPLOY WEB SERVICE** to deploy the model as a web service.
+
+1. On the dashboard of the model, download the **Excel 2010 or earlier workbook** for **REQUEST/RESPONSE**.
+    
+    ![download-workbook](../../images/download-workbook.png)
+    
+1. Open the Excel workbook, make a note of the **WEB SERVICE URL** and **ACCESS KEY**. (You will need these later)
+    
+
+
+
+    
+    
 
 -----------------
