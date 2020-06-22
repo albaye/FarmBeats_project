@@ -27,7 +27,7 @@ In this section you get the weather prediction model from the Azure AI Library. 
 1. Go to the [weather prediction model page](https://gallery.azure.ai/Experiment/Weather-prediction-model-1)
 
     ![weather-prediction-model-page](media/weather-prediction-model-page.png)
- 
+    
 1. Click **Open in Studio (classic)** to open the model in Microsoft Azure Machine Learning Studio (classic).
 
     ![open-ml-studio](media/open-ml-studio.png)
@@ -126,20 +126,19 @@ To add a consumer group to your Event hub, follow these steps:
 
     1. Select **Create**
     
-    ![saj-details](media/saj-details.png)
-    
-    
+    <img src="media/saj-details.png" width="50%">
+
 1. Once the deployment has completed, select the **Go to resource** button.    
 
 #### Set an input for the Stream Analytics job
 
 1. From the Stream Analytics Job, select *Job topology -> Inputs* from the left-hand menu
 
-    ![saj-input](media/saj-input.png)
+    <img src="media/saj-input.png" width="50%">
 
 1. Select **+ Add stream input**, then select **Event Hub**
 
-    ![saj-eventhub-input](media/saj-eventhub-input.png)
+    <img src="media/saj-eventhub-input.png" width="50%">
     
 1. Fill in the input details
 
@@ -159,7 +158,8 @@ To add a consumer group to your Event hub, follow these steps:
 
    1. Select **Save**
 
-   ![configure-input](media/configure-input.png)    
+    <img src="media/configure-input.png" width="50%">
+   
 
 #### Set an output for the Stream Analytics job
 
@@ -189,13 +189,13 @@ To add a consumer group to your Event hub, follow these steps:
    
    1. Select **Save**
    
-   ![ConfigureOutput](media/ConfigureOutput.png)
+   <img src="media/ConfigureOutput.png" width="50%">
 
 #### Add a function to the Stream Analytics job to call the web service you deployed
 
 1. Under Job Topology, click Functions > Add > Azure ML Studio.
 
-   ![addFunctionMLStudio](media/addFunctionMLStudio.png)
+   <img src="media/addFunctionMLStudio.png" width="50%">
 
 1. Enter the following information:
 
@@ -203,11 +203,11 @@ To add a consumer group to your Event hub, follow these steps:
     
     1. Select *Provide Azure Machine Learning function settings manually*
     
-    1. URL: Enter the WEB SERVICE URL that you noted down from the Excel workbook.
+    1. **URL**: Enter the WEB SERVICE URL that you noted down from the Excel workbook.
     
-    1. Key: Enter the ACCESS KEY that you noted down from the Excel workbook.
+    1. **Key**: Enter the ACCESS KEY that you noted down from the Excel workbook.
     
-    ![func-config](media/func-config.png)
+    <img src="media/func-config.png" width="50%">
     
 #### Configure the query of the Stream Analytics job
 
@@ -242,7 +242,7 @@ Run your IoT device (Raspberry Pi) to start collecting and sending temperature a
 
 1. Search for *Containers*
 
-    ![search-containers](media/search-containers.png)
+    <img src="media/search-containers.png" width="50%">
     
 1. Select the container used in this experiment.
 
