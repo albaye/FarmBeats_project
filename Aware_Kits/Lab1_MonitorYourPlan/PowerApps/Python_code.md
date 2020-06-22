@@ -2,6 +2,8 @@
 
 In the [previous step](./Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
 
+> You can find the code for this section under the [Python Folder](Python)
+
 ## Connect to the Raspberry Pi from Visual Studio Code
 
 To write the code for the Raspberry Pi, you will use the Remote development capabilities of Visual Studio Code.
@@ -224,17 +226,17 @@ Python has a concept of `.env` files to store secrets such as connection details
         return round(moisture_sensor.moisture, 2)
 
     def getLight():
-        return round(light_sensor.light, 2)
+        return round(light_sensor.light, 2)/10 # This return a percentage value
 
     def getDate():
         now = datetime.now()
         return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
     def getTelemetryData():
-        temp = round(getTemperaturePressureHumidity().temperature, 2)
+        temp = round(getTemperaturePressureHumidity().temperature, 2) # °C
         moisture = getMoisture()
-        pressure = round(getTemperaturePressureHumidity().pressure, 2)
-        humidity = round(getTemperaturePressureHumidity().humidity, 2)
+        pressure = round(getTemperaturePressureHumidity().pressure, 2) # Pa
+        humidity = round(getTemperaturePressureHumidity().humidity, 2) # %rH
         light = getLight()
         date, time = getDate()
         data = {
@@ -331,20 +333,20 @@ def getTemperaturePressureHumidity():
     return bme280.sample(bus, bme_address, calibration_params)
 
 def getMoisture():
-    return round(moisture_sensor.moisture, 2)
+    return round(moisture_sensor.moisture, 2) # returns voltage in mV
 
 def getLight():
-    return round(light_sensor.light, 2)
+    return round(light_sensor.light, 2)/10 # This return a percentage value
 
 def getDate():
     now = datetime.now()
     return now.strftime("%Y/%m/%d"), now.strftime("%H:%M:%S")
 
 def getTelemetryData():
-    temp = getTemperaturePressureHumidity().temperature
+    temp = getTemperaturePressureHumidity().temperature # °C
     moisture = getMoisture()
-    pressure = getTemperaturePressureHumidity().pressure
-    humidity = getTemperaturePressureHumidity().humidity
+    pressure = getTemperaturePressureHumidity().pressure # Pa
+    humidity = getTemperaturePressureHumidity().humidity # %rH
     light = getLight()
     date, time = getDate()
     data = {

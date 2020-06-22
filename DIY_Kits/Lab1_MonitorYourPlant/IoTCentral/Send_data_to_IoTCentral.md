@@ -184,7 +184,7 @@ Python has a concept of `.env` files to store secrets such as connection details
 1. Add the following code to the file:
 
     ```python
-    from azure.iot.device.aio import IoTHubDeviceClient
+    from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
     from datetime import datetime, date
     import smbus2, bme280, os, asyncio, json, time
     from grove.grove_moisture_sensor import GroveMoistureSensor
@@ -270,8 +270,6 @@ Python has a concept of `.env` files to store secrets such as connection details
 
                 await device_client.send_message(telemetry)
                 await asyncio.sleep(30)
-
-        listeners = asyncio.gather(command_listener(device_client))
 
         await main_loop()
 

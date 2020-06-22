@@ -371,3 +371,7 @@ if __name__ == '__main__':
 ```
 
 Finally, before running the `main` function, we need to initialize the threads. The function `control_red` takes one argument, which is passed using the `args`argument in the **Thread constructor**. Note that the thread **daemon** is set as `True`. This is just to terminate all the threads when exiting the main thread. Otherwise, after pressing `Ctrl + C`, the threads will be still running.
+
+------------
+
+Now you can contrl your LEDs from IoT Central. The [next step](Optional.md) is optional. You will try to implement and automatic system to switch on and off the LEDs depending on the sensor measurements.

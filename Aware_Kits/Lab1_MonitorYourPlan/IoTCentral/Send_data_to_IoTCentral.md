@@ -2,6 +2,8 @@
 
 In the [previous step](./Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
 
+> You can find the code for this section under the [Python Folder](Python)
+
 ## Connect to the Raspberry Pi from Visual Studio Code
 
 To write the code for the Raspberry Pi, you will use the Remote development capabilities of Visual Studio Code.
@@ -189,7 +191,7 @@ Python has a concept of `.env` files to store secrets such as connection details
 1. Add the following code to the file:
 
     ```python
-    from azure.iot.device.aio import IoTHubDeviceClient
+    from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
     from datetime import datetime, date
     import smbus2, bme280, os, asyncio, json, time
     from grove.grove_moisture_sensor import GroveMoistureSensor
@@ -217,16 +219,16 @@ Python has a concept of `.env` files to store secrets such as connection details
         return bme280.sample(bus, bme_address, calibration_params)
 
     def getMoisture():
-        return round(moisture_sensor.moisture, 2)
+        return round(moisture_sensor.moisture, 2) # returns voltage in mV
 
     def getLight():
-        return round(light_sensor.light, 2)
+        return round(light_sensor.light, 2)/10 # This return a percentage value
 
     def getTelemetryData():
-        temp = round(getTemperaturePressureHumidity().temperature, 2)
+        temp = round(getTemperaturePressureHumidity().temperature, 2) # °C
         moisture = getMoisture()
-        pressure = round(getTemperaturePressureHumidity().pressure, 2)
-        humidity = round(getTemperaturePressureHumidity().humidity, 2)
+        pressure = round(getTemperaturePressureHumidity().pressure, 2) # Pa
+        humidity = round(getTemperaturePressureHumidity().humidity, 2) # %rH
         light = getLight()
         data = {
             "humidity": humidity,
@@ -273,8 +275,6 @@ Python has a concept of `.env` files to store secrets such as connection details
 
                 await device_client.send_message(telemetry)
                 await asyncio.sleep(30)
-
-        listeners = asyncio.gather(command_listener(device_client))
 
         await main_loop()
 
@@ -342,16 +342,16 @@ def getTemperaturePressureHumidity():
     return bme280.sample(bus, bme_address, calibration_params)
 
 def getMoisture():
-    return round(moisture_sensor.moisture, 2)
+    return round(moisture_sensor.moisture, 2) # returns voltage in mV
 
 def getLight():
-    return round(light_sensor.light, 2)
+    return round(light_sensor.light, 2)/10 # This return a percentage value
 
 def getTelemetryData():
-    temp = getTemperaturePressureHumidity().temperature
+    temp = getTemperaturePressureHumidity().temperature # °C
     moisture = getMoisture()
-    pressure = getTemperaturePressureHumidity().pressure
-    humidity = getTemperaturePressureHumidity().humidity
+    pressure = getTemperaturePressureHumidity().pressure # Pa
+    humidity = getTemperaturePressureHumidity().humidity # %rH
     light = getLight()
     data = {
         "humidity": humidity,
