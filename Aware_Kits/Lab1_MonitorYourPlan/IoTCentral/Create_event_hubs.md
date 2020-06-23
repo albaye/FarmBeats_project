@@ -70,7 +70,7 @@ Azure IoT Central can export data to a number of different services, either to r
 
 1. Select the **New** button, then select the **Azure Event Hubs** option.
 
-   ![New event hubs export option](./new_data_export.png)
+   ![New event hubs export option](media/new_data_export.png)
 
 1. Give the export a name, such as `Export telemetry`.
 
@@ -86,7 +86,7 @@ Azure IoT Central can export data to a number of different services, either to r
 
 The easiest way to see messages flowing to the Event Hub is via the Azure Portal.
 
-1. Open the [Azure Portal](https://portal.azure.com/?WT.mc_id=agrohack-github-jabenn)
+1. Open the [Azure Portal](https://portal.azure.com)
 
 1. Log in with your Microsoft account if required
 
@@ -98,4 +98,4 @@ The easiest way to see messages flowing to the Event Hub is via the Azure Portal
 
 ----------------
 
-[Next Step](Create_storage_account): In the next step you will create a storage account to save the telemetry data.
+[Next Step](Create_storage_account.md): In the next step you will create a storage account to save the telemetry data.

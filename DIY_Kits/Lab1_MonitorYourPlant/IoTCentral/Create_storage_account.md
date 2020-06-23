@@ -1,6 +1,6 @@
 # Create Storage Account to store sensor data
 
-In the [previous step](Create_event_hubs.md), you have exported the data from IoT Centrall to Event Hubs. Now you will create a storage account to store all the telemetry data into a blob.
+In the [previous step](Create_event_hubs.md), you have exported the data from IoT Central to Event Hubs. Now you will create a storage account to store all the telemetry data into a blob container.
 
 ## Azure Blob Storage
 

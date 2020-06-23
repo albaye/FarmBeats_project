@@ -12,7 +12,7 @@ IoT central has a user friendly UI that allows us monitor device conditions, cre
 
    ![create resource](./media/create_resource.png)
 
-1. Search IoT Central and click on **IoT Central Application**. Then click on **Create**.
+1. Search `IoT Central` and click on **IoT Central Application**. Then click on **Create**.
    ![iotc](./media/search_iotc.png)
 
 1. Fill in the details for the IoT App.
@@ -101,7 +101,7 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 * **Schema** - this defines the data type for the value being received, such as an integer or a floating point number
 * **Unit** - this defines the unit for know telemetry types, for example °C for temperatures.
 
-1. Select the **+ Add capability** button to add new capabilities, and add the following four values:
+1. Select the **+ Add capability** button to add new capabilities, and add the following five values:
 
    |  Display Name     | Name          | Capability Type | Semantic Type | Schema | Unit |
    | -------------     | ------------- | --------------- | ------------- | ------ | ---- |
@@ -119,7 +119,7 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 
    ![select view from pannel](./media/add_view.png)
 
-1. Select Visualizing the device
+1. Select **Visualizing the device**.
 
    ![select new view](./media/select_new_view.png)
 

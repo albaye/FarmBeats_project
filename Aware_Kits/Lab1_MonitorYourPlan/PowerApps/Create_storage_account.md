@@ -6,7 +6,9 @@ In the [previous step](./Python_code.md), you have established a connection betw
 
 [Azure Table Storage](https://azure.microsoft.com/services/storage/tables/) allows you to store up to petabytes of structure data, and access them using a key-value approach.
 
-Azure has a concept of [storage accounts](https://docs.microsoft.com/azure/storage/common/storage-account-overview/?WT.mc_id=agrohack-github-jabenn), which wrap a range of storage services including file, table and blob. Blob storage uses collections to store different data in.
+Azure has a concept of [storage accounts](https://docs.microsoft.com/azure/storage/common/storage-account-overview/?WT.mc_id=agrohack-github-jabenn), which wrap a range of storage services including file, table and blob.
+
+If you already have an existing storage account, you can skip this step go to **Create a table**.
 
 ### Create a Storage Account
 
@@ -16,7 +18,7 @@ Azure has a concept of [storage accounts](https://docs.microsoft.com/azure/stora
 
     ![create resource](./media/create_resource.png)
 
-1. Search `storage account` in the search bar and select **Storage account - blob, file, table, queue**. Then click on create.
+1. Search `storage account` in the search bar and select **Storage account - blob, file, table, queue**. Then click on **Create**.
 
     ![search storage account](./media/search_storage_account.png)
 
@@ -39,6 +41,8 @@ Azure has a concept of [storage accounts](https://docs.microsoft.com/azure/stora
 1. Once you are done click on **Review + create**. And the click on create.
 
 1. Wait for the deployment to be finished. After that select **Go to resource**.
+
+### Create a table
 
 1. On the Left panel, go to **Storage Explorer (preview)**.
 

@@ -14,7 +14,7 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
 1. Launch Visual Studio Code. You will be developing locally, so close any remote development sessions to the Raspberry Pi that you have open.
 
-1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
+1. Select the Extensions tab from the left hand menu, or select *View > Extensions*.
 
    ![The extensions tab in Visual Studio Code](./media/extensions_tab.png))
 
@@ -22,21 +22,17 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
    ![The python extension](./media/python_extension.png)
 
-   > There are a number of Python extensions available, so ensure you install the one from Microsoft
+   > There are a number of Python extensions available, so ensure you install the one from Microsoft.
 
 1. Search for `Azure Functions` and install the *Azure Functions* extension from Microsoft by selecting **Install**.
 
    ![The Azure Functions extension](./media/azure_functions_extension.png)
 
-### Create a new Azure Functions project
+### Create a new Azure Functions project in Visual Studio Code
 
-Azure Functions can be created inside Visual Studio Code, or via the Azure CLI.
+1. Create a new folder for the Azure Functions project called `GetData`.
 
-#### Create a new Azure Functions project in Visual Studio Code
-
-1. Create a new folder for the Azure Functions project called `GetData`
-
-1. Launch Visual Studio Code and open the new folder using either the **Open Folder** button in the Explorer, or by selecting *File -> Open..*
+1. Launch Visual Studio Code and open the new folder using either the **Open Folder** button in the Explorer, or by selecting *File > Open*.
 
 1. From Visual Studio Code, launch the command palette
 
@@ -213,7 +209,7 @@ Now that the function is working we need to connect it to the table in the Stora
    {
       "IsEncrypted": false,
       "Values": {
-         "AzureWebJobsStorage": "<Storage account connection string",
+         "AzureWebJobsStorage": "<Storage account connection string>",
          "FUNCTIONS_WORKER_RUNTIME": "python"
       }
    }

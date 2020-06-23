@@ -322,4 +322,8 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![navigateoverview](./media/navigateoverview.png)
 
+----------
+
 Now you have a fully functional app created with Power Apps.
+
+You can now try to create an application in [IoT Central](../IoTCentral/) or move on to [scenario 2](../../Lab2_WaterYourPlant/).

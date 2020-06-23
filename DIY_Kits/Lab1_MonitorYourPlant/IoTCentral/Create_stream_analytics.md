@@ -4,7 +4,7 @@ In the [previous step](Create_storage_account.md) you have created the storage a
 
 ## Azure Stream Analytics
 
-[Azure StreamAnalytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
+[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
 
 ### Create the Stream Analytics Job
 
@@ -127,3 +127,5 @@ In the [previous step](Create_storage_account.md) you have created the storage a
 -----------------------
 
 Now your IoT Central app telemetry data should be stored in the Blob container.
+
+You can now try to create an application in [PowerApps](../PowerApps/) or move on to [scenario 2](../../Lab2_WaterYourPlant/).

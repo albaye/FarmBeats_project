@@ -6,11 +6,11 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 
 1. Log into your [Azure Portal](https://portal.azure.com/)
 
-1. Click on `+ Create a Resource`.
+1. Click on **+ Create a Resource**.
 
     ![create resource](./media/create_resource.png)
 
-1. Search IoT Hub in the search bar and select IoT Hub. Then click on create.
+1. Search `IoT Hub` in the search bar and select **IoT Hub**. Then click on **Create**.
 
     ![search iot hub](./media/search_iothub.png)
 
@@ -32,7 +32,9 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 
 1. Wait for the deployment to be finished. After that select **Go to resource**.
 
-1. On the left panel, go to *Explorers* > *IoT Devices*.
+## Create IoT Device
+
+1. On the left panel, go to *Explorers > IoT Devices*.
 
     ![iot devices](./media/iot_devices.png)
 
@@ -40,7 +42,7 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 
     ![add device](./media/add_iot_device.png)
 
-1. Name the device `raspberryPi` and leave the save as it is. Click on save.
+1. Name the device `raspberryPi` and leave the save as it is. Click on **Save**.
 
     ![new device](./media/create_device.png)
 

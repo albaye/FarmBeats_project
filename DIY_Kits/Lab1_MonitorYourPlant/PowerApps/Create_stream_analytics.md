@@ -4,7 +4,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
 ## Azure Stream Analytics
 
-[Azure StreamAnalytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
+[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
 
 ### Create the Stream Analytics Job
 

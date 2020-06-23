@@ -8,6 +8,8 @@ In this lab you will learn how to create your own app using IoT Central. IoT Cen
 
 ## Steps
 
+1. [Hardware setup](Hardware_setup.md)
+
 1. [Create App in IoT Central](Create_app_IoTCentral.md)
 
 1. [Send data to IoT Central from your Raspberry Pi](Send_data_to_IoTCentral.md)

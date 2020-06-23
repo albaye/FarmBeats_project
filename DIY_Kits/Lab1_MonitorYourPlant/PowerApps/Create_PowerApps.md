@@ -306,7 +306,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![addarrow](./media/addarrow.png)
 
-1. Click the arrow and write this code in the **OnSelect** bar. (i.e `Sensors` is the name of the other screen)
+1. Click the arrow and write this code in the **OnSelect** bar. (i.e `Sensors` is the name of the other screen).
 
     ```txt
     Navigate(Sensors, None)
@@ -314,7 +314,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![navigatesensor](./media/navigatesensor.png)
 
-1. Repeat the same process for the other screen
+1. Repeat the same process for the other screen.
 
     ```txt
     Navigate(Overview, None)
@@ -322,4 +322,8 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![navigateoverview](./media/navigateoverview.png)
 
+------------------------ 
+
 Now you have a fully functional app created with Power Apps.
+
+You can now try to create an application in [IoT Central](../IoTCentral/) or move on to [scenario 2](../../Lab2_WaterYourPlant/).
