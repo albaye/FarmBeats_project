@@ -1,10 +1,10 @@
-# Setting up your hardware
+# Set up your hardware
 
-Before starting with this set of labs, you will need to check that your hardware is set up as suggested.
+Before starting with this set of labs, you will need to verify that you have the required hardware setup as described in this lab sheet.
 
 ## Preparation
 
-- Complete the steps to [assemble your hardware](../../Lab0_SetUp/1b_Assemble_your_FarmBeats_Student_Kit_Hardware.md) according to the guide in Lab0_Setup  
+- Complete the steps to [assemble your hardware](../../Lab0_SetUp/1b_Assemble_your_FarmBeats_Student_Kit_Hardware.md) as covered in Lab 0
 
 - Verify that the Capacitive Soil Moisture Sensor is plugged into socket A2 of the Grove Base Hat
 
@@ -20,9 +20,9 @@ If you wish to do this, you will need the [Grove - Red LED](https://wiki.seeedst
 
 ![Grove Red LED](media/GroveLEDRed.jpg)
 
-## Optional LED Setup - LED Component Breadboard
+## Optional LED Setup - LED Component
 
-Otherwise, you can use a standard LED component, a breadboard, a 330Ohm resistor, and some jumper breadboard wires instead. The parts you will need are listed below:
+Alternatively, you can use a standard LED component, a breadboard, a 330Ohm resistor, and some jumper breadboard wires. The parts you will need are listed below:
 
 ![LED component](media/led.jpg)
 
@@ -40,14 +40,22 @@ Male to Female Jumper Wires. You will need at least two of these.
 
 ![male female wires](media/resistor.jpg)
 
-Resistor (A resistance of 220 Ohms to 1 kOhm are acceptable). You always need a resistor when connected an LED component to a Raspberry Pi GPIO (General Purpose Input/Output) port in order to limit the current. This is necessary to avoid blowing your LED.
+A resistor (220 Ohms - 1 kOhm)
 
-Please arrange your components as per the circuit diagram below. You may use any of the [GPIO ports](https://pinout.xyz/#) on your Raspberry Pi for this, but make sure that this is reflected in the code. 
+You always need a resistor when connecting an LED to a Raspberry Pi GPIO (General Purpose Input Output) port. This is necessary to limit current and avoid blowing your LED.
+
+
 
 ![circuit diagram](media/led_diagram.png)
 
+ - Please arrange your components as per the circuit diagram above. You may use any of the [GPIO ports](https://pinout.xyz/#) on your Raspberry Pi for this, but make sure that this is reflected in the code.
 
 ## Additional Notes
 
-You will not need the light sensor for this scenario, you may disconnect it from your sensor device if you wish.
+You will not need a light sensor for this scenario. You may disconnect it from your sensor device, if you wish.
 
+
+------------------
+
+
+Next step: [Create a new device template for IoT Central App](IoT_Central_App.md)

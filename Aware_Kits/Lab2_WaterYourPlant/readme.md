@@ -4,7 +4,7 @@
 
 Learn how to start processing sensor data collected from your device using Azure Functions.
 
-This scenario is divided into the following steps:
+This scenario is divided into the following labs:
 
 1. [Set up a notification system](Alarm_system/readme.md)
 
@@ -14,22 +14,25 @@ This scenario is divided into the following steps:
 
 ## Learning Outcomes
 
-[Overview of all learning outcomes - **should be revisited after finishing documentation for this scenario**]
-
-- Creating rules in Azure IoT Central
-- Interface with Azure IoT Central using REST API  
+- Learn to integrate Azure IoT Central with other services using
+    - Rules and actions.
+    - REST APIs.
 
 - Learn how to use Azure Functions
-    - Deploy an Azure Function
-    - Using Events Hub and Stream Analytics to stream data into Azure Function App
-    - Write script to process soil moisture data
+
+    - Use Events Hub and Stream Analytics to stream data into an Azure Function Application.
+    - Deploy your own Azure Function.
     
+- Understand how one can start analysing environment data to obtain actionable insights.
+
 
 ## Key areas to teach
 
+App (IoT Central and Power Apps), Real-time data pipeline (Events Hub and Stream Analytics) + Azure Functions.
+
 ## Azure Services Integration
 
-### **Azure Services Integration**
+### Automated Irrigation System
 
 ![AzureServiceS2](Alarm_system/media/AzureServices_Scenario2.png)
 
