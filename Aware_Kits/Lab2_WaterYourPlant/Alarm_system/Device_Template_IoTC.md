@@ -1,12 +1,10 @@
-# Creating a new IoT Central application template
+# Create a new Device Template in IoT Central
 
 You have already created an IoT Central Application in [Lab 1](../../Lab1_MonitoryourPlan/IoTCentral/Create_app_IoTCentral.md). For this scenario, you will need to add a new interface to your device template so that a command to trigger the alert system can be sent to the device.
 
-## Create a new device template
+## Create the device template
 
-As seen previously, device types are defined using templates - these specify the capabilities of the device including the telemetry that can be received from the device, and commands that can be sent to it.
-
-We have already created a device template that receives temperature, humidity, air pressure, soil moisture and light conditions from your sensor device. You will need to define a new template that has these values on it, as well as a new command that communicates to the raspberry pi when the plant needs to be watered.
+We have previously created a device template called **SensorDevice** that receives temperature, humidity, air pressure, soil moisture and light conditions. For this lab, you will need to define a new device template that has the same telemetry capabilities, as well as a new command that communicates to the raspberry pi when the plant needs to be watered.
 
 1. From the left panel select **Device Template**. Then click on **+ New**.
 
@@ -18,17 +16,24 @@ We have already created a device template that receives temperature, humidity, a
 
 1. Select the **Next: Customize** button.
 
+1. Name the template `IrrigationAlert`.
+
+   ![Name Template](./media/name_template.png)
+
 1. Select the **Next: Review** button.
 
 1. Select the **Create** button.
 
-1. Name the template `IrrigationMonitor`.
+   ![Create Template](./media/create_template.png)
+
 
 ## Create the Capability Model
 
 Once the template is created, you need to add capabilities to it as you have done previously. These are defined using **capability models**, which define the capabilities of all devices that will use this template. 
 
-1. Select the **Custom** capability model
+1. Select the **Custom** capability model]
+
+   ![Create Template](./media/custom_model.png)
 
 1. Click on **+Add interface**
 
@@ -49,22 +54,23 @@ Once the template is created, you need to add capabilities to it as you have don
    | Soil Moisture (%) | soil_moisture | Telemetry       | None          | Double | % |
    | Light Level (%)   | light_level   | Telemetry       | None          | Double | % |
 
-1. Additionally, you will need to add a command to communicate to the device that the plant needs to be watered.
+1. At this point. you will need to add an additional capability of the type **Command** to your model. The commnad interface allows you to call device commnads from IoT Central.
+
+   This will help communicate to the device that the plant needs to be watered. In this case, the command `needs_watering` can be sent to your device to trigger an alert.
+
 
    |  Display Name     | Name             | Capability Type |
    | -------------     | -------------    | --------------- |
    | Needs Watering    | needs_watering   | Command         |
 
-   [Add screenshot]
 
-
-   Turn on Request for the command and set the following values:
+1. Turn on Request for the command and set the following values:
 
    |  Display Name     | Name             | Schema |
    | -------------     | -------------    | --------------- |
    | Needs Watering    | needs_watering   | Boolean         |
 
-   [Add screenshot]
+   ![Add command](media/command_add_capability.png)
 
 ## Add a view
 
@@ -76,22 +82,15 @@ Once the template is created, you need to add capabilities to it as you have don
 
    ![select new view](./media/select_new_view.png)
 
-1. Set the view name to `Overview`. We will use this view to show the charts of the values recorded.
+1. Set the view name to `Overview`. You can use this view to show the charts of the values recorded. Configure the dashboard to your liking.
 
-1. Configure the dashboard to your liking. As with the capabilities in the telemetry section, you will be able to drag *Needs Watering* from the *Commands* section onto the dashboard.
+1. As with the capabilities in the telemetry section, you will be able to drag *Needs Watering* from the *Commands* section onto the dashboard. Create a new view and name it `Commands View`. Add the command tile as shown below.
 
-   [add screenshot]
+   ![Add command tile](./media/command_add_tile.png)
 
 1. Select the **Save** button from the top menu
 
    ![The save view button](./media/save_view.png)
-
-
-   Here is an example of how it can look like.
-
-   ![sensor charts](./media/chart_view.png)
-
-   ![sensor data](./media/sensor_view.png)
 
 ## Publish the device template
 
@@ -108,23 +107,25 @@ Once the template is created, you need to add capabilities to it as you have don
 
 You will need to create a new device, and connect your device as you have done previously.
 
-1. Go to **Devices** > **IrrigationMonitor**.
+1. Go to **Devices** > **IrrigationAlert**.
 
-   ![devices](./media/devices_sensorMonitor.png)
+   ![devices](./media/devices_IrrigationAlert.png)
 
 1. Select **+ New**.
 
-1. Set the **Device Name** to `Lab 2 Sensor` and the **Devide Id** to `raspberry_pi_2`. Then Click on **Create**.
-
    ![create device](./media/create_device.png)
 
-A new device should appear in the devices list.
+1. Set the **Template type** to `IrrigationAlert`, the **Device Name** to `Lab 2 Monitor`, and the **Devide Id** to `raspberry_pi2`. Then Click on **Create**. 
 
-![device list](./media/device_list.png)
+   ![create device dialog](./media/create_device_dialog.png)
+
+   A second device should appear in the devices list.
+
+   ![device list](./media/device_list.png)
 
 ### Get the device connection details
 
-Each device has a seet of connection details that will be used on the actual device to connect to Azure IoT Central and send telemetry.
+Now that a new device is created, you will need to take note of the new connection details to sending telemetry and receiving commmands.
 
 1. Click on the Raspberry pi device you have just created.
 
@@ -132,10 +133,10 @@ Each device has a seet of connection details that will be used on the actual dev
 
    ![connect device](./media/connect_device.png)
 
-1. Take note of the **ID Scope**, **Device Id** and **Primary key**. You will need these values to send the data from the raspberry pi.
+1. Take note of the **ID Scope**, **Device Id** and **Primary key**.
 
-   ![connection details](./media/device_connection_details.png)
+1. Update these entries on your raspberry pi
 
 ------------------
 
-[Next Step](./Send_data_to_IoTCentral.md): write the python code to send telemetry data to IoT Central.
+Next Step: [Trigger an email notification in IoT Central](IoT_Central_create_rule.md)
