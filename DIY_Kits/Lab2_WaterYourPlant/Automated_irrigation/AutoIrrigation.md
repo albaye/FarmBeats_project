@@ -22,11 +22,11 @@ To enable remote development in Visual Studio Code, you will need to install the
 
 1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
 
- ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/menuextension.png)
+ ![Image](media/menuextension.png)
  
 1. Search for `remote development` and install the *Remote Development* extension pack from Microsoft by selecting the **Install** button
 
- ![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/remotedevelopment.png)
+ ![Image](media/remotedevelopment.png)
  
 #### Connect to the Raspberry Pi
 
@@ -37,25 +37,25 @@ To enable remote development in Visual Studio Code, you will need to install the
   
 1. Search for `Remote-SSH: Connect to Host`
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/connecttohost.png)
+![Image](media/connecttohost.png)
 
 3. Select *+ Add new SSH Host*
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/newssh.png)
+![Image](media/newssh.png)
 
 4. Enter `pi@raspberrypi.local` as the SSH connection command
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/enterssh.png)
+![Image](media/enterssh.png)
 
 5. Select the option in your *home folder*, which will vary depending on your OS and user name.
 
 6. Once the connection has been configured, a dialog will appear saying the host is added. Click **Connect** from this dialog.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/hostadded.png)
+![Image](media/hostadded.png)
 
 7. A new Visual Studio Code window will open to host the connection. Enter the password for your Raspberry Pi. The default password is `raspberry`.
 
-![The password entry dialog](../Images/SSHPassword.png)
+![The password entry dialog](media/enterpassword.png)
 
 > Once the connection has been established, the next time *Remote-SSH: Connect to Host* is selected a new window will be opened and the password requested, there will be no need to configure it again.
 
@@ -69,15 +69,15 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/menuextension.png)
+![Image](media/menuextension.png)
 
-2. Search for `Python` and click *Install in SSH: raspberrypi.local*.
+2. Search for `Python` and click *`Install in SSH: raspberrypi.local`*.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/PythonExtension.png)
+![Image](media/pythonsshinstall.png)
 
 3. Then *Reload* the required.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/PythonReloadRequired.png)
+![Image](media/reload.png)
 
 4. Visual Studio will reload the window, and you will be asked for your Raspberry Pi password again, so enter it.
 
@@ -93,15 +93,15 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 1. Click on the *Explorer*
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/explorer.png)
+![Image](media/explorer.png)
 
 4. Open new folder in Visual Studio Code by selecting **Open folder**
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/OpenFolder.png)
+![Image](media/newfile.png)
 
 5. Locate the new `EnvironmentMonitor` folder and select it, then select **OK**
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/SelectEMFolder.png)
+![Image](media/environment.png)
 
 6. Re-enter your password of Raspberry pi.
 
@@ -120,7 +120,7 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. Back to *Explorer*, create a new file under the `EnvironmentMonitor` called `app.py`.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/app.png)
+![Image](media/createapp.png)
 
 4. Create a new virtual environment called `.venv` using Python 3 by running the following command in the terminal
 
@@ -130,15 +130,15 @@ Python comes in various versions, and Python apps can use external code in packa
    
 5. A dialog will pop up asking if you want to activate this virtual environment. Select **Yes**.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/LaunchVirtualEnv.png)
+![Image](media/newenviro.png)
 
 6. Select the *trash button* to terminate the current terminal which does not have the activated virtual environment.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/trashbutton.png)
+![Image](media/trashbutton.png)
 
-7. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment
+7. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment, you will find the terminal has switched to *.venv*.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/TerminalWithActivatedEnvironment.png)
+![Image](media/venv.png)
 
 ### Install the required python packages
 
