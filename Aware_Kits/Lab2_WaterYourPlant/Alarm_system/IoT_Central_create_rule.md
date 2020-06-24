@@ -50,4 +50,4 @@ You can choose from sum, average, minimum, maximum .....
 ---------------------
 
 
-Next Step: [Trigger an email notification in IoT Central](IoT_Central_create_rule.md)
+Next Step: [Create an Azure Function](Create_Azure_Function.md)

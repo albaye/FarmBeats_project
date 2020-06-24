@@ -384,3 +384,8 @@ Every 5 minutes the stream analytics job will average the soil moisture and send
 <hr>
 
 In this step you added to the function to trigger the Azure IoT Central command with a value depending on the level of the soil moisture, turning the LED off if the soil is wet, and on if it is dry. 
+
+
+------------------
+
+Next Step: [Write code for the alarm system](AlarmSystem.md) 

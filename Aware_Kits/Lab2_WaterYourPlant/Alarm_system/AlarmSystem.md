@@ -140,3 +140,9 @@ Then set up credentials for email sender and receiver. Editting alarm message an
             alarm_state = False
 ```
 In this part of the code, the loop continuously checks the reading data by comparaing readings with the threshold we set. If the data is below the threshold, *Alarm State* will be switched on and alarm message we set before will be sent to email receiver.
+
+**Code for print statement:**
+
+**Code for emailing:**
+
+**Code for LED light:**

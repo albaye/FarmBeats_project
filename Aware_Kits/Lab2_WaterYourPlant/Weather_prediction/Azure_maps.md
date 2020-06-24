@@ -11,17 +11,15 @@ For our soil moisture rule, if the soil is too dry then the plant needs a water.
 
 ## Enter Device Location via Cloud Property
 
-> For this workshop, the location will be hard coded, but in a real world app this would be set against each device, either by using GPS on the device, or set by the end user via a Cloud Property. You can read more on Cloud Properties in the [Azure IoT Central docs](https://docs.microsoft.com/azure/iot-central/core/howto-set-up-template?WT.mc_id=agrohack-github-jabenn#add-cloud-properties).
+> For this workshop, the location can be either hard coded, or set against each device by using GPS on the device, or set by the end user via a Cloud Property. You can read more on Cloud Properties in the [Azure IoT Central docs](https://docs.microsoft.com/azure/iot-central/core/howto-set-up-template?WT.mc_id=agrohack-github-jabenn#add-cloud-properties).
 
 
 ## Find Location via GPS
 
+Include instructions
 
-### Create an Azure Maps instance
 
-Azure Maps resources can be created using the Azure Portal or the Azure CLI
-
-#### Create an Azure Maps instance using the Azure Portal
+## Create an Azure Maps instance using the Azure Portal
 
 1. Open the [Azure Portal](https://portal.azure.com/?WT.mc_id=agrohack-github-jabenn)
 
@@ -29,21 +27,16 @@ Azure Maps resources can be created using the Azure Portal or the Azure CLI
 
 1. From the left-hand menu select **+ Create a resource**
 
-   ![The create a resource button](../Images/AzureCreateResource.png)
 
 1. Search for `Azure maps` and select *Azure Maps*
 
-   ![Searching for azure maps](../Images/SearchAzureMaps.png)
 
 1. Select **Create**
 
-   ![The create storage button](../Images/CreateAzureMapsButton.png)
 
 1. Fill in the details for the maps resource
 
    1. Select your Azure subscription
-
-   1. For the *Resource group*, select **AgroHack**
 
    1. Give the maps resource a name. To make it easier, name it the same as your Azure IoT Central app, storage account and functions app.
 
@@ -53,13 +46,11 @@ Azure Maps resources can be created using the Azure Portal or the Azure CLI
 
    1. Select **Create**
 
-   ![The Azure maps resource details](../Images/AzureMapsDetails.png)
 
 1. Once the deployment has completed, select the **Go to resource** button.
 
 1. Select *Authentication* from the *Azure Maps Account* menu, then copy the value of the *Primary key*
 
-   ![the maps key](../Images/MapsKey.png)
 
 ## Call Azure Maps
 
@@ -75,7 +66,6 @@ To get the latitude and longitude of your Raspberry Pi, you can use Bing Maps.
 
 1. Select *More -> Share* from the top menu
 
-   ![The bing maps share button](../Images/BingMapsShareButton.png)
 
 1. The Share popup will show a URL. In the URL will be a query string of `cp=` followed by the latitude and longitude
 
@@ -101,7 +91,6 @@ https://atlas.microsoft.com/weather/forecast/daily/json?api-version=1.0&query={l
 
 Test this out by making a **Get** request in Postman. The return value is a block of JSON containing a weather summary, along with a break down of the forecast for day and night with temperatures, precipitation, wind and air quality details.
 
-![The weather query in Postman](../Images/PostmanWeatherQuery.png)
 
 The JSON has a value called `summary`, and in this is a value called `category`. If rain is forecast, the category will be `rain`
 
@@ -122,7 +111,6 @@ The JSON has a value called `summary`, and in this is a value called `category`.
 
 This same call can be made from inside the function app.
 
-> You can find all the code for this step in the [Code/Functions](../Code/Functions) folder.
 
 1. Open Visual Studio Code
 
