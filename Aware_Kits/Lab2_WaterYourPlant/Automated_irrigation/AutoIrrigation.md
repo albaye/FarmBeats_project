@@ -93,7 +93,7 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 1. Click on the *Explorer*
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/explorer.png)
+![Image](media/explorer.png)
 
 4. Open new folder in Visual Studio Code by selecting **Open folder**
 
@@ -134,7 +134,7 @@ Python comes in various versions, and Python apps can use external code in packa
 
 6. Select the *trash button* to terminate the current terminal which does not have the activated virtual environment.
 
-![Image](https://github.com/albaye/FarmBeats_project/blob/master/Aware_Kits/Lab2_WaterYourPlan/media/trashbutton.png)
+![Image](media/trashbutton.png)
 
 7. Create a new terminal by selecting *Terminal -> New Terminal*. The terminal will load the virtual environment, you will find the terminal has switched to *.venv*.
 
