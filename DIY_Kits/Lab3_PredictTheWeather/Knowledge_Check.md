@@ -6,7 +6,7 @@
 
 1. Which one of the following services shoud you use in the future for your machine learning projects?
 
-    1. Microsoft Azure Machine Learning studio -> correct
+    1. **Microsoft Azure Machine Learning studio**
   
     1. Microsoft Azure Machine Learning studio (classic)
 
@@ -16,7 +16,7 @@
     
     1. Clean Missing Data
     
-    1. Normalize Data -> correct
+    1. **Normalize Data**
 
 1. c
 
