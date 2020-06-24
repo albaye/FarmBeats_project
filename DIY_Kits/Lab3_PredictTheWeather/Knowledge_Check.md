@@ -16,6 +16,8 @@
     
     1. Clean Missing Data
     
-    1. Normalize Data
+    1. Normalize Data -> correct
 
 1. c
+
+1. d
