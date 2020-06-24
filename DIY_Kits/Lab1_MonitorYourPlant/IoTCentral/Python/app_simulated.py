@@ -87,7 +87,7 @@ async def main():
     await device_client.disconnect()
 
 if __name__ == '__main__':
-    # python3.7
+    # python3.7 or newer
     asyncio.run(main())
 
     # python3.6

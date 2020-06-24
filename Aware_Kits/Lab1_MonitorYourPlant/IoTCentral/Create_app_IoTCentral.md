@@ -1,6 +1,6 @@
 # Create App using IoT Central
 
-[Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/core/overview-iot-central) is an IoT application platform that allows us interact with the cloud services and interact with them.
+[Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/core/overview-iot-central) is an IoT application platform that allows us interact with the cloud services easily.
 
 IoT central has a user friendly UI that allows us monitor device conditions, create rules, and manage millions of devices easily.
 
