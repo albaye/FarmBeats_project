@@ -1,9 +1,9 @@
-### Deploy the weather prediction model as a web service
+## Deploy the weather prediction model as a web service
 
 In this section you get the weather prediction model from the Azure AI Library. Then you add an R-script module to the model to clean the temperature and humidity data. Lastly, you deploy the model as a predictive web service.
 
 
-#### Get the weather prediction model
+### Get the weather prediction model
 
 1. Go to the [weather prediction model page](https://gallery.azure.ai/Experiment/Weather-prediction-model-1)
 
@@ -13,7 +13,7 @@ In this section you get the weather prediction model from the Azure AI Library. 
 
     ![open-ml-studio](media/open-ml-studio.png)
 
-#### Add an R-script module to clean temperature and humidity data
+### Add an R-script module to clean temperature and humidity data
 
 Add an R-script module to the weather prediction model that removes any rows that have data values for temperature or humidity that cannot be converted to numeric values.
 
@@ -44,7 +44,7 @@ Add an R-script module to the weather prediction model that removes any rows tha
     ![add-code-to-module](media/add-code-to-module.png)
     
     
-#### Deploy predictive web service
+### Deploy predictive web service
 
 Now we validate the model, set up a predictive web service based on the model and then deploy the web service.
 
@@ -71,7 +71,7 @@ Now we validate the model, set up a predictive web service based on the model an
 1. Open the Excel workbook, make a note of the **WEB SERVICE URL** and **ACCESS KEY**. (You will need these later)
     
 
-### Add a consumer group to your Event hub
+## Add a consumer group to your Event hub
 
 [Consumer groups](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-features#event-consumers) provide independent views into the event stream that enable apps and Azure services to independently consume data from the same Event Hub endpoint. In this section, you add a consumer group to your Event hub's built-in endpoint. We use this later in the tutorial to pull data from the endpoint.
 
@@ -86,9 +86,9 @@ To add a consumer group to your Event hub, follow these steps:
     ![add-consumer-group](media/add-consumer-group.png)
     
 
-### Create, configure, and run a Stream Analytics job
+## Create, configure, and run a Stream Analytics job
 
-#### Create a Stream Analytics job
+### Create a Stream Analytics job
 
 1. Create a new Stream Analytics Job in your resource group.
 
@@ -110,7 +110,7 @@ To add a consumer group to your Event hub, follow these steps:
 
 1. Once the deployment has completed, select the **Go to resource** button.    
 
-#### Set an input for the Stream Analytics job
+### Set an input for the Stream Analytics job
 
 1. From the Stream Analytics Job, select *Job topology -> Inputs* from the left-hand menu
 
@@ -141,7 +141,7 @@ To add a consumer group to your Event hub, follow these steps:
     <img src="media/configure-input.png" width="40%">
    
 
-#### Set an output for the Stream Analytics job
+### Set an output for the Stream Analytics job
 
 1. From the Stream Analytics Job, select *Job topology -> Outputs* from the left-hand menu
 
@@ -171,7 +171,7 @@ To add a consumer group to your Event hub, follow these steps:
    
    <img src="media/ConfigureOutput.png" width="40%">
 
-#### Add a function to the Stream Analytics job to call the web service you deployed
+### Add a function to the Stream Analytics job to call the web service you deployed
 
 1. Under Job Topology, click Functions > Add > Azure ML Studio.
 
@@ -189,7 +189,7 @@ To add a consumer group to your Event hub, follow these steps:
     
     <img src="media/func-config.png" width="50%">
     
-#### Configure the query of the Stream Analytics job
+### Configure the query of the Stream Analytics job
 
 1. Under **Job Topology**, click **Query**.
    
@@ -210,11 +210,11 @@ To add a consumer group to your Event hub, follow these steps:
     
 3. Click **Save query**.
 
-#### Run the Stream Analytics job
+### Run the Stream Analytics job
 
 In the Stream Analytics job, click Start > Now > Start.
 
-### View the weather forecast
+## View the weather forecast
 
 Run your IoT device (Raspberry Pi) to start collecting and sending temperature and humidity data to your IoT hub. For each message that your IoT hub receives, the Stream Analytics job calls the weather forecast web service to produce the chance of rain. The result is then saved to your Azure blob storage. You can view these results in your storage account.
 
