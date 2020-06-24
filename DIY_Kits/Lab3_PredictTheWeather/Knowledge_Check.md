@@ -4,7 +4,11 @@
 
 ## Knowledge Check
 
-1. a
+1. Which one of the following services shoud you use in the future for your machine learning projects?
+
+    1. Microsoft Azure Machine Learning studio -> correct
+  
+    1. Microsoft Azure Machine Learning studio (classic)
 
 1. b
 
