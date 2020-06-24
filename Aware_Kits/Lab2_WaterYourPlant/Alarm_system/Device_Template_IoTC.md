@@ -123,7 +123,7 @@ You will need to create a new device, and connect your device as you have done p
 
    ![device list](./media/device_list.png)
 
-### Get the device connection details
+## Get the device connection details
 
 Now that a new device is created, you will need to take note of the new connection details to sending telemetry and receiving commmands.
 
@@ -135,7 +135,7 @@ Now that a new device is created, you will need to take note of the new connecti
 
 1. Take note of the **ID Scope**, **Device Id** and **Primary key**.
 
-1. Update these entries on your raspberry pi
+1. Update these environment variables in the `.env` file on your raspberry pi
 
 ------------------
 
