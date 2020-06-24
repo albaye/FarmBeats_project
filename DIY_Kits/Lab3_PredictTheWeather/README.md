@@ -17,3 +17,5 @@ Predict the chance of rain using machine learning to use it as a factor for the 
 AI, Azure services, Azure Machine Learning Studio (classic).
 
 -----------------
+
+[Get started](ML_Studio_Classic.md)
