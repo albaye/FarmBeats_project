@@ -72,6 +72,7 @@ To get the latitude and longitude of your Raspberry Pi, you can use Bing Maps.
    https://www.bing.com/maps?osid=1398bf5e-e6b0-4765-8dca-3053122afeb7&cp=51.487701~-0.3087&lvl=11&v=2&sV=2&form=S00027
    ```
    ![Image](media/localurl.png)
+   
    In this example, which is the London location, the value is `cp=51.487701~-0.3087`, so a latitude of 51.487701 and a longitude of -0.3087.
 
 ### Test out the REST API
