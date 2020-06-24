@@ -1,3 +1,9 @@
+# Weather forecast using the sensor data 
+
+![ML-Diagram](media/ML-Diagram.png)
+
+Machine learning is a technique of data science that helps computers learn from existing data to forecast future behaviors, outcomes, and trends. Azure Machine Learning is a cloud predictive analytics service that makes it possible to quickly create and deploy predictive models as analytics solutions.
+
 ## Deploy the weather prediction model as a web service
 
 In this section you get the weather prediction model from the Azure AI Library. Then you add an R-script module to the model to clean the temperature and humidity data. Lastly, you deploy the model as a predictive web service.
