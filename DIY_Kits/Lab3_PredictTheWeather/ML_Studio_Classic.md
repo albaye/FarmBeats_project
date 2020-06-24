@@ -1,3 +1,7 @@
+[previous page](README.md)
+
+------------
+
 # Weather forecast using the sensor data 
 
 ![ML-Diagram](media/ML-Diagram.png)
