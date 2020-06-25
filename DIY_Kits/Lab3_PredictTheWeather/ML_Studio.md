@@ -16,7 +16,7 @@ To use Azure Machine Learning, you create a workspace in your Azure subscription
 
     1. **Workspace edition**: Enterprise
     
-    ![ML_workspace_create](media/ML_workspace_create.png)
+    <img src="media/ML_workspace_create.png" width="70%">
 
 1. Wait for your workspace to be created (it can take a few minutes). Then go to it in the portal.
 
