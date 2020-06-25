@@ -57,7 +57,7 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
    ![Image](media/SelectFunctionTrigger.png)
 
-1. Name the function `SoilMoistureCheck`
+1. Name the function `SoilMoistureLow`
 
    ![Image](media/FunctionName.png)
 
@@ -71,7 +71,7 @@ The project and virtual environment will be created. This will take a few second
 
 In this step, the function just needs to exist so that it can be called by Azure Stream Analytics, along with some logging. In a later step more code will be added to it to check weather and execute an Azure IoT Central command.
 
-1. Open the `__init__.py` file from the `SoilMoistureCheck` folder if it's not already open
+1. Open the `__init__.py` file from the `SoilMoistureLow` folder if it's not already open
 
 1. Change the `main` function to the following:
 
@@ -101,7 +101,7 @@ In this step, the function just needs to exist so that it can be called by Azure
 
    ![Image](media/TriggerRunningOutput.png)
 
-1. Test the trigger by opening [http://localhost:7071/api/SoilMoistureCheck](http://localhost:7071/api/SoilMoistureCheck) in your web browser. In the terminal in Visual Studio Code you will see the call being made, and the browser will show the output of `OK`.
+1. Test the trigger by opening [http://localhost:7071/api/SoilMoistureLow](http://localhost:7071/api/SoilMoistureCheck) in your web browser. In the terminal in Visual Studio Code you will see the call being made, and the browser will show the output of `OK`.
 
    ![Image](media/FunctionInBrowser.png)
 
@@ -129,7 +129,7 @@ Azure Stream Analytics needs to be able to access the URL for the function to be
 
    ![Image](media/CreateFunctionApp.png)
 
-1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `agrohackjim2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
+1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `luludevice2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
 
    ![Image](media/NameFunctionApp.png)
 
