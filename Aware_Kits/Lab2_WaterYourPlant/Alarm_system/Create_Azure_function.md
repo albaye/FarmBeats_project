@@ -1,16 +1,16 @@
 # Create an Azure Function Application
 
-This lab will teach you how to use an Azure function application to process the sensor data collected from your device. This includes setting up a real-time data pipeline with Stream Analytics as done previously for [steaming sensor data into blob storage](../../Lab1_MonitorYourPlant/IoTCentral/Create_stream_analytics.md).
+This lab will teach clients and students how to use an Azure function application to process the sensor data collected from the local device. This includes setting up a real-time data pipeline with Stream Analytics as done previously for [steaming sensor data into blob storage](../../Lab1_MonitorYourPlant/IoTCentral/Create_stream_analytics.md).
 
 ## Azure Functions
 
-Azure Functions is an event driven serverless compute platform, essentially a way to define small blocks of code that are triggered by events such as a web request, data changes in storage or events being put onto an Azure Event Hub. They can be written in a multitude of different languages including C#, F#, Java, JavaScript and Python.
+Azure Functions is an event driven serverless compute platform, essentially a way to define small blocks of code that are triggered by events such as a web request, data changes in storage or events being put onto an Azure Event Hub. Multiple different languages could be used, including C#, F#, Java, JavaScript and Python, therefore it is quite flexible for developments.
 
 Azure Stream Analytics can call Azure Functions in response to streaming data, either individual messages or an aggregation across a time window.
  
-For this lab, the moisture measurement needs to be checked against a defined level, and if it is too low then the plant needs watering. Events are coming in every 60 seconds, and the moisture level doesn't need to be checked that often, instead an average over 5 minutes can be checked.
+In this lab, the moisture reading from sensor will be compared against a defined threshold level. If it is lower than the threshold level, it means that the plant needs watering. Events are coming in every 60 seconds. The moisture level instead, doesn't need to be checked that often since it does not valid much within a certain period of time, it will therefore be checked every 5 minutes.
 
-The Azure Function to be created will be triggered by a web request, called from Azure Stream Analytics.
+The Azure Function to be created will be triggered by a web request, called from Azure Stream Analytics which we went through in Lab1.
 
 ### Configure Visual Studio Code for Azure Functions development
 
@@ -20,11 +20,11 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
 1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
 
-   ![Image](media/VSCodeMenuExtensions.png)
+   ![Image](media/azurefunctionmedia/toolbar.png)
 
 1. Search for `Azure Functions` and install the *Azure Functions* extension from Microsoft by selecting **Install**.
 
-   ![Image](media/FunctionsExtension.png)
+   ![Image](media/azurefunctionmedia/auzurefun.png)
 
 ### Create a new Azure Functions project
 
@@ -39,39 +39,35 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
 1. Search for `Azure Functions: Create New Project` and select it
 
-   ![Image](media/CreateFunctionsProject.png)
+   ![Image](media/azurefunctionmedia/createnewfun.png)
 
-1. Select the folder to create the project in. The currently open folder will be one of the options, so select it.
+1. Select the folder to create the project, pick the currently open folder.
 
-   ![Image](media/FunctionChooseFolder.png)
+   ![Image](media/azurefunctionmedia/selectfolder.png)
 
-1. Select **Python** for the function project language
+1. Select **Python** for the function project language, the function then will be created under Python Virtual environment.
 
-   ![Image](media/FunctionLanguageSelect.png)
-
-1. The function will be created using a Python Virtual environment, so select the Python version to use. Select the latest version of Python 3 that you have installed.
-
-   ![Image](media/SelectPythonVersion.png)
+   ![Image](media/azurefunctionmedia/selectlangua.png)
 
 1. The function project will be created with a single trigger. Select the *Http Trigger* option to have this function triggered by a web request.
 
-   ![Image](media/SelectFunctionTrigger.png)
+   ![Image](media/azurefunctionmedia/httptemplate.png)
 
-1. Name the function `SoilMoistureLow`
+1. Name the function `SoilMoistureCheck`
 
-   ![Image](media/FunctionName.png)
+   ![Image](media/azurefunctionmedia/funcname.png)
 
 1. Set the function authorization level to `Function`. This means it can only be called using a key either as a header or a query string. Without the key the function cannot be called.
 
-   ![Image](media/FunctionAuthLevel.png)
+   ![Image](media/azurefunctionmedia/autolevel.png)
 
-The project and virtual environment will be created. This will take a few seconds.
+The project and virtual environment will be created which will take a few seconds.
 
 ### Write the code for the function
 
 In this step, the function just needs to exist so that it can be called by Azure Stream Analytics, along with some logging. In a later step more code will be added to it to check weather and execute an Azure IoT Central command.
 
-1. Open the `__init__.py` file from the `SoilMoistureLow` folder if it's not already open
+1. Open the `__init__.py` file from the `SoilMoistureCheck` folder if it's not already open
 
 1. Change the `main` function to the following:
 
@@ -91,28 +87,28 @@ In this step, the function just needs to exist so that it can be called by Azure
 
 1. Select the debugger from the left-hand menu, or select `View -> Debug`
 
-   ![Image](media/DebugMenu.png)
+   ![Image](media/azurefunctionmedia/debugtoolbar.png)
 
-1. Select the **Start Debugging** button from the top of the debug pane. It is a green play triangle ▶️.
+1. Click on the **Start Debugging** button from the top of the debug pane, which is a green play triangle ▶️.
 
-   ![Image](media/DebugRunButton.png)
+   ![Image](media/azurefunctionmedia/startdebug.png)
 
-1. The Azure Functions runtime will launch and host the function. When it is running you will see the list of functions inside the app in the terminal containing the single Http trigger.
+1. The Azure Functions runtime will launch and host the function. When it is running you will see the list of functions inside the app in the terminal containing the single Http trigger as shown below.
 
-   ![Image](media/TriggerRunningOutput.png)
+   ![Image](media/azurefunctionmedia/httptrigger.png)
 
-1. Test the trigger by opening [http://localhost:7071/api/SoilMoistureLow](http://localhost:7071/api/SoilMoistureCheck) in your web browser. In the terminal in Visual Studio Code you will see the call being made, and the browser will show the output of `OK`.
+1. Test the trigger by opening [http://localhost:7071/api/SoilMoistureCheck](http://localhost:7071/api/SoilMoistureCheck) in your web browser. In the terminal in Visual Studio Code you will see the call being made, and the browser will show the output of `OK`.
 
-   ![Image](media/FunctionInBrowser.png)
+   ![Image](media/azurefunctionmedia/testtrigger.png)
 
-1. When you have finished testing the function, detach from the functions host debugger by selecting the **Disconnect** button from the debug toolbar
+1. After testing the function, detach from the functions host debugger by selecting the **Disconnect** button from the debug toolbar, which is the red button on the right hand side of the bar.
 
-   ![Image](media/StopDebuggingButton.png)
+   ![Image](media/azurefunctionmedia/disconnectdebug.png)
 
 
 ## Deploy the function to Azure
 
-Azure Stream Analytics needs to be able to access the URL for the function to be able to run it. This means it cannot call functions running locally, so the function will need to be published to Azure to make it publicly available and therefore callable from Azure Stream Analytics.
+Azure Stream Analytics needs to be able to access the URL for the function and therefore to be able to run it. This means it cannot call functions running locally, so the function will need to be published to Azure to make it publicly available and therefore callable from Azure Stream Analytics.
 
 1. From Visual Studio Code, launch the command palette
 
@@ -121,59 +117,51 @@ Azure Stream Analytics needs to be able to access the URL for the function to be
 
 1. Search for `Azure Functions: Deploy to Function App` and select it
 
-   ![Image](media/DeployFunctionApp.png)
+   ![Image](media/azurefunctionmedia/startdeploy.png)
 
-1. If you have multiple Azure subscriptions a list of them will be shown, so select the correct one
+1. Select `+ Create new Function App in Azure... (Advanced)`. There are two options with this name, select the one marked as `Advanced`. The Advanced option gives more control including adding the Function App to the existing Resource Group.
 
-1. Select `+ Create new Function App in Azure... (Advanced)`. There are two options with this name, one marked as `Advanced`. Select the one that is marked as `Advanced`. The Advanced option gives more control including adding the Function App to the existing Resource Group.
+   ![Image](media/azurefunctionmedia/advanceazureapp.png)
 
-   ![Image](media/CreateFunctionApp.png)
+1. Give the Function App a name that is globally unique, for example `imperialfarmbeats`.
 
-1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `luludevice2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
+   ![Image](media/azurefunctionmedia/namefuncapp.png)
 
-   ![Image](media/NameFunctionApp.png)
+1. Select the latest *Python 3.7* runtime
 
-1. Select `Linux` for the OS
-
-   ![Image](media/SelectFunctionOs.png)
+   ![Image](media/azurefunctionmedia/appruntime.png)
 
 1. Select `Consumption` for the app service plan. This plan means you only pay based off the function app usage, with a generous free tier.
 
-   ![Image](media/SelectConsumptionPlan.png)
+   ![Image](media/azurefunctionmedia/hostingplan.png)
 
-1. Select the latest Python 3 runtime that is available
+1. Select the `ImperialFarmbeats` Resource Group
 
-   ![Image](media/SetPythonRuntime.png)
+   ![Image](media/azurefunctionmedia/resourcegroup.png)
 
-1. Select the `AgroHack` Resource Group
+1. Select the storage account that was created earlier for the data export or create a new storage account. This storage account is used to save the files needed for the function app.
 
-   ![Image](media/SelectFunctionResourceGroup.png)
+   ![Image](media/azurefunctionmedia/storageacc.png)
 
-1. Select the storage account that was created earlier for the data export. This storage account is used to save the files needed for the function app.
+1. Select *Create new Application Insights Resource*. Application Insights allows you to monitor the Function App. Accept the default Application Insights name.
 
-   ![Image](media/SelectFuncAppStorage.png)
+   ![Image](media/azurefunctionmedia/appinsights.png)
+   
+1. Name the new Application Insights resource.
 
-1. Select *Create new Application Insights Resource*. Application Insights allows you to monitor the Function App.
-
-   ![Image](media/CreateAppInsights.png)
-
-1. Accept the default Application Insights name
+   ![Image](media/azurefunctionmedia/insightsresource.png)
 
 1. The Function App will be created and your code deployed. This will take a few seconds and a notification will pop up when complete.
 
-1. Select the Azure tab from the left-hand menu
+1. Then select the Azure tab from the left-hand menu.
 
-   ![Image](media/AzureMenu.png)
+   ![Image](media/azurefunctionmedia/azurefunctoolbar.png)
 
-1. In the *Functions* section, expand your subscription to see all your Function Apps. Expand the newly created function app to see all functions.
+1. In the *Functions* section, expand your subscription to see all your Function Apps. Expand the newly created function app to see all functions you created.
 
-   ![Image](media/FunctionsListInCode.png)
+   ![Image](media/azurefunctionmedia/funcapp.png)
 
 1. Right-click on the *SoilMoistureCheck (HTTP)* function and select *Copy Function Url*
 
 1. Paste this URL into a browser and test the function is working
 
-
--------------------
-
-Next Step:  [Create a Stream Analytics Job](Create_stream_analytics.md)
