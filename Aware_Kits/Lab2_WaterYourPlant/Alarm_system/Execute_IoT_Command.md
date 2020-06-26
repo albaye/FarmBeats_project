@@ -1,6 +1,6 @@
 # Trigger an Azure IoT Central command if the soil moisture is too low
 
-In the previous step [Create_Azure_Function](.Preparation/Create_Azure_Function.md) you created an Azure Function triggered by Azure Stream Analytics to check soil moisture. In this step you will add to this function to trigger the Azure IoT Central command with a value depending on the level of the soil moisture, turning the LED off if the soil is wet, and on if it is dry.
+In the previous step [Create_Azure_Function](.Preparation/Create_Azure_Function.md), you created an Azure Function triggered by Azure Stream Analytics to check soil moisture. In this step you will add to this function to trigger the Azure IoT Central command with a value depending on the level of the soil moisture, turning the LED off if the soil is wet, and on if it is dry.
 
 ## Execute Azure IoT Central commands
 
@@ -14,31 +14,23 @@ API keys are created in Azure IoT Central and can have different permissions, in
 
 1. Open the app in Azure IoT Central
 
-1. Select **Administration** from the left-hand menu
+1. Select **Administration** from the left-hand menu, click on the **API tokens** and select **+ Generate token**
 
-   ![Image](media/AdministrationButton.png)
-
-1. Select **API tokens** from the *Admistration* menu
-
-   ![Image](media/ApiTokensButton.png)
-
-1. Select **+ Generate token**
-
-   ![Image](media/GenerateTokenButton.png)
+   ![Image](media/IoTCommand/getAPItoken.png)
 
 1. Fill in the token details
 
-   1. Give the token a name, such as `CommandToken`
+   1. Give the token a name
 
-   1. Set the *Role* to `Operator`. This is the lowest level of access and allows commands to be called, but no changes to be made to the app
+   1. Switch the *Role* to `Operator`. Operator is the lowest level of access and allows commands to be called, but no changes to be made to the app
 
    1. Select **Generate**
 
-   ![Image](media/GenerateToken.png)
+   ![Image](media/IoTCommand/gentoken.png)
 
 1. The token will be generated and shown. Take a note of this token as once this dialog is dismissed it is impossible to retrieve the token again. If you need the value you will have to delete the token and create a new one.
 
-   ![Image](media/GeneratedToken.png)
+   ![Image](media/IoTCommand/token.JPG)
 
 ### Build the REST request
 
@@ -60,21 +52,21 @@ https://{app_name}.azureiotcentral.com/api/preview/devices/{device_id}/component
 
 #### Get the interface Id
 
-1. Select **Device templates** from the left-hand menu in your Azure IoT Central app
+1. Select **Device templates** from the left-hand menu in your Azure IoT Central app, then click on the *Environment Sensor* device template
 
-1. Select the *Environment Sensor* device template
+   ![Image](media/IoTCommand/devicetemp.png)
 
 1. Select **Interface** from the *Environment Sensor* menu
 
-   ![Image](media/InterfaceMenu.png)
+   ![Image](media/IoTCommand/interface.png)
 
 1. Select the **View identity** button
 
-   ![Image](media/ViewIdentityButton.png)
+   ![Image](media/IoTCommand/viewiden.png)
 
 1. Copy the value of the *Name* field
 
-   ![Image](media/InterfaceName.png)
+   ![Image](media/IoTCommand/identityname.png)
 
 1. Create the REST URL by replacing the `{app_name}` and `{interface_name}` in the following string:
 
@@ -88,17 +80,17 @@ To test the REST API you will need a tool like Postman. You can install Postman 
 
 1. Set the request type to `POST`
 
-1. Set the URL to the one you just generated
+1. Set the URL to the one just generated
 
-   ![Image](media/PostmanURL.png)
+   ![Image](media/IoTCommand/posturl.png)
 
-1. In the *Headers* section add a new header.
+1. In the *Headers* section add a new header in the blocks.
 
    1. Set the *Key* to `Authorization`
 
    1. Set the *Value* to the API token you created earlier
 
-   ![Image](media/PostmanHeaders.png)
+   ![Image](media/IoTCommand/newheader.png)
 
 1. In the *Body* section add JSON to set the request value
 
@@ -115,8 +107,6 @@ To test the REST API you will need a tool like Postman. You can install Postman 
       ```
 
       A request value of `true` should turn the LED on, a value of `false` will turn it off
-
-    ![Image](media/PostmanBody.png)
 
 1. Select **Send**
 
@@ -337,25 +327,31 @@ As well as deploying the function, the API Key also needs to be deployed from th
 
 1. Search for `Azure Functions: Upload Local Settings` and select it
 
-   ![Image](media/CodeUploadSettings.png)
+   ![Image](media/IoTCommand/uploadlocal.png)
 
 1. Select your subscription and the Azure Functions app you deployed to
+   
+   ![Image](media/IoTCommand/selectfun.png)
 
-1. The settings will be uploaded, and you will see the settings being uploaded in the *Output* window
+1. After the deployed process, a window would jump up saying "successfully uploaded settings"
 
-   ![Image](media/SettingsUploadOutput.png)
+   ![Image](media/IoTCommand/successupload.png)
+
+1. Click on *View Output*
+
+   ![Image](media/IoTCommand/output.png)
 
 1. Launch the command palette
 
 1. Search for `Azure Functions: Deploy to Function App` and select it
 
-   ![Image](media/DeployFunctionApp.png)
+   ![Image](media/IoTCommand/deploy.png)
 
 1. Select your subscription and the Azure Functions app you deployed to
 
 1. You will be prompted to confirm the deploy, overwriting the existing app. Select **Deploy**.
 
-   ![Image](media/ConfirmDeploy.png)
+   ![Image](media/IoTCommand/deploy1.png)
 
 ### Deploy the function using the Azure CLI
 
