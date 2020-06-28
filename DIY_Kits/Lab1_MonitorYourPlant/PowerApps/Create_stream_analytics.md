@@ -4,7 +4,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
 ## Azure Stream Analytics
 
-[Azure StreamAnalytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
+[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
 
 ### Create the Stream Analytics Job
 
@@ -82,7 +82,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
     * Storage account: Select the Storage account you have created earlier.
 
-    * Table name: Click on **Create new** and name it `data`.
+    * Table name: Click on **Use existing** and select `data`.
 
     * Partition key: `device`.
 
@@ -136,4 +136,4 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
 -----------------------
 
-[Next step](./Create_function.md): Create Azure Function to tranfer the entries from the table to Power Apps.
+[Next step](Create_function.md): Create Azure Function to tranfer the entries from the table to Power Apps.

@@ -1,10 +1,10 @@
 # Create Stream Analytics Job stream telemetry data from IoT Hub to Storage Account
 
-In the [previous step](./Create_storage_account.md) you have created the storage account to store the data. In this step, you will create a Stream Analytics Job to stream data into the storage account automatically.
+In the [previous step](Create_storage_account.md) you have created the storage account to store the data. In this step, you will create a Stream Analytics Job to stream data into the storage account automatically.
 
 ## Azure Stream Analytics
 
-[Azure StreamAnalytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
+[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/?WT.mc_id=agrohack-github-jabenn) provides real-time analytics on streams of data, allowing you to stream data from one service to another.
 
 ### Create the Stream Analytics Job
 
@@ -14,7 +14,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
     ![create resource](./media/create_resource.png)
 
-1. Search `stream` in the search bar and select **Stream Analytics job**. Then click on create.
+1. Search `stream analytics` in the search bar and select **Stream Analytics job**. Then click on create.
 
     ![search stream analytics](./media/search_stream_analytics.png)
 
@@ -52,7 +52,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 
     * Subscription: select your subscription.
 
-    * Event Hub Namesapce: Select the Event Hub you have created earlier (`sensormonitoralba2020`).
+    * Event Hub Namespace: Select the Event Hub you have created earlier (`sensormonitoralba2020`).
 
     * Event Hub Name: Choose use existing. Then choose `Telemetry`.
 
@@ -102,7 +102,7 @@ In the [previous step](./Create_storage_account.md) you have created the storage
     INTO [data] FROM [sensorData]
     ```
 
-    This will pass the all the values received from the Event Hub as they are to the Storage account.
+    This will pass the all the data received from the Event Hubs as they are to the Storage account.
 
 1. Click on **Test query**. You should see something like this:
 
@@ -127,3 +127,5 @@ In the [previous step](./Create_storage_account.md) you have created the storage
 -----------------------
 
 Now your IoT Central app telemetry data should be stored in the Blob container.
+
+You can now try to create an application in [PowerApps](../PowerApps/) or move on to [scenario 2](../../Lab2_WaterYourPlant/).

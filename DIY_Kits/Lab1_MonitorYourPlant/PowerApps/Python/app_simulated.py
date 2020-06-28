@@ -75,7 +75,7 @@ async def iothub_client_telemetry_sample_run():
 
 if __name__ == '__main__':
     print("IoT Hub Connection")
-    # python3.7
+    # python3.7 or newer
     asyncio.run(iothub_client_telemetry_sample_run())
 
     # python3.6

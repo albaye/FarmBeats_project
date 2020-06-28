@@ -1,57 +1,70 @@
-# Scenario 2: Water Your Plant
+# **Scenario 2: Self-irrigation**
 
-## Description
+## **Description**
 
-Learn how to start processing sensor data collected from your device using Azure Functions.
+The main goal for this scenario is to learn how to implement an automated irrigation system.
+The scenario it self is divided into three different parts:
 
-This scenario is divided into the following labs:
+- [Set up an alarm system.](#1-set-up-an-alarm-system)
 
-1. [Set up a notification system](Alarm_system/readme.md)
+- [Automated irrigation.](#2-automated-irrigation)
 
-1. [Set up an automated irrigation system](Automated_irrigation/readme.md)
+- [Azure Maps for weather prediction.](#3-azure-maps-for-weather-prediction)
 
-1. [Integrate weather prediction using Azure Maps](Weather_prediction/readme.md)
+## **Breakdown of the scenario**
 
-## Learning Outcomes
+### **1. Set up an alarm system**
 
-- Learn to integrate Azure IoT Central with other services using
-    - Rules and actions.
-    - REST APIs.
+#### **Objective**
 
-- Learn how to use Azure Functions
+Set up a system to alert the user when the plant needs to be watered.
 
-    - Use Events Hub and Stream Analytics to stream data into an Azure Function Application.
-    - Deploy your own Azure Function.
-    
-- Understand how one can start analysing environment data to obtain actionable insights.
+#### **Learning outcomes**
 
+- Investigate creating rules using Azure IoT Central
+  - Send email or push notification when the soil moisture is below a certain threshold.
 
-## Key areas to teach
+  - Optional: check if temperature/pressure/light intensity is outside the optimal range.
 
-App (IoT Central and Power Apps), Real-time data pipeline (Events Hub and Stream Analytics) + Azure Functions.
+- Learn to use Azure Events Hub, Azure Stream Analytics and Azure Functions to process data.
+  - Determine the date and time that the plant was last watered.
 
-## Azure Services Integration
+#### **Key areas to teach**
 
-### Automated Irrigation System
+IoT Azure Services, Data, Microcontroller Programming, AI.
 
-![AzureServiceS2](Alarm_system/media/AzureServices_Scenario2.png)
+_Optionally a LED indicator can be integrated to indicate if the plant needs watering._
 
-## Steps
+### **2. Automated irrigation**
 
-### 
+#### Objective
 
-1. [Create IoT Cental Template](Device_Template_IoTC.md)
+To set up a simple automated irrigation system.
 
-1. [Create rules in IoT Central](IoT_Central_create_rule.md)
+_**Additional equipment:** Relay module, water pump._
 
-1. [Send email from python script in Raspberry Pi](AlarmSystem.md)
+#### Learning Outcomes
 
-1. [Modify python code to listen to commands](Modify_python_code.md)
+- Practical application of previous knowledge that links to digital farming.
 
-1. [Create Azure Function](Create_Azure_function.md)
+  - Option 1: Setup the water pump with existing device
+  
+  - Option 2: Register a separate device to control the water pump.
 
-1. [Execute IoT Command](Execute_IoT_Command.md)
+### 3. Azure Maps for weather prediction
 
-1. [Create Stream Analytics](Create_stream_analytics.md)
+#### Objective
 
-1. [Integration of Azure Maps](Azure_maps.md)
+Use Azure Maps to determine whether irrgation is needed depending on weather conditions.
+
+#### Learning Outcomes
+
+- Learn to interface with other Azure Services.
+
+- Become confortable with more complex data processing.
+
+### **Azure Services Integration**
+
+![AzureServiceS1](Alarm_system/media/AzureServices_Scenario2.png)
+
+--------------

@@ -1,7 +1,5 @@
 # Create App using IoT Central
 
-Although the registration of an FarmBeats Business Kit already has a IoT Central created. This tutorial will teach you how was the application created.
-
 [Azure IoT Central](https://docs.microsoft.com/en-us/azure/iot-central/core/overview-iot-central) is an IoT application platform that allows us interact with the cloud services and interact with them.
 
 IoT central has a user friendly UI that allows us monitor device conditions, create rules, and manage millions of devices easily.
@@ -33,7 +31,7 @@ IoT central has a user friendly UI that allows us monitor device conditions, cre
 
     vi. Select you location.
 
-    vii. Click on create.
+    vii. Click on **Create**.
 
     ![create_app](./media/create_iot_central_app.png)
 
@@ -103,7 +101,7 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 * **Schema** - this defines the data type for the value being received, such as an integer or a floating point number
 * **Unit** - this defines the unit for know telemetry types, for example °C for temperatures.
 
-1. Select the **+ Add capability** button to add new capabilities, and add the following four values:
+1. Select the **+ Add capability** button to add new capabilities, and add the following five values:
 
    |  Display Name     | Name          | Capability Type | Semantic Type | Schema | Unit |
    | -------------     | ------------- | --------------- | ------------- | ------ | ---- |
@@ -173,7 +171,7 @@ Before the device template can be assigned to a device, it needs to be published
 
 1. Select **+ New**.
 
-1. Set the **Device Name** to `Raspberry pi` and the **Devide Id** to `raspberry_pi`. Then Click on **Create**.
+1. Set the **Device Name** to `Raspberry pi` and the **Devide Id** to `raspberry_pi`. Then click on **Create**.
 
    ![create device](./media/create_device.png)
 
@@ -183,7 +181,7 @@ A new device should appear in the devices list.
 
 ### Get the device connection details
 
-Each device has a seet of connection details that will be used on the actual device to connect to Azure IoT Central and send telemetry.
+Each device has a set of connection details that will be used on the actual device to connect to Azure IoT Central and send telemetry.
 
 1. Click on the Raspberry pi device you have just created.
 
@@ -197,4 +195,4 @@ Each device has a seet of connection details that will be used on the actual dev
 
 ------------------
 
-[Next Step](./Send_data_to_IoTCentral.md): write the python code to send telemetry data to IoT Central.
+[Next Step](Send_data_to_IoTCentral.md): write the python code to send telemetry data to IoT Central.

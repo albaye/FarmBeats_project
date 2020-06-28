@@ -1,10 +1,10 @@
 # Create Azure Function to get data via API
 
-In the [previous step](./Create_stream_analytics.md) you have created a Stream Analytics Job to stream data into the storage account. In this step, you will create a function to access the data in the storage account via API.
+In the [previous step](Create_stream_analytics.md) you have created a Stream Analytics Job to stream data into the storage account. In this step, you will create a function to access the data in the storage account via API.
 
 ## Azure Functions
 
-Azure Functions is an event driven serverless compute platform, essentially a way to define small blocks of code that are triggered by events such as a web request, data changes in storage or events being put onto an Azure Event Hub. They can be written in a multitude of different languages including C#, F#, Java, JavaScript and Python.
+[Azure Functions](https://azure.microsoft.com/services/functions/) is an event driven serverless compute platform, essentially a way to define small blocks of code that are triggered by events such as a web request, data changes in storage or events being put onto an Azure Event Hub. They can be written in a multitude of different languages including C#, F#, Java, JavaScript and Python.
 
 Azure Stream Analytics can call Azure Functions in response to streaming data, either individual messages or an aggregation across a time window.
 
@@ -14,7 +14,7 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
 1. Launch Visual Studio Code. You will be developing locally, so close any remote development sessions to the Raspberry Pi that you have open.
 
-1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
+1. Select the Extensions tab from the left hand menu, or select *View > Extensions*.
 
    ![The extensions tab in Visual Studio Code](./media/extensions_tab.png))
 
@@ -22,7 +22,7 @@ To build, test and deploy Azure Functions in Python using Visual Studio Code, yo
 
    ![The python extension](./media/python_extension.png)
 
-   > There are a number of Python extensions available, so ensure you install the one from Microsoft
+   > There are a number of Python extensions available, so ensure you install the one from Microsoft.
 
 1. Search for `Azure Functions` and install the *Azure Functions* extension from Microsoft by selecting **Install**.
 
@@ -34,16 +34,16 @@ Azure Functions can be created inside Visual Studio Code, or via the Azure CLI.
 
 #### Create a new Azure Functions project in Visual Studio Code
 
-1. Create a new folder for the Azure Functions project called `GetData`
+1. Create a new folder for the Azure Functions project called `GetData`.
 
-1. Launch Visual Studio Code and open the new folder using either the **Open Folder** button in the Explorer, or by selecting *File -> Open..*
+1. Launch Visual Studio Code and open the new folder using either the **Open Folder** button in the Explorer, or by selecting *File > Open*.
 
-1. From Visual Studio Code, launch the command palette
+1. From Visual Studio Code, launch the command palette.
 
-   * On macOS, press command+shift+p
-   * On Windows or Linux, press ctrl+shift+p
+   * On macOS, press command+shift+p.
+   * On Windows or Linux, press ctrl+shift+p.
 
-1. Search for `Azure Functions: Create New Project` and select it
+1. Search for `Azure Functions: Create New Project` and select it.
 
    ![The create azure functions project option](./media/functions_new_project.png)
 
@@ -51,7 +51,7 @@ Azure Functions can be created inside Visual Studio Code, or via the Azure CLI.
 
    ![Selecting the project folder](./media/new_project_folder.png)
 
-1. Select **Python** for the function project language
+1. Select **Python** for the function project language.
 
    ![Selecting the azure functions project](./media/new_project_language.png)
 
@@ -96,7 +96,7 @@ In this step, the function just needs to exist so that it can be called by Azure
 
    1. On Windows use the following command
 
-      ```sh
+      ```cmd
       .venv\Scripts\activate.bat
       ```
 
@@ -151,7 +151,7 @@ The function can be deployed from Visual Studio code, or the Azure CLI.
 
    ![Create function app option](./media/new_function_app.png)
 
-1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `agrohackjim2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
+1. Give the Function App a name that is globally unique, so include things such as the date or your name, for example `sensormonitoralba2020`. To make it easier, name it the same as your Azure IoT Central app and storage account.
 
    ![Naming the function app](./media/function_app_name.png)
 
@@ -213,7 +213,7 @@ Now that the function is working we need to connect it to the table in the Stora
    {
       "IsEncrypted": false,
       "Values": {
-         "AzureWebJobsStorage": "<Storage account connection string",
+         "AzureWebJobsStorage": "<Storage account connection string>",
          "FUNCTIONS_WORKER_RUNTIME": "python"
       }
    }
@@ -309,4 +309,4 @@ Now if you want, you can also test it from the Azure Portal and check that the p
 
 ------------------
 
-[Next step](./Create_PowerApps.md): Create App in Power Apps.
+[Next step](Create_PowerApps.md): Create App in Power Apps.

@@ -1,6 +1,10 @@
-# How to create an app in PowerApps
+# Creating the app in PowerApps
 
-PowerApps is a platform that allows us to build an app without having deep understanding in programming. It has a very user friendly interface and allows you to connect to a great variety of data sources, from excel tables to outlook and Azure Services.
+In the [previous step](Create_function.md) you have created an Azure Function to gather all the data from the table in the Storage account. In this step, you will learn to create an app in Power Apps.
+
+## PowerApps
+
+[PowerApps](https://powerapps.microsoft.com/) is a platform that allows us to build an app without having deep understanding in programming. It has a very user friendly interface and allows you to connect to a great variety of data sources, from excel tables to outlook and Azure Services.
 
 ## Connectors
 
@@ -127,7 +131,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![edittime](./media/edittimer.png)
 
-    ```xml
+    ```txt
     ClearCollect(sensorData, PowerAppsIoT.GetData({top:10}));
     ```
 
@@ -173,7 +177,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Now click on the gallery and change the **Items** field to:
 
-    ```xml
+    ```txt
     Filter(sensorInfo, 'Searchbar'.Text in SensorName|| 'Searchbar'.Text in SensorModel)
     ```
 
@@ -189,7 +193,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Select the `Gallery` in the **Tree View** section and select **Title'**. In the formula bar, change this to:
 
-    ```sensorName
+    ```txt
     ThisItem.SensorName
     ```
 
@@ -199,7 +203,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     Do the same for the subtitle, and change it to:
 
-    ```sensorModel
+    ```txt
     ThisItem.SensorModel
     ```
 
@@ -209,7 +213,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![arrow](./media/arrow.png)
 
-    ```xlts
+    ```txt
     Select(Parent);
 
     Clear(dataValues);
@@ -242,7 +246,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Click on one of the text labels and paste the following code to the formula bar. This will display the data corresponding to the last sensor selected.
 
-    ```xlts
+    ```txt
     "Last Known Value:   " & Switch(
         lastMeasure,
         "humidity",
@@ -270,7 +274,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Repeat the same process for the other Text Label and paste the following code. This will display the date and time of the last value received if a sensor is selected.
 
-    ```xml
+    ```txt
     "Time Received:   " & If(lastMeasure <> "", Last(sensorData).date & " " & Last(sensorData).time)
     ```
 
@@ -286,7 +290,7 @@ PowerApps has a great variety of connectors to import data from other sources su
 
 1. Now go back to your **Overview screen** and click the timer. Change the **OnTimeStart** to the following code to update the data of the sensor selected when the timer resets:
 
-    ```xml
+    ```txt
     ClearCollect(sensorData,PowerAppsIoT.GetData({top:10}));Clear(dataValues);ForAll(sensorData,Collect(dataValues,{time:time,value:Switch(lastMeasure,"humidity",humidity,"pressure",pressure,"temperature",temperature,"soil_moisture",soil_moisture),date:date}))
     ```
 
@@ -302,20 +306,24 @@ PowerApps has a great variety of connectors to import data from other sources su
 
     ![addarrow](./media/addarrow.png)
 
-1. Click the arrow and write this code in the **OnSelect** bar. (i.e `Sensors` is the name of the other screen)
+1. Click the arrow and write this code in the **OnSelect** bar. (i.e `Sensors` is the name of the other screen).
 
-    ```xml
+    ```txt
     Navigate(Sensors, None)
     ```
 
     ![navigatesensor](./media/navigatesensor.png)
 
-1. Repeat the same process for the other screen
+1. Repeat the same process for the other screen.
 
-    ```xml
+    ```txt
     Navigate(Overview, None)
     ```
 
     ![navigateoverview](./media/navigateoverview.png)
 
+------------------------ 
+
 Now you have a fully functional app created with Power Apps.
+
+You can now try to create an application in [IoT Central](../IoTCentral/) or move on to [scenario 2](../../Lab2_WaterYourPlant/).

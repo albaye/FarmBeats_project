@@ -1,5 +1,5 @@
-from azure.iot.device.aio import IoTHubDeviceClient
-import os, asyncio, json, time
+from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
+import os, asyncio, json, time, random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -35,7 +35,6 @@ def getTelemetryData():
     pressure = getPressure()
     humidity = getHumidity()
     light = getLight()
-    date, time = getDate()
     data = {
         "humidity": humidity,
         "pressure": pressure,
@@ -82,15 +81,13 @@ async def main():
             await device_client.send_message(telemetry)
             await asyncio.sleep(30)
 
-    listeners = asyncio.gather(command_listener(device_client))
-
     await main_loop()
 
     # Finally, disconnect
     await device_client.disconnect()
 
 if __name__ == '__main__':
-    # python3.7
+    # python3.7 or newer
     asyncio.run(main())
 
     # python3.6

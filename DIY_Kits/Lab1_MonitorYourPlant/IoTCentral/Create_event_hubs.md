@@ -1,12 +1,12 @@
 # Export Data telemetry data to Event Hubs
 
-In the [previous step](./Send_data_to_IoTCentral.md), you wrote the code to capture telemetry from the Raspberry Pi. In this step, you will export IoT telemetry to Azure Event Hubs.
+In the [previous step](Send_data_to_IoTCentral.md), you wrote the code to capture telemetry from the Raspberry Pi. In this step, you will export IoT telemetry to Azure Event Hubs.
 
 ## Azure Event Hubs
 
 [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/#features?WT.mc_id=agrohack-github-jabenn) allow you to take streaming data and connect it to other services, such as storing the data or using Azure Stream Analytics to analyze the data in real time. Azure IoT Central can be configured to stream data to an Azure Event Hubs instance.
 
-To export data you will need an Azure account. If you don't have one, head to the [Azure Account](https://github.com/jimbobbennett/AgroHack#azure-account) instructions to create an account.
+To export data you will need an Azure account.
 
 ## Creating the Event Hub Namespace
 
@@ -18,7 +18,7 @@ To export data you will need an Azure account. If you don't have one, head to th
 
    ![The create a resource button](./media/create_resource.png)
 
-1. Search for `Event Hubs` and select *Event Hubs*. Then click on create.
+1. Search for `Event Hubs` and select *Event Hubs*. Then click on **Create**.
 
    ![Searching for event hubs](./media/search_event_hub.png)
 
@@ -30,7 +30,7 @@ To export data you will need an Azure account. If you don't have one, head to th
 
    1. Select your Azure subscription
 
-   1. For the *Resource group*, select `lab1`.
+   1. For the *Resource group*, select `Lab1`.
 
    1. Select a *Location* closest to you
 
@@ -62,23 +62,23 @@ Azure IoT Central can export data to a number of different services, either to r
 
 ### Create the data export
 
-1. Open the app in Azure IoT Central
+1. Open the app in Azure IoT Central.
 
-1. Select **Data export** from the left-hand menu
+1. Select **Data export** from the left-hand menu.
 
    ![The data export menu](./media/data_export.png)
 
-1. Select the **New** button, then select the **Azure Event Hubs** option
+1. Select the **New** button, then select the **Azure Event Hubs** option.
 
-   ![New event hubs export option](./new_data_export.png)
+   ![New event hubs export option](media/new_data_export.png)
 
-1. Give the export a name, such as `Export telemetry`
+1. Give the export a name, such as `Export telemetry`.
 
-1. Select the Azure Event Hubs Namespace you just created, along with the Event Hub
+1. Select the Azure Event Hubs Namespace you just created, along with the Event Hub.
 
-1. In the *Data to export* section, leave *Telemetry* turned on, and turn off *Devices* and *Device templates*
+1. In the *Data to export* section, leave *Telemetry* turned on, and turn off *Devices* and *Device templates*.
 
-1. Select **Save**
+1. Select **Save**.
 
 1. The new data export job will appear in the list, showing a status. Wait until the status shows *Running*, this will only take about 30 seconds or so.
 
@@ -98,4 +98,4 @@ The easiest way to see messages flowing to the Event Hub is via the Azure Portal
 
 ----------------
 
-[Next Step](./Create_storage_account): In the next step you will create a storage account to save the telemetry data.
+[Next Step](Create_storage_account.md): In the next step you will create a storage account to save the telemetry data.

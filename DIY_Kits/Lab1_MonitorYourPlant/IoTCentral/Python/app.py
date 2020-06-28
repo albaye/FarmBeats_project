@@ -1,4 +1,4 @@
-from azure.iot.device.aio import IoTHubDeviceClient
+from azure.iot.device.aio import IoTHubDeviceClient, ProvisioningDeviceClient
 from datetime import datetime, date
 import smbus2, bme280, os, asyncio, json, time
 from grove.grove_moisture_sensor import GroveMoistureSensor
@@ -31,14 +31,14 @@ def getMoisture():
     return round(moisture_sensor.moisture, 2)
 
 def getLight():
-    return round(light_sensor.light, 2)
+    return round(light_sensor.light, 2)/10
 
 def getTelemetryData():
-    temp = round(getTemperaturePressureHumidity().temperature, 2)
-    moisture = getMoisture()
-    pressure = round(getTemperaturePressureHumidity().pressure, 2)
-    humidity = round(getTemperaturePressureHumidity().humidity, 2)
-    light = getLight()
+    temp = round(getTemperaturePressureHumidity().temperature, 2) # degrees Celsius
+    moisture = getMoisture() # voltage in mV
+    pressure = round(getTemperaturePressureHumidity().pressure, 2)/1000 # kPa
+    humidity = round(getTemperaturePressureHumidity().humidity, 2) # % relative Humidity
+    light = getLight() # % Light Strenght
     data = {
         "humidity": humidity,
         "pressure": pressure,
@@ -85,15 +85,13 @@ async def main():
             await device_client.send_message(telemetry)
             await asyncio.sleep(30)
 
-    listeners = asyncio.gather(command_listener(device_client))
-
     await main_loop()
 
     # Finally, disconnect
     await device_client.disconnect()
 
 if __name__ == '__main__':
-    # python3.7
+    # python3.7 or newer
     asyncio.run(main())
 
     # python3.6
