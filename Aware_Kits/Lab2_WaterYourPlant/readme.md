@@ -36,4 +36,22 @@ App (IoT Central and Power Apps), Real-time data pipeline (Events Hub and Stream
 
 ![AzureServiceS2](Alarm_system/media/AzureServices_Scenario2.png)
 
---------------
+## Steps
+
+### 
+
+1. [Create IoT Cental Template](Device_Template_IoTC.md)
+
+1. [Create rules in IoT Central](IoT_Central_create_rule.md)
+
+1. [Send email from python script in Raspberry Pi](AlarmSystem.md)
+
+1. [Modify python code to listen to commands](Modify_python_code.md)
+
+1. [Create Azure Function](Create_Azure_function.md)
+
+1. [Execute IoT Command](Execute_IoT_Command.md)
+
+1. [Create Stream Analytics](Create_stream_analytics.md)
+
+1. [Integration of Azure Maps](Azure_maps.md)
