@@ -1,6 +1,6 @@
 # Write the code to capture telemetry from the Raspberry Pi
 
-In the [previous step](./Create_IoTHub.md) you created the IoT Central Application to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Cental App.
+In the [previous step](Create_app_IoTCentral.md) you created the IoT Central Application to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Cental App. If you don't have a raspberry pi, there is another script with simulated data provided in this tutorial.
 
 > You can find the code for this section under the [Python Folder](Python)
 
@@ -18,13 +18,13 @@ To enable remote development in Visual Studio Code, you will need to install the
 
    ![The extensions tab in Visual Studio Code](./media/vscode_extension.png)
 
-1. Search for `remote development` and install the *Remote Development* extension pack from Microsoft by selecting the **Install** button
+1. Search for `remote ssh` and install the *Remote - SSH* extension pack from Microsoft by selecting the **Install** button
 
    ![The remote development extension](./media/install_remote_ssh.png)
 
 ### Connect to the Raspberry Pi
 
-1. From Visual Studio Code, launch the c/ommand palette
+1. From Visual Studio Code, launch the command palette
 
    * On macOS, press command+shift+p
    * On Windows or Linux, press ctrl+shift+p
@@ -59,7 +59,7 @@ The code for this device will be written in Python 3, which comes by default in 
 
 Visual Studio Code can install extensions on the host device. The Python extension is needed to work with Python files.
 
-1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
+1. Select the Extensions tab from the left hand menu, or select *View > Extensions*
 
 1. Search for `Python` and install the *Python* extension from Microsoft by selecting **Install in SSH: raspberrypi.local**.
 
@@ -75,7 +75,7 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 ### Create a folder for the code
 
-1. When the new Visual Studio Code window is opened, the terminal should be opened by default. If not, open a new terminal by selecting *Terminal -> New Terminal*.
+1. When the new Visual Studio Code window is opened, the terminal should be opened by default. If not, open a new terminal by selecting *Terminal > New Terminal*.
 
 1. From the Terminal in Visual Studio Code, create a new folder in the home folder called `EnvironmentMonitorIoT`
 
@@ -360,7 +360,7 @@ def getTelemetryData():
     return json.dumps(data)
 ```
 
-The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we are rounding their values to to decimal places. For the BME280, we do this in the `getTemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
+The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors,  their values are rounded to two decimal places. For the BME280, this in done the `getTemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getTelemetryData` function calls these three functions to get the sensor values and formats them into a JSON document, ready to send to Azure IoT Central.
 
 ```python
 async def main():

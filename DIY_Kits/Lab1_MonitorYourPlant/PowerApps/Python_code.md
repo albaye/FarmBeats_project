@@ -1,6 +1,6 @@
 # Write the code to capture telemetry from the Raspberry Pi
 
-In the [previous step](Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub.
+In the [previous step](Create_IoTHub.md) you created the IoT Hub to be able to receive and send events. In this step, you will write the code for the Raspberry Pi and connect to the IoT Hub. If you don't have a raspberry pi, there is another script with simulated data provided in this tutorial.
 
 > You can find the code for this section under the [Python Folder](Python)
 
@@ -14,7 +14,7 @@ To enable remote development in Visual Studio Code, you will need to install the
 
 1. Launch Visual Studio Code
 
-1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
+1. Select the Extensions tab from the left hand menu, or select *View > Extensions*
 
    ![The extensions tab in Visual Studio Code](./media/vscode_extension.png)
 
@@ -61,7 +61,7 @@ The code for this device will be written in Python 3, which comes by default in 
 
 Visual Studio Code can install extensions on the host device. The Python extension is needed to work with Python files.
 
-1. Select the Extensions tab from the left hand menu, or select *View -> Extensions*
+1. Select the Extensions tab from the left hand menu, or select *View > Extensions*
 
 1. Search for `Python` and install the *Python* extension from Microsoft by selecting **Install in SSH: raspberrypi.local**.
 
@@ -77,7 +77,7 @@ Visual Studio Code can install extensions on the host device. The Python extensi
 
 ### Create a folder for the code
 
-1. When the new Visual Studio Code window is opened, the terminal should be opened by default. If not, open a new terminal by selecting *Terminal -> New Terminal*.
+1. When the new Visual Studio Code window is opened, the terminal should be opened by default. If not, open a new terminal by selecting *Terminal > New Terminal*.
 
 1. From the Terminal in Visual Studio Code, create a new folder in the home folder called `EnvironmentMonitorIoT`
 
@@ -120,8 +120,6 @@ Python comes in various versions, and Python apps can use external code in packa
 
 1. A dialog will pop up asking if you want to activate this virtual environment. Select **Yes**.
 
-   ![The virtual environment dialog](../Images/LaunchVirtualEnv.png)
-
 1. The existing terminal will not have the virtual environment activated. Close it by selecting the trash can button
 
    ![The kill terminal button](./media/kill_terminal.png)
@@ -147,7 +145,7 @@ Python has a package manager called `pip` that allows you to install code from o
    asyncio
    ```
 
-1. Save the file. If you don't want to have to remember to always save files in Visual Studio Code, select *File -> Auto Save* to turn on automatic saving of files.
+1. Save the file. If you don't want to have to remember to always save files in Visual Studio Code, select *File > Auto Save* to turn on automatic saving of files.
 
 1. From the terminal, run the following command to install these packages:
 
@@ -277,7 +275,7 @@ Python has a concept of `.env` files to store secrets such as connection details
       # loop.run_until_complete(iothub_client_telemetry_sample_run())
     ```
 
-   This code connects to Azure IoT Central, and every 60 seconds will poll for data from the sensors and send it as a telemetry message.
+   This code connects to Azure IoT Central, and every 30 seconds will poll for data from the sensors and send it as a telemetry message. Feel free to change this.
 
 1. Save the file
 
@@ -355,7 +353,7 @@ def getTelemetryData():
    return json.dumps(data)
 ```
 
-The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we are rounding their values to to decimal places. For the BME280, we do this in the `gettemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getDate` function simply returns the current date and time, as will bbe used to the display graphs in PowerApps. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
+The `getTemperaturePressureHumidity` function reads values from the BME280 sensor. The `getMoisture` function reads data from the soil moisture sensor. The `getLight` function read data from the light sensor. Note that for the moisture and light sensors, we  their values are rounded to two decimal places. For the BME280, this is done in the `gettemeletryData` function as it has to be rounded separately for temperature, pressure, and humidity. The `getDate` function simply returns the current date and time, as will bbe used to the display graphs in PowerApps. The `getTelemetryData` function calls these four functions to get the sensor values, date and time, then formats them into a JSON document, ready to send to Azure IoT Hub.
 
 ```python
 def iothub_client_init():
@@ -377,7 +375,7 @@ async def iothub_client_telemetry_sample_run():
          print(message)
          await client.send_message(message)
 
-         # sleep 10 secons
+         # sleep 30 seconds
          await asyncio.sleep(30)
 
    except KeyboardInterrupt:

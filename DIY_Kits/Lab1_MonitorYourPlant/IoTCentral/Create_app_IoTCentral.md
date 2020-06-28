@@ -31,7 +31,7 @@ IoT central has a user friendly UI that allows us monitor device conditions, cre
 
     vi. Select you location.
 
-    vii. Click on create.
+    vii. Click on **Create**.
 
     ![create_app](./media/create_iot_central_app.png)
 
@@ -101,7 +101,7 @@ This interface needs 5 telemetry values added to it for the temperature, pressur
 * **Schema** - this defines the data type for the value being received, such as an integer or a floating point number
 * **Unit** - this defines the unit for know telemetry types, for example °C for temperatures.
 
-1. Select the **+ Add capability** button to add new capabilities, and add the following four values:
+1. Select the **+ Add capability** button to add new capabilities, and add the following five values:
 
    |  Display Name     | Name          | Capability Type | Semantic Type | Schema | Unit |
    | -------------     | ------------- | --------------- | ------------- | ------ | ---- |
@@ -171,7 +171,7 @@ Before the device template can be assigned to a device, it needs to be published
 
 1. Select **+ New**.
 
-1. Set the **Device Name** to `Raspberry pi` and the **Devide Id** to `raspberry_pi`. Then Click on **Create**.
+1. Set the **Device Name** to `Raspberry pi` and the **Devide Id** to `raspberry_pi`. Then click on **Create**.
 
    ![create device](./media/create_device.png)
 

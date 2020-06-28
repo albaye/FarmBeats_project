@@ -10,7 +10,7 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 
     ![create resource](./media/create_resource.png)
 
-1. Search IoT Hub in the search bar and select IoT Hub. Then click on create.
+1. Search IoT Hub in the search bar and select IoT Hub. Then click on **Create**.
 
     ![search iot hub](./media/search_iothub.png)
 
@@ -31,6 +31,8 @@ In this step you will create an [IoT hub](https://azure.microsoft.com/services/i
 1. Once you are done click on **Review + create**. And the click on **Create**.
 
 1. Wait for the deployment to be finished. After that select **Go to resource**.
+
+## Create IoT Device
 
 1. On the left panel, go to *Explorers* > *IoT Devices*.
 
