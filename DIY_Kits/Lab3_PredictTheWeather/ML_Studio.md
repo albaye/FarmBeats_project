@@ -106,11 +106,11 @@ Azure Machine Learning includes a sample dataset that you can use to predict the
 
 1. Drag an **Edit MetaData** module and set its settings as this:
 
-    ![editMetadata_settings](media/editMetadata_settings)
+    ![editMetadata_settings](media/editMetadata_settings.png)
 
 1. Drag a **Clean Missing Data** module and set its settings as this:
 
-    ![CleanMissingData_settings](media/CleanMissingData_settings)
+    ![CleanMissingData_settings](media/CleanMissingData_settings.png)
     
 1. Drag an **Execute R Script** module and set its code as this:
 
@@ -176,11 +176,11 @@ Azure Machine Learning includes a sample dataset that you can use to predict the
     
 1. Drag a **Split Data** module and set its settings as this:
 
-    ![SplitData_settings](media/SplitData_settings)
+    ![SplitData_settings](media/SplitData_settings.png)
     
 1. Make the connections between modules according to the picture below.    
     
-    ![pipeline_structure_1](media/pipeline_structure_1)
+    ![pipeline_structure_1](media/pipeline_structure_1.png)
     
 
 
