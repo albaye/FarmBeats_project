@@ -16,7 +16,7 @@ To use Azure Machine Learning, you create a workspace in your Azure subscription
 
     1. **Workspace edition**: Enterprise
     
-    ![ML_workspace_create](media/ML_workspace_create.png)
+    <img src="media/ML_workspace_create.png" width="70%">
 
 1. Wait for your workspace to be created (it can take a few minutes). Then go to it in the portal.
 
@@ -94,10 +94,94 @@ To use the Azure Machine Learning designer, you create a pipeline that you will 
 
 1. Observe that you need to specify a compute target on which to run the pipeline. In the **Settings** pane, use **Select compute target** to select the compute cluster you created previously.
 
-### Add and explore a dataset
+#### Add and explore the dataset and create the pipeline 
 
+Azure Machine Learning includes a sample dataset that you can use to predict the chance of rain. 
 
+1. On the left side of the designer, select the **Datasets** (⌕) tab, and drag the **Weather Dataset** from the **Samples** section onto the canvas.
 
+1. Drag a **Select Columns in Dataset** module to the canvas, below the **Weather Dataset** module. Then connect the output at the bottom of the **Weather Dataset** module to the input at the top of the **Select Columns in Dataset** module.
+
+1. Select the **Select Columns in Dataset module**, and in its **Settings** pane on the right, select **Edit column**. Then in the **Select columns** window, select **By name** and use the **+** links to add **WeatherType, DryBulbCelsius, RelativeHumidity**
+
+1. Drag an **Edit MetaData** module and set its settings as this:
+
+    ![editMetadata_settings](media/editMetadata_settings)
+
+1. Drag a **Clean Missing Data** module and set its settings as this:
+
+    ![CleanMissingData_settings](media/CleanMissingData_settings)
+    
+1. Drag an **Execute R Script** module and set its code as this:
+
+    ```R
+    # R version: 3.5.1
+    # The script MUST contain a function named azureml_main
+    # which is the entry point for this module.
+
+    # Please note that functions dependant on X11 library
+    # such as "View" are not supported because X11 library
+    # is not pre-installed.
+
+    # The entry point function MUST have two input arguments.
+    # If the input port is not connected, the corresponding
+    # dataframe argument will be null.
+    #   Param<dataframe1>: a R DataFrame
+    #   Param<dataframe2>: a R DataFrame
+    azureml_main <- function(dataframe1, dataframe2){
+    print("R script run.")
+
+    # If a zip file is connected to the third input port, it is
+    # unzipped under "./Script Bundle". This directory is added
+    # to sys.path.
+
+    # Return datasets as a Named List
+    return(list(dataset1=dataframe1, dataset2=dataframe2))
+    }
+    ```
+
+1. Drag another **Execute R Script** module and set its code as this:
+
+    ```R
+    # R version: 3.5.1
+    # The script MUST contain a function named azureml_main
+    # which is the entry point for this module.
+
+    # Please note that functions dependant on X11 library
+    # such as "View" are not supported because X11 library
+    # is not pre-installed.
+
+    # The entry point function MUST have two input arguments.
+    # If the input port is not connected, the corresponding
+    # dataframe argument will be null.
+    #   Param<dataframe1>: a R DataFrame
+    #   Param<dataframe2>: a R DataFrame
+    azureml_main <- function(dataframe1, dataframe2){
+      print("R script run.")
+
+    # If a zip file is connected to the third input port, it is
+    # unzipped under "./Script Bundle". This directory is added
+    # to sys.path.
+
+    dataframe1$isRain[grepl("RA", dataframe1$isRain)] <- "Yes"
+    dataframe1$isRain[grepl("SN", dataframe1$isRain)] <- "Yes"
+    dataframe1$isRain[grepl("DZ", dataframe1$isRain)] <- "Yes"
+    dataframe1$isRain[grepl("PL", dataframe1$isRain)] <- "Yes"
+    dataframe1$isRain[dataframe1$isRain != "Yes"] <- "NO"
+
+    # Return datasets as a Named List
+    return(list(dataset1=dataframe1, dataset2=dataframe2))
+    }
+    ```
+    
+1. Drag a **Split Data** module and set its settings as this:
+
+    ![SplitData_settings](media/SplitData_settings)
+    
+1. Make the connections between modules according to the picture below.    
+    
+    ![pipeline_structure_1](media/pipeline_structure_1)
+    
 
 
 
