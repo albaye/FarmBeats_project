@@ -2,7 +2,7 @@
 
 ## **Description**
 
-Predict the chance of rain using machine learning to use it as a factor for the automatic irrigation system. There is no need to water the plant if there is a high chance of rain. The chance of rain is the output of a prepared weather prediction model. The model is built upon historic data to forecast chance of rain based on temperature and humidity. 
+Predict the chance of rain using machine learning to use it as a factor for the automatic irrigation system. There is no need to water the plant if there is a high chance of rain. The chance of rain is the output of a prepared weather prediction model. The model is built upon historic data to forecast chance of rain based on temperature and humidity.
 
 > You could compare the output of this model with that of Azure Maps in the previous step to check its validity.
 
@@ -14,8 +14,12 @@ Predict the chance of rain using machine learning to use it as a factor for the 
 
 ## **Key areas to teach**
 
-AI, Azure services, Azure Machine Learning Studio (classic).
+AI, Azure services, Azure Machine Learning Studio.
 
------------------
+## Get started
 
-[Get started](ML_Studio_Classic.md)
+You can choose between using Azure Machine Learning Studio or Azure Machine Learning Studio (Classic). Both tutorials are provided, but the Classic version may be deprecated in the future.
+
+[Get started with Azure Machine Learning Studio (Classic)](ML_Studio_Classic.md)
+
+[Get started with Azure Machine Learning Studio](ML_Studio.md)
